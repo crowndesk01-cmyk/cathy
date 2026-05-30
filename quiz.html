@@ -56,30 +56,60 @@
           <div class="q-step active" id="qs1">
             <p class="q-text" data-en="Q1 — How would you describe Shreyas?" data-hk="問題1 — 你會點形容Shreyas？">Q1 — How would you describe Shreyas?</p>
             <div class="q-opts">
-              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="Annoying (affectionately)" data-hk="煩人（出於愛）">Annoying (affectionately)</button>
-              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="Surprisingly loveable" data-hk="出乎意料地可愛">Surprisingly loveable</button>
-              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="A complete disaster honestly" data-hk="老實說係完全嘅災難">A complete disaster honestly</button>
-              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="My person 💖" data-hk="我的人 💖">My person 💖</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',16)" data-en="Annoying (affectionately)" data-hk="煩人（出於愛）">Annoying (affectionately)</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',16)" data-en="Surprisingly loveable" data-hk="出乎意料地可愛">Surprisingly loveable</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',16)" data-en="A complete disaster honestly" data-hk="老實說係完全嘅災難">A complete disaster honestly</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',16)" data-en="My person 💖" data-hk="我的人 💖">My person 💖</button>
             </div>
           </div>
 
           <div class="q-step" id="qs2">
-            <p class="q-text" data-en="Q2 — When Shreyas sends a meme at 3am, you..." data-hk="問題2 — 當Shreyas凌晨3時發表情包，你...">Q2 — When Shreyas sends a meme at 3am, you...</p>
+            <p class="q-text" data-en="Q2 — Shreyas just stole the last fry off your plate. Your verdict?" data-hk="問題2 — Shreyas啱啱偷咗你碟上最後一條薯條。你嘅裁決？">Q2 — Shreyas just stole the last fry off your plate. Your verdict?</p>
             <div class="q-opts">
-              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Laugh and send one back" data-hk="大笑然後回發一個">Laugh and send one back</button>
-              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Roll your eyes (but smile)" data-hk="翻白眼（但微笑）">Roll your eyes (but smile)</button>
-              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Put phone down. Pick it back up." data-hk="放低電話。再拎番起。">Put phone down. Pick it back up.</button>
-              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Already awake waiting for it" data-hk="已經醒著等緊">Already awake waiting for it</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',33)" data-en="Death penalty (loving)" data-hk="死刑（充滿愛意）">Death penalty (loving)</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',33)" data-en="I'll allow it. This time." data-hk="我准許。今次而已。">I'll allow it. This time.</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',33)" data-en="I saw it coming. I always do." data-hk="我預咗㗎喇。我成日都係。">I saw it coming. I always do.</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',33)" data-en="Joke's on him, I ordered two 😏" data-hk="佢中計喇，我叫咗兩份 😏">Joke's on him, I ordered two 😏</button>
             </div>
           </div>
 
           <div class="q-step" id="qs3">
-            <p class="q-text" data-en="Q3 — Final question. Be honest." data-hk="問題3 — 最後一題。要誠實。">Q3 — Final question. Be honest.</p>
+            <p class="q-text" data-en="Q3 — It's 2am. Shreyas sends &quot;u up?&quot; — but it's just a meme. You..." data-hk="問題3 — 凌晨2點。Shreyas傳「瞓未？」— 但其實只係個表情包。你...">Q3 — It's 2am. Shreyas sends "u up?" — but it's just a meme. You...</p>
+            <div class="q-opts">
+              <button class="q-btn" onclick="nextStep('qs3','qs4',50)" data-en="Reply with a better meme. War begins." data-hk="回覆一個更勁嘅表情包。戰爭開始。">Reply with a better meme. War begins.</button>
+              <button class="q-btn" onclick="nextStep('qs3','qs4',50)" data-en="Laugh, then pretend I'm asleep" data-hk="笑咗，然後扮瞓著咗">Laugh, then pretend I'm asleep</button>
+              <button class="q-btn" onclick="nextStep('qs3','qs4',50)" data-en="I was already awake. Obviously." data-hk="我本身就醒住。梗係啦。">I was already awake. Obviously.</button>
+              <button class="q-btn" onclick="nextStep('qs3','qs4',50)" data-en="Screenshot it for the group chat" data-hk="截圖去群組分享">Screenshot it for the group chat</button>
+            </div>
+          </div>
+
+          <div class="q-step" id="qs4">
+            <p class="q-text" data-en="Q4 — Shreyas is confidently giving directions. You're 99% sure he's wrong. You..." data-hk="問題4 — Shreyas好自信咁指路。你99%肯定佢錯。你...">Q4 — Shreyas is confidently giving directions. You're 99% sure he's wrong. You...</p>
+            <div class="q-opts">
+              <button class="q-btn" onclick="nextStep('qs4','qs5',66)" data-en="Let him cook. Then say 'told you.'" data-hk="俾佢試。然後話「我講咗㗎啦。」">Let him cook. Then say 'told you.'</button>
+              <button class="q-btn" onclick="nextStep('qs4','qs5',66)" data-en="Already opened Google Maps secretly" data-hk="已經偷偷開咗Google地圖">Already opened Google Maps secretly</button>
+              <button class="q-btn" onclick="nextStep('qs4','qs5',66)" data-en="Honestly? Getting lost with him is fun" data-hk="老實講？同佢一齊迷路都幾好玩">Honestly? Getting lost with him is fun</button>
+              <button class="q-btn" onclick="nextStep('qs4','qs5',66)" data-en="Nod. Smile. Prepare to be lost." data-hk="點頭。微笑。準備迷路。">Nod. Smile. Prepare to be lost.</button>
+            </div>
+          </div>
+
+          <div class="q-step" id="qs5">
+            <p class="q-text" data-en="Q5 — Be honest. How many times have you re-read his texts?" data-hk="問題5 — 老實講。你重看咗佢嘅訊息幾多次？">Q5 — Be honest. How many times have you re-read his texts?</p>
+            <div class="q-opts">
+              <button class="q-btn" onclick="nextStep('qs5','qs6',83)" data-en="Zero. (This is a lie.)" data-hk="零次。（呢個係大話。）">Zero. (This is a lie.)</button>
+              <button class="q-btn" onclick="nextStep('qs5','qs6',83)" data-en="A normal, healthy amount 😇" data-hk="正常、健康嘅次數 😇">A normal, healthy amount 😇</button>
+              <button class="q-btn" onclick="nextStep('qs5','qs6',83)" data-en="I have favourites memorised" data-hk="我有啲已經背熟咗">I have favourites memorised</button>
+              <button class="q-btn" onclick="nextStep('qs5','qs6',83)" data-en="Next question. NEXT QUESTION." data-hk="下一題。下一題。">Next question. NEXT QUESTION.</button>
+            </div>
+          </div>
+
+          <div class="q-step" id="qs6">
+            <p class="q-text" data-en="Q6 — Final question. The big one. Be honest." data-hk="問題6 — 最後一題。最重要嗰條。要誠實。">Q6 — Final question. The big one. Be honest.</p>
             <div class="q-opts">
               <button class="q-btn" onclick="showQuizResult()" data-en="I love him 💖" data-hk="我愛他 💖">I love him 💖</button>
               <button class="q-btn" onclick="showQuizResult()" data-en="I love him more than he knows" data-hk="我愛他比他知道的多">I love him more than he knows</button>
               <button class="q-btn" onclick="showQuizResult()" data-en="He's my favourite chaos" data-hk="佢係我最鍾意嘅混亂">He's my favourite chaos</button>
-              <button class="q-btn" onclick="showQuizResult()" data-en="Obviously. Next question." data-hk="廢話。下一題。">Obviously. Next question.</button>
+              <button class="q-btn" onclick="showQuizResult()" data-en="Obviously. Now stop asking. ❤️" data-hk="廢話。咪再問啦。❤️">Obviously. Now stop asking. ❤️</button>
             </div>
           </div>
 
@@ -93,9 +123,9 @@
             </div>
             <p class="result-title" data-en="COMPATIBILITY: CERTIFIED ✨" data-hk="相容性：已認證 ✨">COMPATIBILITY: CERTIFIED ✨</p>
             <p class="result-note"
-               data-en="Scientists are genuinely astonished. The algorithm has never seen numbers this high. You two are a certified scientific miracle."
-               data-hk="科學家真係嚇到目瞪口呆。演算法從未見過咁高嘅數字。你哋係官方認證嘅科學奇蹟。">
-              Scientists are genuinely astonished. The algorithm has never seen numbers this high. You two are a certified scientific miracle.
+               data-en="Scientists are genuinely astonished — but honestly, the number was never the point. The point is that out of everyone in the whole world, it turned out to be you. It was always going to be you."
+               data-hk="科學家真係嚇到目瞪口呆 — 但其實個數字從來都唔係重點。重點係，喺全世界咁多人入面，原來係你。一直都注定係你。">
+              Scientists are genuinely astonished — but honestly, the number was never the point. The point is that out of everyone in the whole world, it turned out to be you. It was always going to be you.
             </p>
           </div>
         </div>
