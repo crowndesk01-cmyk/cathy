@@ -44,7 +44,7 @@ function initStars() {
       if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; }
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(253,240,224,${s.a})`;
+      ctx.fillStyle = `rgba(237,232,224,${s.a * 0.75})`;
       ctx.fill();
     });
     requestAnimationFrame(drawStars);
@@ -56,8 +56,8 @@ function initStars() {
    PAGE TRANSITIONS
    ============================================================ */
 function navigateTo(url) {
-  document.body.classList.add('fade-out');
-  setTimeout(() => { window.location.href = url; }, 330);
+  document.body.classList.add('page-out');
+  setTimeout(() => { window.location.href = url; }, 280);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -254,23 +254,8 @@ function runAway(btn) {
    ============================================================ */
 function handleYes() {
   animateLoveMeter(100);
-
-  const celebration = document.getElementById('celebration');
-  celebration.classList.remove('hidden');
-
-  setTimeout(() => {
-    celebration.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 100);
-
   launchConfetti();
-
-  const celebEmoji = document.getElementById('celebEmoji');
-  const emojis = ['🎉','💍','💖','🎊','✨','🥂','💝','🌸'];
-  let i = 0;
-  setInterval(() => {
-    celebEmoji.textContent = emojis[i % emojis.length];
-    i++;
-  }, 600);
+  setTimeout(() => navigateTo('yes.html'), 650);
 }
 
 /* ============================================================
