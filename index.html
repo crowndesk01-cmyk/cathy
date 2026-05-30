@@ -1,96 +1,1363 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chapter 1 — The Beginning 💌</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cathy 💖 A Message From Shreyas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#e8557f;--pink-d:#c23d66;--lavender:#9b8fe8;
+  --mint:#3ecba5;--gold:#f0a535;--cream:#fffdf9;
+  --text:#1a1025;--muted:#8b7fa0;--white:rgba(255,255,255,0.95);
+}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);overflow-x:hidden}
+
+/* ══ LANG TOGGLE ══ */
+#lang-btn{
+  position:fixed;top:1.2rem;left:1.2rem;z-index:8000;
+  background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);
+  border:1px solid rgba(232,85,127,0.25);border-radius:30px;
+  padding:7px 16px;font-size:12px;font-weight:700;
+  color:var(--pink);cursor:pointer;font-family:'DM Sans',sans-serif;
+  display:flex;align-items:center;gap:7px;
+  box-shadow:0 4px 20px rgba(232,85,127,0.1);
+  transition:all 0.2s ease;
+}
+#lang-btn:hover{background:var(--pink);color:#fff;border-color:var(--pink)}
+.lang-flag{font-size:16px}
+
+/* ══ LOADING SCREEN ══ */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(135deg,#fce4ec,#f3e5ff,#e0f7f4);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity 0.6s ease;
+}
+.load-emoji{font-size:64px;animation:heartbeat 1.2s ease-in-out infinite;margin-bottom:1.5rem}
+.load-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--text);margin-bottom:0.4rem;text-align:center}
+.load-status{font-size:13px;color:var(--muted);margin-bottom:1.5rem;min-height:20px;font-weight:500;text-align:center}
+.load-bar-wrap{width:260px;height:8px;background:rgba(155,143,232,0.15);border-radius:20px;overflow:hidden}
+.load-bar{height:100%;width:0%;border-radius:20px;background:linear-gradient(90deg,var(--pink),var(--lavender));transition:width 0.3s ease}
+.load-pct{font-size:12px;color:var(--lavender);font-weight:700;margin-top:0.6rem}
+
+/* ══ TOASTS ══ */
+#toast-area{position:fixed;top:1.2rem;right:1.2rem;z-index:8888;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:240px}
+.toast{background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);border:1px solid rgba(232,85,127,0.2);border-radius:14px;padding:10px 14px;font-size:12px;font-weight:600;color:var(--text);display:flex;align-items:flex-start;gap:8px;animation:toastIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;box-shadow:0 8px 30px rgba(232,85,127,0.1)}
+.toast.out{animation:toastOut 0.4s ease forwards}
+.toast-icon{font-size:16px;flex-shrink:0}
+.toast-msg{line-height:1.5}
+@keyframes toastIn{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{from{opacity:1}to{opacity:0;transform:translateX(60px)}}
+
+/* ══ FAKE DIALOG ══ */
+#fake-dialog{position:fixed;inset:0;z-index:7777;background:rgba(26,16,37,0.5);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center}
+.dialog-box{background:#fff;border-radius:20px;padding:2rem;max-width:320px;width:90%;text-align:center;animation:cardPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;box-shadow:0 24px 80px rgba(0,0,0,0.15)}
+.dialog-icon{font-size:48px;margin-bottom:0.8rem;display:block}
+.dialog-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
+.dialog-body{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1.4rem}
+.dialog-btns{display:flex;gap:10px;justify-content:center;position:relative;min-height:46px}
+.d-yes{background:linear-gradient(135deg,var(--pink),var(--lavender));color:#fff;border:none;border-radius:12px;padding:10px 28px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif}
+.d-no{background:transparent;color:var(--muted);border:1px dashed rgba(139,127,160,0.3);border-radius:12px;padding:10px 22px;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif;position:absolute;white-space:nowrap;transition:opacity 0.3s}
+
+/* ══ BG ══ */
+#bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+#floatLayer{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.fp{position:absolute;animation:fpFloat linear infinite;opacity:0}
+@keyframes fpFloat{0%{transform:translateY(110vh) rotate(-15deg);opacity:0}8%{opacity:0.25}90%{opacity:0.18}100%{transform:translateY(-10vh) rotate(15deg);opacity:0}}
+.footprint{position:fixed;font-size:14px;pointer-events:none;z-index:9000;animation:footFade 1.5s ease forwards}
+@keyframes footFade{0%{opacity:0.7;transform:scale(1)}100%{opacity:0;transform:scale(0.4) translateY(-20px)}}
+
+/* ══ SECTIONS ══ */
+section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 1.5rem;position:relative;z-index:2;scroll-snap-align:start}
+
+/* ══ HERO ══ */
+#s-intro{background:transparent}
+.intro-ring{width:160px;height:160px;border-radius:50%;border:2px solid rgba(232,85,127,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:2rem;position:relative;animation:ringPulse 3s ease-in-out infinite}
+.intro-ring::before,.intro-ring::after{content:'';position:absolute;border-radius:50%;border:1.5px solid rgba(155,143,232,0.2);animation:ringExpand 3s ease-out infinite}
+.intro-ring::before{inset:-14px;animation-delay:0s}.intro-ring::after{inset:-28px;animation-delay:0.5s}
+@keyframes ringPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes ringExpand{0%{opacity:.5;transform:scale(1)}100%{opacity:0;transform:scale(1.3)}}
+.intro-emoji{font-size:80px;animation:heartbeat 2s ease-in-out infinite;display:block}
+@keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.25)}28%{transform:scale(1)}42%{transform:scale(1.15)}70%{transform:scale(1)}}
+.tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--pink);border:1px solid rgba(232,85,127,0.3);padding:6px 18px;border-radius:30px;margin-bottom:1.6rem;animation:fadeUp 0.7s 0.1s ease both;background:rgba(255,255,255,0.6);backdrop-filter:blur(10px)}
+.intro-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,9vw,5.5rem);font-weight:700;line-height:1.05;text-align:center;color:var(--text);margin-bottom:1rem;animation:fadeUp 0.7s 0.2s ease both;opacity:0;animation-fill-mode:forwards}
+.intro-h1 em{font-style:italic;background:linear-gradient(135deg,var(--pink),var(--lavender));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.intro-sub{font-size:15px;color:var(--muted);font-weight:400;text-align:center;max-width:340px;line-height:1.8;margin-bottom:2.5rem;animation:fadeUp 0.7s 0.35s ease both;opacity:0;animation-fill-mode:forwards}
+.scroll-btn{background:none;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--pink);cursor:pointer;letter-spacing:0.5px;display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp 0.7s 0.5s ease both,arrowBounce 2s 1.2s ease-in-out infinite;opacity:0;animation-fill-mode:forwards}
+.scroll-btn span{font-size:20px}
+@keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ══ QUIZ ══ */
+#s-quiz{background:linear-gradient(160deg,rgba(252,228,236,0.7) 0%,rgba(240,236,255,0.7) 100%)}
+.glass-card{background:rgba(255,255,255,0.75);backdrop-filter:blur(20px);border:1px solid rgba(232,85,127,0.15);border-radius:32px;padding:3rem 2.5rem 2.5rem;max-width:440px;width:100%;text-align:center;position:relative;animation:cardPop 0.8s cubic-bezier(0.34,1.56,0.64,1) both;box-shadow:0 20px 60px rgba(232,85,127,0.08)}
+.glass-card::before{content:'';position:absolute;inset:-1.5px;border-radius:33px;z-index:-1;background:linear-gradient(60deg,#e8557f,#9b8fe8,#3ecba5,#f0a535,#e8557f);background-size:300% 300%;animation:borderSpin 5s linear infinite;opacity:0.5}
+@keyframes borderSpin{0%{background-position:0% 0%}100%{background-position:300% 300%}}
+.step-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--pink),var(--lavender));color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 18px;border-radius:20px;white-space:nowrap}
+.q-face{font-size:80px;display:block;margin:0.5rem 0 1rem;animation:heartbeat 2s ease-in-out infinite}
+.q-heading{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:0.4rem}
+.q-note{font-size:13px;color:var(--muted);margin-bottom:1.4rem;line-height:1.6}
+.mood-strip{display:flex;justify-content:center;gap:10px;margin-bottom:1.2rem}
+.mood-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;background:rgba(255,255,255,0.8);border:1px solid rgba(232,85,127,0.15);animation:moodBob ease-in-out infinite}
+@keyframes moodBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.taunt-zone{background:linear-gradient(135deg,rgba(232,85,127,0.06),rgba(155,143,232,0.06));border:1px solid rgba(155,143,232,0.2);border-radius:16px;padding:14px 18px;margin-bottom:1.4rem;min-height:68px}
+.taunt-main{font-size:14px;font-weight:600;color:var(--pink-d)}.taunt-side{font-size:12px;color:var(--muted);margin-top:4px}
+.btn-arena{position:relative;height:90px;margin-bottom:1rem}
+#yes-btn{background:linear-gradient(135deg,var(--pink),var(--lavender));color:#fff;border:none;border-radius:18px;padding:15px 38px;font-size:16px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;position:absolute;left:50%;transform:translateX(-118%);animation:yesGlow 2.5s ease-in-out infinite;white-space:nowrap}
+#yes-btn:hover{filter:brightness(1.1);transform:translateX(-118%) scale(1.05)}
+@keyframes yesGlow{0%,100%{box-shadow:0 4px 20px rgba(232,85,127,0.2)}50%{box-shadow:0 4px 30px rgba(232,85,127,0.45)}}
+#no-btn{background:rgba(255,255,255,0.6);color:var(--muted);border:1px dashed rgba(139,127,160,0.35);border-radius:16px;padding:14px 26px;font-size:15px;font-weight:500;cursor:pointer;position:absolute;font-family:'DM Sans',sans-serif;transition:opacity 0.4s,font-size 0.4s,padding 0.4s;white-space:nowrap}
+.pips{display:flex;gap:5px;justify-content:center;margin-bottom:1rem;flex-wrap:wrap}
+.pip{width:8px;height:8px;border-radius:50%;background:rgba(139,127,160,0.2);transition:all 0.4s ease}
+.pip.on{background:linear-gradient(135deg,var(--pink),var(--lavender));transform:scale(1.3)}
+.pills-strip{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.pill-tag{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;animation:pillFloat ease-in-out infinite}
+.pt-a{background:rgba(232,85,127,0.1);color:var(--pink-d);animation-duration:3s}
+.pt-b{background:rgba(155,143,232,0.1);color:#5a4fb8;animation-duration:3.7s;animation-delay:0.4s}
+.pt-c{background:rgba(62,203,165,0.1);color:#1a8c6e;animation-duration:3.3s;animation-delay:0.8s}
+.pt-d{background:rgba(240,165,53,0.1);color:#a06a10;animation-duration:3.5s;animation-delay:1.1s}
+@keyframes pillFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* ══ CONDITIONS ══ */
+#s-cond{background:linear-gradient(160deg,rgba(232,255,248,0.6) 0%,rgba(240,236,255,0.6) 50%,rgba(252,228,236,0.6) 100%)}
+.sec-eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mint);margin-bottom:0.8rem}
+.sec-h{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,3.2rem);font-weight:700;text-align:center;color:var(--text);margin-bottom:0.5rem;line-height:1.2}
+.sec-h em{font-style:italic;background:linear-gradient(90deg,var(--lavender),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-sub{font-size:14px;color:var(--muted);text-align:center;max-width:360px;line-height:1.8;margin-bottom:2.5rem}
+.conds{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:12px;max-width:700px;width:100%}
+.cond{background:rgba(255,255,255,0.75);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.8);border-radius:20px;padding:1.3rem 1.5rem;display:flex;gap:14px;align-items:flex-start;transition:transform 0.25s ease,box-shadow 0.25s ease;opacity:0;animation:fadeUp 0.5s ease both}
+.cond:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(232,85,127,0.1)}
+.cond-ico{font-size:26px;flex-shrink:0;animation:wiggle 4s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.cond-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px}
+.cond-desc{font-size:12px;color:var(--muted);line-height:1.65}
+.verdict{display:inline-block;font-size:9px;font-weight:700;padding:2px 9px;border-radius:12px;margin-top:6px;letter-spacing:1px;text-transform:uppercase}
+.v-law{background:rgba(155,143,232,0.12);color:#5a4fb8}.v-ok{background:rgba(62,203,165,0.12);color:#1a8c6e}
+.v-warn{background:rgba(240,165,53,0.12);color:#a06a10}.v-pink{background:rgba(232,85,127,0.1);color:var(--pink-d)}
+.cta-link{margin-top:2.5rem;font-size:13px;font-weight:600;color:var(--lavender);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;flex-direction:column;align-items:center;gap:6px;animation:arrowBounce 2s ease-in-out infinite}
+.cta-link span{font-size:18px}
+
+/* ══ COMPATIBILITY ══ */
+#s-compat{
+  background:linear-gradient(145deg,#0d0818 0%,#1a0d2e 40%,#0d1a2e 100%);
+  position:relative;overflow:hidden;
+}
+/* ambient orbs */
+.compat-orb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;animation:orbDrift ease-in-out infinite alternate}
+@keyframes orbDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,20px) scale(1.1)}}
+/* floating symbols */
+.compat-sym{position:absolute;pointer-events:none;animation:symFloat linear infinite;opacity:0;font-size:16px}
+@keyframes symFloat{0%{transform:translateY(110%) rotate(-10deg);opacity:0}10%{opacity:0.2}90%{opacity:0.15}100%{transform:translateY(-10%) rotate(10deg);opacity:0}}
+
+/* outer wrapper */
+.compat-shell{max-width:500px;width:100%;position:relative;z-index:2}
+
+/* header */
+.compat-header{text-align:center;margin-bottom:2.5rem}
+.compat-icon-wrap{
+  width:80px;height:80px;border-radius:50%;margin:0 auto 1.2rem;
+  background:linear-gradient(135deg,rgba(232,85,127,0.15),rgba(155,143,232,0.15));
+  border:1.5px solid rgba(232,85,127,0.25);
+  display:flex;align-items:center;justify-content:center;font-size:36px;
+  animation:heartbeat 2s ease-in-out infinite;
+  position:relative;
+}
+.compat-icon-wrap::before,.compat-icon-wrap::after{
+  content:'';position:absolute;border-radius:50%;
+  border:1px solid rgba(232,85,127,0.15);animation:ringExpand 2.5s ease-out infinite;
+}
+.compat-icon-wrap::before{inset:-12px;animation-delay:0s}
+.compat-icon-wrap::after{inset:-24px;animation-delay:0.5s}
+.compat-title-text{
+  font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;
+  background:linear-gradient(90deg,#f4c0d1,#fff,#cecbf6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:0.4rem;line-height:1.2;
+}
+.compat-title-hk{font-family:'Noto Serif TC',serif;font-size:1rem;color:rgba(255,255,255,0.35);font-weight:400;margin-bottom:0.5rem}
+.compat-sub-text{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7}
+
+/* step progress bar */
+.step-progress{display:flex;gap:6px;justify-content:center;margin-bottom:2rem}
+.step-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,0.15);transition:all 0.4s ease;
+}
+.step-dot.done{background:var(--pink);transform:scale(1.2)}
+.step-dot.active{background:linear-gradient(135deg,var(--pink),var(--lavender));transform:scale(1.4);box-shadow:0 0 10px rgba(232,85,127,0.5)}
+
+/* question cards */
+.q-card{
+  background:rgba(255,255,255,0.05);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.1);border-radius:24px;
+  padding:2rem;margin-bottom:1rem;
+  animation:qCardIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  display:none;
+}
+.q-card.active{display:block}
+@keyframes qCardIn{0%{opacity:0;transform:translateX(40px) scale(0.95)}100%{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes qCardOut{0%{opacity:1;transform:translateX(0) scale(1)}100%{opacity:0;transform:translateX(-40px) scale(0.95)}}
+.q-card.leaving{animation:qCardOut 0.35s ease both}
+
+.q-number{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:0.8rem;display:flex;align-items:center;gap:6px}
+.q-num-line{flex:1;height:1px;background:rgba(232,85,127,0.2)}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:#fff;margin-bottom:0.3rem;line-height:1.4}
+.q-text-hk{font-family:'Noto Serif TC',serif;font-size:0.85rem;color:rgba(255,255,255,0.35);margin-bottom:1.2rem}
+
+/* glowing slider */
+.slider-wrap{position:relative;padding:0.5rem 0}
+.q-slider{
+  width:100%;-webkit-appearance:none;height:5px;border-radius:10px;outline:none;cursor:pointer;
+  background:rgba(255,255,255,0.1);
+  -webkit-transition:background 0.2s;
+}
+.q-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:26px;height:26px;border-radius:50%;cursor:pointer;
+  background:linear-gradient(135deg,var(--pink),var(--lavender));
+  box-shadow:0 0 12px rgba(232,85,127,0.6);
+  transition:transform 0.15s ease,box-shadow 0.15s ease;
+}
+.q-slider::-webkit-slider-thumb:active{transform:scale(1.2);box-shadow:0 0 20px rgba(232,85,127,0.8)}
+.slider-labels{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,0.3);margin-top:4px;font-weight:600}
+.q-val{
+  display:inline-block;font-size:11px;font-weight:700;
+  background:linear-gradient(90deg,var(--pink),var(--lavender));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-top:6px;letter-spacing:0.5px;
+  animation:fadeUp 0.2s ease both;
+}
+
+/* choice buttons */
+.q-choice{display:flex;gap:8px;flex-wrap:wrap}
+.q-opt{
+  font-size:13px;font-weight:600;padding:10px 16px;border-radius:16px;
+  border:1.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);
+  color:rgba(255,255,255,0.55);cursor:pointer;font-family:'DM Sans',sans-serif;
+  transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+}
+.q-opt:hover{border-color:rgba(232,85,127,0.4);color:rgba(255,255,255,0.8);background:rgba(232,85,127,0.1);transform:translateY(-2px)}
+.q-opt.active{background:linear-gradient(135deg,var(--pink),var(--lavender));color:#fff;border-color:transparent;transform:scale(1.05);box-shadow:0 6px 20px rgba(232,85,127,0.35)}
+
+/* next button inside card */
+.q-next{
+  width:100%;margin-top:1.4rem;background:linear-gradient(135deg,var(--pink),var(--lavender));
+  color:#fff;border:none;border-radius:14px;padding:12px;font-size:14px;font-weight:700;
+  cursor:pointer;font-family:'DM Sans',sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  transition:filter 0.15s,transform 0.15s;
+}
+.q-next:hover{filter:brightness(1.1);transform:scale(1.02)}
+.q-next-hk{font-family:'Noto Serif TC',serif;font-size:11px;color:rgba(255,255,255,0.6);font-weight:400}
+
+/* SCANNING ANIMATION */
+#compat-scan{display:none;text-align:center;padding:2rem}
+.scan-emoji{font-size:52px;display:block;margin-bottom:1.2rem;animation:heartbeat 0.8s ease-in-out infinite}
+.scan-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:0.4rem}
+.scan-status{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:1.2rem;min-height:18px;font-weight:500}
+.scan-bar-bg{height:6px;background:rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;margin-bottom:0.5rem}
+.scan-bar-fill{height:100%;width:0%;border-radius:20px;background:linear-gradient(90deg,var(--pink),var(--lavender),var(--mint));transition:width 0.3s ease}
+.scan-pct{font-size:11px;font-weight:700;color:var(--lavender)}
+.scan-checks{display:flex;flex-direction:column;gap:6px;margin-top:1.2rem;text-align:left}
+.scan-check{font-size:12px;color:rgba(255,255,255,0.3);font-weight:500;display:flex;align-items:center;gap:8px;transition:color 0.3s,transform 0.3s}
+.scan-check.done{color:rgba(255,255,255,0.75);transform:translateX(4px)}
+.scan-check-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.15);flex-shrink:0;transition:background 0.3s}
+.scan-check.done .scan-check-dot{background:var(--mint)}
+
+/* RESULT CARD */
+#compat-result{display:none;animation:cardPop 0.7s cubic-bezier(0.34,1.56,0.64,1) both}
+.result-inner{
+  background:rgba(255,255,255,0.04);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.1);border-radius:24px;
+  padding:2.2rem 2rem;position:relative;overflow:hidden;text-align:center;
+}
+.result-inner::before{
+  content:'';position:absolute;inset:-1.5px;border-radius:25px;z-index:-1;
+  background:linear-gradient(60deg,#e8557f,#9b8fe8,#3ecba5,#f0a535,#e8557f);
+  background-size:300% 300%;animation:borderSpin 4s linear infinite;opacity:0.35;
+}
+/* ring */
+.result-ring-wrap{position:relative;width:150px;height:150px;margin:0 auto 1.4rem}
+.result-ring{transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:rgba(255,255,255,0.07);stroke-width:7}
+.ring-fill{fill:none;stroke-width:7;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;stroke:url(#ringGrad);transition:stroke-dashoffset 2.6s cubic-bezier(0.34,1.2,0.64,1)}
+.ring-glow{fill:none;stroke-width:12;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;stroke:url(#ringGrad);opacity:0.15;filter:blur(4px);transition:stroke-dashoffset 2.6s cubic-bezier(0.34,1.2,0.64,1)}
+.ring-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.result-score{font-size:2.4rem;font-weight:900;font-family:'Cormorant Garamond',serif;color:#fff;line-height:1}
+.result-pct-sub{font-size:9px;font-weight:700;color:rgba(255,255,255,0.35);letter-spacing:2px;text-transform:uppercase}
+/* bilingual label row */
+.result-bilingual{margin-bottom:1.2rem}
+.result-label-en{font-size:16px;font-weight:700;color:#fff;margin-bottom:3px}
+.result-label-hk{font-size:12px;color:rgba(255,255,255,0.4);font-family:'Noto Serif TC',serif}
+/* stars */
+.result-stars{display:flex;justify-content:center;gap:10px;margin-bottom:1.4rem;min-height:30px}
+.result-star{font-size:22px;opacity:0;animation:starPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both}
+/* verdict box */
+.result-verdict-box{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  border-radius:18px;padding:1.2rem 1.3rem;text-align:left;
+}
+.verdict-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.verdict-row:last-child{margin-bottom:0;padding-top:10px;border-top:1px solid rgba(255,255,255,0.07)}
+.verdict-flag{font-size:14px;flex-shrink:0;margin-top:2px}
+.result-verdict-en{font-size:13px;font-weight:700;color:rgba(255,255,255,0.85);line-height:1.65}
+.result-verdict-hk{font-size:12px;font-weight:500;color:rgba(255,255,255,0.5);font-family:'Noto Serif TC',serif;line-height:1.9}
+
+/* CTA btn */
+#compat-btn{
+  width:100%;background:linear-gradient(135deg,var(--pink),var(--lavender));
+  color:#fff;border:none;border-radius:18px;padding:16px;font-size:15px;font-weight:700;
+  cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:1.4rem;
+  animation:yesGlow 2s ease-in-out infinite;display:none;
+}
+#compat-btn{width:100%;background:linear-gradient(135deg,var(--gold),var(--pink));color:#fff;border:none;border-radius:16px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:1.5rem;animation:yesGlow 2s ease-in-out infinite}
+
+/* ══ POETRY / LETTER SECTION ══ */
+#s-poem{background:linear-gradient(160deg,rgba(26,16,37,0.96) 0%,rgba(60,30,70,0.97) 60%,rgba(26,16,37,0.96) 100%);scroll-snap-align:start}
+.poem-stars{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.pstar{position:absolute;color:#fff;animation:twinkle ease-in-out infinite;font-size:12px}
+.poem-lang-tabs{display:flex;gap:8px;margin-bottom:2rem}
+.poem-tab{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:6px 18px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s ease;letter-spacing:0.5px}
+.poem-tab.active{background:linear-gradient(135deg,var(--pink),var(--lavender));color:#fff;border-color:transparent}
+
+.poem-wrap{max-width:620px;width:100%;position:relative;z-index:2}
+.poem-eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mint);margin-bottom:1rem;text-align:center}
+.poem-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,3rem);font-weight:700;text-align:center;margin-bottom:0.3rem;background:linear-gradient(90deg,#f4c0d1,#fff,#cecbf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.poem-title-hk{font-family:'Noto Serif TC','Cormorant Garamond',serif;font-size:clamp(1.6rem,5vw,2.4rem)}
+.poem-divider{text-align:center;font-size:20px;margin:1rem 0;opacity:0.4}
+
+.poem-content{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem}
+@media(max-width:640px){.poem-content{grid-template-columns:1fr}}
+.poem-col{}
+.poem-lang-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:0.5rem}
+
+.poem-stanza{margin-bottom:1.8rem;animation:fadeUp 0.6s ease both}
+.poem-line{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:400;color:rgba(255,255,255,0.85);line-height:1.85;font-style:italic}
+.poem-line-hk{font-family:'Noto Serif TC','Cormorant Garamond',serif;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.85);line-height:2;font-style:normal}
+
+.poem-accent{color:var(--pink);font-weight:600;font-style:normal}
+.poem-accent-gold{color:var(--gold);font-weight:600;font-style:normal}
+
+.poem-signature{margin-top:2rem;text-align:right;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:rgba(255,255,255,0.5);font-style:italic}
+.poem-signature span{color:var(--pink);font-weight:600}
+
+.poem-card-single{background:rgba(255,255,255,0.05);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:2.5rem;margin-top:1.5rem}
+.poem-quote{font-size:3rem;color:var(--pink);opacity:0.3;line-height:1;font-family:'Cormorant Garamond',serif;margin-bottom:-0.5rem}
+
+/* single-col poem view */
+.solo-poem{display:none;max-width:480px;width:100%}
+.solo-poem .poem-stanza{text-align:center}
+.poem-toggle-view{margin-top:2rem;display:flex;justify-content:center;gap:8px}
+.view-btn{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s ease}
+.view-btn.active{background:rgba(255,255,255,0.15);color:#fff}
+
+/* ══ PROPOSAL ══ */
+#s-prop{background:linear-gradient(160deg,rgba(252,228,236,0.6) 0%,rgba(255,248,225,0.6) 50%,rgba(240,236,255,0.6) 100%)}
+.prop-card{background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);border:1px solid rgba(232,85,127,0.2);border-radius:32px;padding:3.5rem 3rem;max-width:520px;width:100%;text-align:center;position:relative;overflow:hidden;box-shadow:0 24px 80px rgba(232,85,127,0.1);animation:cardPop 0.8s cubic-bezier(0.34,1.56,0.64,1) both}
+.prop-card::after{content:'💍';font-size:220px;position:absolute;bottom:-60px;right:-50px;opacity:0.04;pointer-events:none;line-height:1}
+.ring-spin{font-size:82px;display:block;margin-bottom:1.2rem;animation:heartbeat 1.8s ease-in-out infinite}
+.prop-h{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:700;color:var(--text);line-height:1.2;margin-bottom:1.5rem}
+.prop-h em{font-style:italic;background:linear-gradient(90deg,var(--pink),var(--gold),var(--lavender));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.prop-h-hk{font-family:'Noto Serif TC',serif;font-size:clamp(1.4rem,4vw,2rem)}
+.letter{font-size:14px;color:var(--muted);line-height:2;text-align:left;margin-bottom:2rem;border-left:3px solid rgba(232,85,127,0.25);padding-left:1.2rem}
+.letter strong{color:var(--pink-d);font-weight:700}
+.letter-hk{font-family:'Noto Serif TC',serif;font-size:13px;line-height:2.2}
+.prop-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;min-height:60px}
+#marry-yes{background:linear-gradient(135deg,var(--pink),var(--gold));color:#fff;border:none;border-radius:18px;padding:16px 40px;font-size:17px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;animation:yesGlow 2s ease-in-out infinite}
+#marry-yes:hover{filter:brightness(1.08);transform:scale(1.04)}
+#marry-no{background:rgba(255,255,255,0.5);color:var(--muted);border:1px dashed rgba(139,127,160,0.3);border-radius:16px;padding:16px 28px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity 0.4s;white-space:nowrap}
+.prop-hint{font-size:11px;color:rgba(139,127,160,0.4);margin-top:1.2rem}
+
+/* ══ WIN ══ */
+#s-win{display:none;background:linear-gradient(160deg,#fce4ec,#f3e5ff,#e0f7f4)}
+.win-wrap{background:rgba(255,255,255,0.85);backdrop-filter:blur(24px);border:1px solid rgba(232,85,127,0.2);border-radius:32px;padding:3.5rem 2.5rem;max-width:500px;width:100%;text-align:center;animation:cardPop 0.8s cubic-bezier(0.34,1.56,0.64,1) both;box-shadow:0 24px 80px rgba(232,85,127,0.15)}
+.win-face{font-size:90px;display:block;margin-bottom:1rem;animation:heartbeat 1.3s ease-in-out infinite}
+.win-h{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;line-height:1.1;margin-bottom:0.5rem;background:linear-gradient(90deg,var(--pink),var(--lavender),var(--mint));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.win-sub{font-size:14px;color:var(--muted);margin-bottom:1.5rem}
+.star-row{display:flex;gap:12px;justify-content:center;margin:1rem 0}
+.star-s{font-size:32px;opacity:0}
+.meter-wrap{margin:1.2rem 0}
+.meter-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink-d);margin-bottom:0.5rem}
+.meter-bar-bg{height:16px;background:rgba(232,85,127,0.1);border-radius:20px;overflow:hidden}
+.meter-bar-fill{height:100%;width:0%;border-radius:20px;background:linear-gradient(90deg,var(--pink),var(--gold),var(--lavender));transition:width 2.5s cubic-bezier(0.34,1.2,0.64,1)}
+.meter-emojis{display:flex;justify-content:space-between;font-size:11px;margin-top:4px;color:var(--muted);font-weight:600}
+.breaking{background:linear-gradient(90deg,var(--pink),var(--pink-d));color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 16px;border-radius:8px;margin-bottom:1rem;animation:breakingPulse 1s ease-in-out infinite;display:inline-block}
+@keyframes breakingPulse{0%,100%{opacity:1}50%{opacity:0.75}}
+.win-msg{font-size:14px;color:var(--text);line-height:1.9;max-width:360px;margin:0 auto 1.8rem}
+.win-msg strong{color:var(--pink-d);font-weight:700}
+.cert{background:linear-gradient(135deg,rgba(232,85,127,0.05),rgba(155,143,232,0.05));border:2px dashed rgba(232,85,127,0.3);border-radius:20px;padding:1.6rem 1.5rem;margin-bottom:1.5rem}
+.cert-crown{font-size:28px;margin-bottom:0.5rem;display:block}
+.cert-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:0.8rem}
+.cert-text{font-size:13px;color:var(--text);line-height:1.9}
+.rainbow{font-weight:700;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;animation:rainbowShift 3s linear infinite}
+@keyframes rainbowShift{0%{color:var(--pink)}25%{color:var(--lavender)}50%{color:var(--mint)}75%{color:var(--gold)}100%{color:var(--pink)}}
+.win-pills{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+.cf{position:fixed;pointer-events:none;z-index:9999;animation:cfFall ease-in forwards}
+@keyframes cfFall{0%{opacity:1;transform:translateY(-20px) rotate(0deg)}100%{opacity:0;transform:translateY(105vh) rotate(1080deg)}}
+
+/* ══ SHARED ══ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cardPop{0%{transform:scale(0.8) rotate(-2deg);opacity:0}65%{transform:scale(1.04) rotate(0.5deg)}100%{transform:scale(1);opacity:1}}
+@keyframes starPop{0%{opacity:0;transform:scale(0) rotate(-30deg)}60%{transform:scale(1.4)}100%{opacity:1;transform:scale(1)}}
+@keyframes twinkle{0%,100%{opacity:0.15;transform:scale(0.7)}50%{opacity:0.9;transform:scale(1.3)}}
+@keyframes shakeCard{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+</style>
 </head>
 <body>
 
-  <canvas id="starsCanvas"></canvas>
+<!-- LANG TOGGLE -->
+<button id="lang-btn" onclick="toggleLang()">
+  <span class="lang-flag">🌐</span>
+  <span id="lang-label">廣東話</span>
+</button>
 
-  <!-- Language Toggle -->
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
-    <span id="langLabel">廣東話 🇭🇰</span>
-  </button>
+<!-- LOADER -->
+<div id="loader">
+  <span class="load-emoji">💾</span>
+  <div class="load-title" id="load-title">Loading Shreyas's Feelings...</div>
+  <div class="load-status" id="load-status">Initialising romance.exe</div>
+  <div class="load-bar-wrap"><div class="load-bar" id="load-bar"></div></div>
+  <div class="load-pct" id="load-pct">0%</div>
+</div>
 
-  <!-- Chapter Navigation -->
-  <nav class="chapter-nav">
-    <span class="chapter-brand">C &amp; S</span>
-    <div class="chapter-dots">
-      <a href="index.html"    class="cdot active"    title="Ch 1 — The Beginning"></a>
-      <a href="love.html"     class="cdot page-link" title="Ch 2 — The Question"></a>
-      <a href="evidence.html" class="cdot page-link" title="Ch 3 — The Evidence"></a>
-      <a href="contract.html" class="cdot page-link" title="Ch 4 — The Contract"></a>
-      <a href="poem.html"     class="cdot page-link" title="Ch 5 — The Poem"></a>
-      <a href="quiz.html"     class="cdot page-link" title="Ch 6 — The Science"></a>
-      <a href="husband.html"  class="cdot page-link" title="Ch 7 — The Resume"></a>
-      <a href="proposal.html" class="cdot page-link" title="Ch 8 — The Proposal"></a>
-      <a href="yes.html"      class="cdot page-link" title="Ch 9 — She Said Yes"></a>
+<div id="toast-area"></div>
+
+<div id="fake-dialog">
+  <div class="dialog-box">
+    <span class="dialog-icon">🚨</span>
+    <div class="dialog-title" id="d-title">Are you absolutely sure?</div>
+    <div class="dialog-body" id="d-body">Our records show you actually love him. Clicking No may cause Shreyas to dramatically collapse on the floor.</div>
+    <div class="dialog-btns">
+      <button class="d-yes" id="d-yes-btn" onclick="closeDialog()">I love him 💖</button>
+      <button class="d-no" id="dialog-no" onmouseenter="dodgeDialogNo()" onclick="dodgeDialogNo()">No...</button>
     </div>
-    <span class="chapter-info">01 / 09</span>
-  </nav>
+  </div>
+</div>
 
-  <!-- Particle layer -->
-  <div class="particles" id="particles"></div>
+<canvas id="bgCanvas"></canvas>
+<div id="floatLayer"></div>
 
-  <!-- ============ BREAKING NEWS TICKER ============ -->
-  <div class="ticker-wrap">
-    <div class="ticker-label" data-en="🔴 BREAKING" data-hk="🔴 突發">🔴 BREAKING</div>
-    <div class="ticker-track">
-      <div class="ticker-content" id="tickerContent">
-        <span data-en="Local man builds entire webpage to confess feelings. Historians baffled. &nbsp;•&nbsp;" data-hk="本地男子建立整個網頁表白。歷史學家困惑不解。&nbsp;•&nbsp;">Local man builds entire webpage to confess feelings. Historians baffled. &nbsp;•&nbsp;</span>
-        <span data-en="Scientists confirm: Cathy's smile is classified as a natural disaster. &nbsp;•&nbsp;" data-hk="科學家確認：Cathy嘅笑容被列為自然災害。&nbsp;•&nbsp;">Scientists confirm: Cathy's smile is classified as a natural disaster. &nbsp;•&nbsp;</span>
-        <span data-en="'No' button spotted fleeing the country. Authorities alerted. &nbsp;•&nbsp;" data-hk="「唔係」掣被發現逃離境外。當局已收到通報。&nbsp;•&nbsp;">'No' button spotted fleeing the country. Authorities alerted. &nbsp;•&nbsp;</span>
-        <span data-en="Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;" data-hk="相容性分數達100%。演算法因震驚而崩潰。&nbsp;•&nbsp;">Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;</span>
-        <span data-en="Shreyas still cannot cook. Cathy's snacks remain at risk. &nbsp;•&nbsp;" data-hk="Shreyas仍然唔識煮飯。Cathy嘅小食仍處於危險之中。&nbsp;•&nbsp;">Shreyas still cannot cook. Cathy's snacks remain at risk. &nbsp;•&nbsp;</span>
-        <span data-en="Sources say blanket war ongoing since Day 1. No resolution in sight. &nbsp;•&nbsp;" data-hk="消息人士透露被子大戰自第一天起持續至今。和平無望。&nbsp;•&nbsp;">Sources say blanket war ongoing since Day 1. No resolution in sight. &nbsp;•&nbsp;</span>
+<!-- ════ HERO ════ -->
+<section id="s-intro">
+  <div class="tag" data-en="💌 a very special message for cathy" data-hk="💌 寫給Cathy的一封信">💌 a very special message for cathy</div>
+  <div class="intro-ring"><span class="intro-emoji">🥺</span></div>
+  <h1 class="intro-h1">
+    <span data-en="Hey <em>Cathy,</em><br>I need to tell you something..." data-hk="嗨 <em>Cathy，</em><br>我有嘢想話俾你知...">Hey <em>Cathy,</em><br>I need to tell you something...</span>
+  </h1>
+  <p class="intro-sub" data-en="This is the most important webpage you will ever open in your entire life. No pressure though. Totally fine. Completely normal." data-hk="呢個係你一生中會打開嘅最重要網頁。唔緊張嘅。完全正常。">This is the most important webpage you will ever open in your entire life. No pressure though. Totally fine. Completely normal.</p>
+  <button class="scroll-btn" onclick="goTo('s-quiz')"><span data-en="open to find out" data-hk="打開睇睇">open to find out</span><span>↓</span></button>
+</section>
+
+<!-- ════ QUIZ ════ -->
+<section id="s-quiz">
+  <div class="glass-card" id="quiz-card">
+    <div class="step-badge" data-en="step 1 of 5 — the most important question" data-hk="第一步，共五步 — 最重要嘅問題">step 1 of 5 — the most important question</div>
+    <span class="q-face" id="qface">🥺</span>
+    <h2 class="q-heading" id="qhead" data-en="Cathy, do you love me?" data-hk="Cathy，你愛我嗎？">Cathy, do you love me?</h2>
+    <p class="q-note" id="qnote" data-en="think very carefully. the button on the right has strong opinions." data-hk="諗清楚先。右邊嗰個掣有自己嘅意見。">think very carefully. the button on the right has strong opinions.</p>
+    <div class="mood-strip">
+      <div class="mood-dot" style="animation-duration:2.1s">💖</div>
+      <div class="mood-dot" style="animation-duration:2.6s;animation-delay:.3s">🌸</div>
+      <div class="mood-dot" style="animation-duration:2.3s;animation-delay:.6s">✨</div>
+      <div class="mood-dot" style="animation-duration:2.8s;animation-delay:.9s">🌈</div>
+      <div class="mood-dot" style="animation-duration:2s;animation-delay:1.2s">💫</div>
+    </div>
+    <div class="taunt-zone">
+      <div class="taunt-main" id="ta">the correct answer is very obvious 👀</div>
+      <div class="taunt-side" id="tb">i believe in you, Cathy</div>
+    </div>
+    <div class="btn-arena" id="arena">
+      <button id="yes-btn" onclick="quizYes()" data-en="Yes, always 💖" data-hk="係，永遠都係 💖">Yes, always 💖</button>
+      <button id="no-btn" onmouseenter="runNo()" onclick="runNo()" data-en="No" data-hk="唔係">No</button>
+    </div>
+    <div class="pips" id="pips"></div>
+    <div class="pills-strip">
+      <span class="pill-tag pt-a" data-en="100% love certified" data-hk="愛情認證 100%">100% love certified</span>
+      <span class="pill-tag pt-b" data-en="peer reviewed" data-hk="已同行評審">peer reviewed</span>
+      <span class="pill-tag pt-c" data-en="no refunds" data-hk="唔可以退貨">no refunds</span>
+      <span class="pill-tag pt-d" data-en="she said yes™" data-hk="她說好的™">she said yes™</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONDITIONS ════ -->
+<section id="s-cond">
+  <div class="sec-eyebrow" data-en="📜 terms & conditions" data-hk="📜 條款與細則">📜 terms & conditions</div>
+  <h2 class="sec-h"><em data-en="Funny" data-hk="好笑">Funny</em> <span data-en="(But Real) Contract" data-hk="（但係真嘅）合約">(But Real) Contract</span></h2>
+  <p class="sec-sub" data-en="Please read carefully. You already scrolled this far so legally you agree. The court has spoken." data-hk="請細心閱讀。你已經滾到呢度，法律上你已經同意。法院已裁決。">Please read carefully. You already scrolled this far so legally you agree. The court has spoken.</p>
+  <div class="conds" id="conds-grid">
+    <div class="cond" style="animation-delay:.05s"><span class="cond-ico">🍕</span><div><div class="cond-name" data-en="Article 1 — Food Rights" data-hk="第一條 — 食物權利">Article 1 — Food Rights</div><div class="cond-desc" data-en="You must share your food. But if I steal a bite and whisper 'just one more' four times, that is legally considered a gift and you cannot protest." data-hk="你必須分享食物。但如果我偷食一啖然後細聲話「再一啖就好」四次，法律上視為禮物，你唔可以反對。">You must share your food. But if I steal a bite and whisper "just one more" four times, that is legally considered a gift and you cannot protest.</div><span class="verdict v-law" data-en="binding law" data-hk="具有法律效力">binding law</span></div></div>
+    <div class="cond" style="animation-delay:.1s"><span class="cond-ico" style="animation-delay:.3s">😴</span><div><div class="cond-name" data-en="Article 2 — Blanket Sovereignty" data-hk="第二條 — 被子主權">Article 2 — Blanket Sovereignty</div><div class="cond-desc" data-en="The blanket belongs to whoever grabbed it first. But if I deploy puppy eyes, ownership must be renegotiated with a hug." data-hk="被子屬於先搶到嗰個人。但如果我放出可憐眼，必須即時以擁抱重新協商所有權。">The blanket belongs to whoever grabbed it first. But if I deploy puppy eyes, ownership must be renegotiated with a hug.</div><span class="verdict v-warn" data-en="negotiable" data-hk="可協商">negotiable</span></div></div>
+    <div class="cond" style="animation-delay:.15s"><span class="cond-ico" style="animation-delay:.6s">🎮</span><div><div class="cond-name" data-en="Article 3 — One More Game Act" data-hk="第三條 — 「再一局」保護法">"Article 3 — One More Game Act</div><div class="cond-desc" data-en="'One more game' means 5 minutes to 3 hours and cannot be used as evidence in any argument ever." data-hk="「再一局」意思係5分鐘至3小時，永遠唔可以在任何爭論中作為證據。">"One more game" means 5 minutes to 3 hours and cannot be used as evidence in any argument ever.</div><span class="verdict v-law" data-en="constitutionally protected" data-hk="受憲法保護">constitutionally protected</span></div></div>
+    <div class="cond" style="animation-delay:.2s"><span class="cond-ico" style="animation-delay:.9s">💅</span><div><div class="cond-name" data-en="Article 4 — Daily Compliment Quota" data-hk="第四條 — 每日讚美配額">Article 4 — Daily Compliment Quota</div><div class="cond-desc" data-en="Must tell me I look good at least once daily, even if I'm wearing a potato sack and clearly haven't slept." data-hk="每日最少要讚我靚一次，就算我著住麻布袋同明顯冇瞓覺都要。">Must tell me I look good at least once daily, even if I'm wearing a potato sack and clearly haven't slept.</div><span class="verdict v-ok" data-en="mandatory" data-hk="強制性">mandatory</span></div></div>
+    <div class="cond" style="animation-delay:.25s"><span class="cond-ico" style="animation-delay:1.2s">📱</span><div><div class="cond-name" data-en="Article 5 — Meme Response Act" data-hk="第五條 — 表情包回應法">Article 5 — Meme Response Act</div><div class="cond-desc" data-en="Any meme sent must receive a laugh within 24 hours. Ghosting a meme is punishable by one mandatory tickle session." data-hk="任何發送嘅表情包必須在24小時內收到笑聲。無視表情包者，罰款一次強制性搔癢懲罰。">Any meme sent must receive a laugh within 24 hours. Ghosting a meme is punishable by one mandatory tickle session.</div><span class="verdict v-pink" data-en="strictly enforced" data-hk="嚴格執行">strictly enforced</span></div></div>
+    <div class="cond" style="animation-delay:.3s"><span class="cond-ico" style="animation-delay:1.5s">😤</span><div><div class="cond-name" data-en="Article 6 — Argument Protocol" data-hk="第六條 — 爭吵協議">Article 6 — Argument Protocol</div><div class="cond-desc" data-en="All arguments must end in a hug within 30 minutes. No hug = argument declared void, resolved with ice cream." data-hk="所有爭吵必須在30分鐘內以擁抱結束。無擁抱 = 爭吵宣告無效，以雪糕解決。">All arguments must end in a hug within 30 minutes. No hug = argument declared void, resolved with ice cream.</div><span class="verdict v-law" data-en="iron-clad" data-hk="鐵板釘釘">iron-clad</span></div></div>
+    <div class="cond" style="animation-delay:.35s"><span class="cond-ico" style="animation-delay:1.8s">🌙</span><div><div class="cond-name" data-en="Article 7 — Midnight Snack Clause" data-hk="第七條 — 夜宵條款">Article 7 — Midnight Snack Clause</div><div class="cond-desc" data-en="Midnight snack runs are romantic. Saying 'we shouldn't' then eating most of it = one forehead kiss penalty." data-hk="深宵夜宵係浪漫活動。話「唔應該食」然後食咗大半 = 罰款一個額頭吻。">Midnight snack runs are romantic. Saying 'we shouldn't' then eating most of it = one forehead kiss penalty.</div><span class="verdict v-ok" data-en="highly encouraged" data-hk="強烈鼓勵">highly encouraged</span></div></div>
+    <div class="cond" style="animation-delay:.4s"><span class="cond-ico" style="animation-delay:2.1s">🗺️</span><div><div class="cond-name" data-en="Article 8 — Getting Lost Together" data-hk="第八條 — 一齊迷路">Article 8 — Getting Lost Together</div><div class="cond-desc" data-en="I will confidently walk the wrong way for 10 mins before checking maps. You must find this endearing." data-hk="我會自信地行錯路10分鐘先睇地圖。你必須覺得呢個係可愛嘅。">I will confidently walk the wrong way for 10 mins before checking maps. You must find this endearing.</div><span class="verdict v-warn" data-en="please accept" data-hk="請接受">please accept</span></div></div>
+    <div class="cond" style="animation-delay:.45s"><span class="cond-ico" style="animation-delay:2.4s">🐾</span><div><div class="cond-name" data-en="Article 9 — The Future Dog Clause" data-hk="第九條 — 未來狗狗條款">Article 9 — The Future Dog Clause</div><div class="cond-desc" data-en="We WILL get a dog with a ridiculous name. We will BOTH baby-talk to it and deny it publicly. Non-negotiable." data-hk="我哋一定會養一隻有搞笑名字嘅狗。我哋兩個都會跟佢講BB話，然後在公開場合否認。絕對唔可以商量。">We WILL get a dog with a ridiculous name. We will BOTH baby-talk to it and deny it publicly. Non-negotiable.</div><span class="verdict v-law" data-en="absolutely non-negotiable" data-hk="絕對唔可以商量">absolutely non-negotiable</span></div></div>
+    <div class="cond" style="animation-delay:.5s"><span class="cond-ico" style="animation-delay:2.7s">✈️</span><div><div class="cond-name" data-en="Article 10 — Travel Together Forever" data-hk="第十條 — 永遠一齊旅行">Article 10 — Travel Together Forever</div><div class="cond-desc" data-en="Every trip is better with you. From Munich to Tokyo, Paris to wherever — every destination is our destination." data-hk="每次旅行有你都更好。由慕尼黑到東京，巴黎到任何地方 — 每一個目的地都係我哋嘅目的地。">Every trip is better with you. From Munich to Tokyo, Paris to wherever — every destination is our destination.</div><span class="verdict v-ok" data-en="our favourite clause" data-hk="我哋最鍾意嘅條款">our favourite clause</span></div></div>
+    <div class="cond" style="animation-delay:.55s"><span class="cond-ico" style="animation-delay:3s">💼</span><div><div class="cond-name" data-en="Article 11 — Career Support Act" data-hk="第十一條 — 事業支持法">Article 11 — Career Support Act</div><div class="cond-desc" data-en="We support each other's dreams completely. Your career wins are my wins. My career wins are our wins. Period." data-hk="我哋完全支持對方嘅夢想。你事業上嘅成功係我嘅成功。我事業上嘅成功係我哋嘅成功。就係咁。">We support each other's dreams completely. Your career wins are my wins. My career wins are our wins. Period.</div><span class="verdict v-ok" data-en="unconditional" data-hk="無條件">unconditional</span></div></div>
+    <div class="cond" style="animation-delay:.6s"><span class="cond-ico" style="animation-delay:3.3s">💍</span><div><div class="cond-name" data-en="Article 12 — The Big One" data-hk="第十二條 — 最重要嘅一條">Article 12 — The Big One</div><div class="cond-desc" data-en="By scrolling to this card, you have legally agreed to answer the most important question of your life. Court closed." data-hk="你滾到呢張卡，法律上你已同意回答你人生中最重要嘅問題。法院關閉。">By scrolling to this card, you have legally agreed to answer the most important question of your life. Court closed.</div><span class="verdict v-law" data-en="you already signed" data-hk="你已經簽署">you already signed</span></div></div>
+  </div>
+  <button class="cta-link" onclick="goTo('s-compat')"><span data-en="I accept all conditions →" data-hk="我接受所有條款 →">I accept all conditions →</span><span>↓</span></button>
+</section>
+
+<!-- ════ COMPATIBILITY ════ -->
+<section id="s-compat">
+  <!-- ambient orbs -->
+  <div class="compat-orb" style="width:300px;height:300px;background:rgba(232,85,127,0.12);top:-80px;left:-100px;animation-duration:8s"></div>
+  <div class="compat-orb" style="width:250px;height:250px;background:rgba(155,143,232,0.1);bottom:-60px;right:-80px;animation-duration:10s;animation-delay:2s"></div>
+  <div class="compat-orb" style="width:180px;height:180px;background:rgba(62,203,165,0.08);top:40%;left:60%;animation-duration:7s;animation-delay:1s"></div>
+  <div id="compat-sym-layer"></div>
+
+  <div class="compat-shell">
+    <!-- header -->
+    <div class="compat-header">
+      <div class="compat-icon-wrap">🔬</div>
+      <div class="compat-title-text">The Love Calculator</div>
+      <div class="compat-title-hk">愛情計算器</div>
+      <div class="compat-sub-text" data-en="A completely unbiased scientific test. Results are totally not predetermined." data-hk="一個完全中立嘅科學測試。結果完全唔係預先決定嘅。">A completely unbiased scientific test. Results are totally not predetermined.</div>
+    </div>
+
+    <!-- step dots -->
+    <div class="step-progress" id="step-dots">
+      <div class="step-dot active" id="sd0"></div>
+      <div class="step-dot" id="sd1"></div>
+      <div class="step-dot" id="sd2"></div>
+      <div class="step-dot" id="sd3"></div>
+    </div>
+
+    <!-- Q1: Cuteness slider -->
+    <div class="q-card active" id="qc0">
+      <div class="q-number"><span>Question 1 / 問題一</span><div class="q-num-line"></div></div>
+      <div class="q-text" data-en="How cute is Shreyas, honestly?" data-hk="Shreyas有幾靚仔？老實講。">How cute is Shreyas, honestly?</div>
+      <div class="q-text-hk">老實答 — 呢個係科學</div>
+      <div class="slider-wrap">
+        <input type="range" class="q-slider" min="8" max="10" value="8" id="sl1" oninput="updateSlider('sl1','sv1')">
+        <div class="slider-labels"><span data-en="pretty cute" data-hk="幾靚仔">pretty cute</span><span data-en="very cute" data-hk="好靚仔">very cute</span><span data-en="EXTREMELY cute 🔥" data-hk="超靚仔 🔥">EXTREMELY cute 🔥</span></div>
+      </div>
+      <div class="q-val" id="sv1">8 / 10 — pretty cute ngl</div>
+      <button class="q-next" onclick="nextQ(1)">
+        <span data-en="Next →" data-hk="下一題 →">Next →</span>
+        <span class="q-next-hk" data-en="rate his brain now" data-hk="下一條：評價佢腦袋">rate his brain now</span>
+      </button>
+    </div>
+
+    <!-- Q2: Intelligence slider -->
+    <div class="q-card" id="qc1">
+      <div class="q-number"><span>Question 2 / 問題二</span><div class="q-num-line"></div></div>
+      <div class="q-text" data-en="Rate his intelligence (1=genius, 10=mega genius)" data-hk="評價佢嘅智商（最低=天才，最高=超級天才）">Rate his intelligence</div>
+      <div class="q-text-hk">注意：最低選項係天才</div>
+      <div class="slider-wrap">
+        <input type="range" class="q-slider" min="9" max="10" value="9" id="sl2" oninput="updateSlider('sl2','sv2')">
+        <div class="slider-labels"><span data-en="genius" data-hk="天才">genius</span><span data-en="mega genius 🧠" data-hk="超級天才 🧠">mega genius 🧠</span></div>
+      </div>
+      <div class="q-val" id="sv2">9 / 10 — very smart</div>
+      <button class="q-next" onclick="nextQ(2)">
+        <span data-en="Next →" data-hk="下一題 →">Next →</span>
+        <span class="q-next-hk" data-en="love level incoming" data-hk="下一條：愛的強度">love level incoming</span>
+      </button>
+    </div>
+
+    <!-- Q3: Love slider -->
+    <div class="q-card" id="qc2">
+      <div class="q-number"><span>Question 3 / 問題三</span><div class="q-num-line"></div></div>
+      <div class="q-text" data-en="How much do you love him?" data-hk="你有幾愛佢？">How much do you love him?</div>
+      <div class="q-text-hk">（提示：正確答案係最右邊）</div>
+      <div class="slider-wrap">
+        <input type="range" class="q-slider" min="7" max="10" value="7" id="sl3" oninput="updateSlider('sl3','sv3')">
+        <div class="slider-labels"><span data-en="a lot" data-hk="好多">a lot</span><span data-en="so much" data-hk="非常多">so much</span><span data-en="∞ forever" data-hk="∞ 永遠">∞ forever</span></div>
+      </div>
+      <div class="q-val" id="sv3">7 / 10 — warming up</div>
+      <button class="q-next" onclick="nextQ(3)">
+        <span data-en="Next →" data-hk="下一題 →">Next →</span>
+        <span class="q-next-hk" data-en="one last question" data-hk="最後一條問題">one last question</span>
+      </button>
+    </div>
+
+    <!-- Q4: Choice -->
+    <div class="q-card" id="qc3">
+      <div class="q-number"><span>Question 4 / 問題四</span><div class="q-num-line"></div></div>
+      <div class="q-text" data-en="When his name pops up on your phone..." data-hk="當你手機彈出佢嘅名字...">When his name pops up on your phone...</div>
+      <div class="q-text-hk">選擇你最真實嘅反應</div>
+      <div class="q-choice" style="flex-direction:column">
+        <button class="q-opt" onclick="pickOpt(this);showCalcBtn()">😊 <span data-en="I smile immediately" data-hk="我即刻笑咗">I smile immediately</span></button>
+        <button class="q-opt" onclick="pickOpt(this);showCalcBtn()">🥰 <span data-en="My heart literally goes boom" data-hk="我心跳即刻加速">My heart literally goes boom</span></button>
+        <button class="q-opt" onclick="pickOpt(this);showCalcBtn()">💫 <span data-en="I feel warm inside" data-hk="我心裡暖暖的">I feel warm inside</span></button>
+        <button class="q-opt" onclick="pickOpt(this);showCalcBtn()">😐 <span data-en="Nothing (the algorithm ignores this)" data-hk="無感覺（算法會無視呢個選項）">Nothing (the algorithm ignores this)</span></button>
       </div>
     </div>
-  </div>
 
-  <!-- ============ HERO — Chapter 1 ============ -->
-  <section class="sec" id="hero">
-    <div class="deco d1">💌</div>
-    <div class="deco d2">✨</div>
-    <div class="deco d3">🌸</div>
-    <div class="deco d4">💕</div>
-    <div class="wrap">
-      <p class="tag reveal"
-         data-en="✉️ chapter one — the beginning"
-         data-hk="✉️ 第一章 — 開始">✉️ chapter one — the beginning</p>
-      <h1 class="hero-h1 reveal" data-delay="200">
-        <span data-en="Hey Cathy," data-hk="嗨，Cathy，">Hey Cathy,</span><br>
-        <span class="grad"
-              data-en="I need to tell you something..."
-              data-hk="我有嘢想同你講...">I need to tell you something...</span>
-      </h1>
-      <p class="hero-p reveal" data-delay="400"
-         data-en="This is the most important webpage you will ever open in your entire life. No pressure though. Totally fine. Completely normal."
-         data-hk="呢個係你呢世人打開過最重要嘅網頁。唔緊張㗎。完全正常。真係。">
-        This is the most important webpage you will ever open in your entire life.<br>
-        No pressure though. Totally fine. Completely normal.
-      </p>
-      <a href="love.html" class="btn btn-primary reveal page-link" data-delay="600"
-         data-en="Begin →" data-hk="開始 →">Begin →</a>
-      <div class="scroll-dot reveal" data-delay="800"></div>
+    <!-- SCANNING -->
+    <div id="compat-scan">
+      <span class="scan-emoji" id="scan-emoji">🧬</span>
+      <div class="scan-title" data-en="Analysing your love DNA..." data-hk="分析你嘅愛情DNA...">Analysing your love DNA...</div>
+      <div class="scan-status" id="scan-status">Initialising love engine...</div>
+      <div class="scan-bar-bg"><div class="scan-bar-fill" id="scan-bar"></div></div>
+      <div class="scan-pct" id="scan-pct">0%</div>
+      <div class="scan-checks" id="scan-checks">
+        <div class="scan-check" id="sc0"><div class="scan-check-dot"></div><span data-en="Measuring heart rate response..." data-hk="量度心跳反應...">Measuring heart rate response...</span></div>
+        <div class="scan-check" id="sc1"><div class="scan-check-dot"></div><span data-en="Cross-referencing meme compatibility..." data-hk="交叉參考表情包配合度...">Cross-referencing meme compatibility...</span></div>
+        <div class="scan-check" id="sc2"><div class="scan-check-dot"></div><span data-en="Verifying snack-sharing willingness..." data-hk="驗證分享小食意願...">Verifying snack-sharing willingness...</span></div>
+        <div class="scan-check" id="sc3"><div class="scan-check-dot"></div><span data-en="Confirming blanket sovereignty clauses..." data-hk="確認被子主權條款...">Confirming blanket sovereignty clauses...</span></div>
+        <div class="scan-check" id="sc4"><div class="scan-check-dot"></div><span data-en="Final love certificate generation..." data-hk="生成最終愛情證書...">Final love certificate generation...</span></div>
+      </div>
     </div>
-  </section>
 
+    <!-- RESULT -->
+    <div id="compat-result">
+      <div class="result-inner">
+        <div class="result-ring-wrap">
+          <svg class="result-ring" width="150" height="150" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#e8557f"/>
+                <stop offset="50%" stop-color="#9b8fe8"/>
+                <stop offset="100%" stop-color="#3ecba5"/>
+              </linearGradient>
+            </defs>
+            <circle class="ring-bg" cx="50" cy="50" r="45"/>
+            <circle class="ring-glow" id="ring-glow" cx="50" cy="50" r="45"/>
+            <circle class="ring-fill" id="ring-fill" cx="50" cy="50" r="45"/>
+          </svg>
+          <div class="ring-text">
+            <div class="result-score" id="result-score">0%</div>
+            <div class="result-pct-sub">MATCH</div>
+          </div>
+        </div>
+        <div class="result-bilingual">
+          <div class="result-label-en">Compatibility Score</div>
+          <div class="result-label-hk">配對分數</div>
+        </div>
+        <div class="result-stars" id="result-stars"></div>
+        <div class="result-verdict-box">
+          <div class="verdict-row">
+            <span class="verdict-flag">🇬🇧</span>
+            <div class="result-verdict-en" id="result-verdict-en"></div>
+          </div>
+          <div class="verdict-row">
+            <span class="verdict-flag">🇭🇰</span>
+            <div class="result-verdict-hk" id="result-verdict-hk"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-
-  <!-- Page nav -->
-  <div class="page-nav">
-    <span class="spacer"></span>
-    <a href="love.html" class="page-link">Chapter 2 →</a>
+    <button id="compat-btn" onclick="goTo('s-poem')">
+      <span data-en="Continue to my letter for you 💌" data-hk="繼續睇我寫俾你嘅信 💌">Continue to my letter for you 💌</span>
+    </button>
   </div>
+</section>
 
-  <!-- Confetti canvas -->
-  <canvas id="confettiCanvas"></canvas>
+<!-- ════ POEM / LETTER ════ -->
+<section id="s-poem">
+  <div class="poem-stars" id="poem-stars"></div>
+  <div class="poem-wrap">
+    <div class="poem-eyebrow">💌 step 4 of 5 — from my heart / 從心而發</div>
 
-  <script src="script.js"></script>
+    <div class="poem-lang-tabs">
+      <button class="poem-tab active" onclick="switchPoem('both')" id="ptab-both">🌐 Both</button>
+      <button class="poem-tab" onclick="switchPoem('en')" id="ptab-en">🇬🇧 English</button>
+      <button class="poem-tab" onclick="switchPoem('hk')" id="ptab-hk">🇭🇰 廣東話</button>
+    </div>
+
+    <!-- BOTH COLUMNS -->
+    <div id="poem-both">
+      <div class="poem-divider">✦ ✦ ✦</div>
+      <div class="poem-content">
+        <!-- ENGLISH -->
+        <div class="poem-col">
+          <div class="poem-lang-label">English — To My Cathy</div>
+          <div class="poem-card-single">
+            <div class="poem-quote">"</div>
+
+            <div class="poem-stanza" style="animation-delay:0.1s">
+              <div class="poem-line">Every time I fell,</div>
+              <div class="poem-line">you were the first to lift me up.</div>
+              <div class="poem-line">Every time I was lost,</div>
+              <div class="poem-line">you became <span class="poem-accent">my direction.</span></div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.2s">
+              <div class="poem-line">More times than I can count,</div>
+              <div class="poem-line">you stayed through</div>
+              <div class="poem-line">my hardest, messiest moments.</div>
+              <div class="poem-line">And I will never forget that.</div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.3s">
+              <div class="poem-line"><span class="poem-accent">I'm sorry</span> — for the times</div>
+              <div class="poem-line">I let you down,</div>
+              <div class="poem-line">for the words I said too fast,</div>
+              <div class="poem-line">for every moment I wasn't enough.</div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.4s">
+              <div class="poem-line">But I promise you:</div>
+              <div class="poem-line">I will work every day</div>
+              <div class="poem-line">to take better care of you —</div>
+              <div class="poem-line"><span class="poem-accent-gold">in the same way you cared for me.</span></div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.5s">
+              <div class="poem-line">Your career, your dreams,</div>
+              <div class="poem-line">your ambitions, your rest days —</div>
+              <div class="poem-line">I will stand beside you</div>
+              <div class="poem-line">through every single one.</div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.6s">
+              <div class="poem-line">The world is wide</div>
+              <div class="poem-line">and I want to see all of it</div>
+              <div class="poem-line"><span class="poem-accent">with you beside me.</span></div>
+              <div class="poem-line">Every airport, every lost map,</div>
+              <div class="poem-line">every sunset in a city</div>
+              <div class="poem-line">neither of us has seen before.</div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.7s">
+              <div class="poem-line">We will build together.</div>
+              <div class="poem-line">We will stumble together.</div>
+              <div class="poem-line">We will grow together.</div>
+              <div class="poem-line"><span class="poem-accent-gold">And we will love each other</span></div>
+              <div class="poem-line"><span class="poem-accent-gold">through all of it.</span></div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.8s">
+              <div class="poem-line">You are my today,</div>
+              <div class="poem-line">my tomorrow,</div>
+              <div class="poem-line">and every ordinary Tuesday</div>
+              <div class="poem-line">in between.</div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.9s">
+              <div class="poem-line"><span class="poem-accent">I love you, Cathy.</span></div>
+              <div class="poem-line">Not because you are perfect —</div>
+              <div class="poem-line">but because with you,</div>
+              <div class="poem-line">I became a better me.</div>
+            </div>
+            <div class="poem-signature">— <span>Shreyas</span></div>
+          </div>
+        </div>
+
+        <!-- CANTONESE -->
+        <div class="poem-col">
+          <div class="poem-lang-label">廣東話 — 致我嘅Cathy</div>
+          <div class="poem-card-single">
+            <div class="poem-quote">"</div>
+
+            <div class="poem-stanza" style="animation-delay:0.1s">
+              <div class="poem-line-hk">每次我跌低，</div>
+              <div class="poem-line-hk">你第一個扶我起身。</div>
+              <div class="poem-line-hk">每次我迷失方向，</div>
+              <div class="poem-line-hk">你就係<span class="poem-accent">我嘅指南針。</span></div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.2s">
+              <div class="poem-line-hk">數唔盡幾多次，</div>
+              <div class="poem-line-hk">你陪我捱過</div>
+              <div class="poem-line-hk">最難熬、最狼狽嘅時刻。</div>
+              <div class="poem-line-hk">呢份情，我永遠記住。</div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.3s">
+              <div class="poem-line-hk"><span class="poem-accent">對唔住</span> — 有時令你失望，</div>
+              <div class="poem-line-hk">有時講嘢太快太衝動，</div>
+              <div class="poem-line-hk">有時唔夠細心體貼，</div>
+              <div class="poem-line-hk">呢啲係我嘅過失。</div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.4s">
+              <div class="poem-line-hk">但我向你承諾：</div>
+              <div class="poem-line-hk">我每一日都會努力進步，</div>
+              <div class="poem-line-hk">學識更好咁照顧你 —</div>
+              <div class="poem-line-hk"><span class="poem-accent-gold">就好似你照顧我咁。</span></div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.5s">
+              <div class="poem-line-hk">你嘅事業、你嘅夢想，</div>
+              <div class="poem-line-hk">你嘅目標、你嘅休息日 —</div>
+              <div class="poem-line-hk">我都會站係你身旁，</div>
+              <div class="poem-line-hk">支持你每一步。</div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.6s">
+              <div class="poem-line-hk">世界咁大，</div>
+              <div class="poem-line-hk">我想同你一齊去睇。</div>
+              <div class="poem-line-hk"><span class="poem-accent">由慕尼黑到東京，</span></div>
+              <div class="poem-line-hk">由巴黎到任何地方，</div>
+              <div class="poem-line-hk">每一個我哋未去過嘅城市，</div>
+              <div class="poem-line-hk">每一個日落，</div>
+              <div class="poem-line-hk">都想同你分享。</div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.7s">
+              <div class="poem-line-hk">我哋一齊打拼。</div>
+              <div class="poem-line-hk">我哋一齊跌跌碰碰。</div>
+              <div class="poem-line-hk">我哋一齊成長。</div>
+              <div class="poem-line-hk"><span class="poem-accent-gold">我哋用愛</span></div>
+              <div class="poem-line-hk"><span class="poem-accent-gold">面對所有嘅一切。</span></div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.8s">
+              <div class="poem-line-hk">你係我嘅今天，</div>
+              <div class="poem-line-hk">我嘅明天，</div>
+              <div class="poem-line-hk">同每一個平凡嘅星期二。</div>
+            </div>
+            <div class="poem-stanza" style="animation-delay:0.9s">
+              <div class="poem-line-hk"><span class="poem-accent">我愛你，Cathy。</span></div>
+              <div class="poem-line-hk">唔係因為你完美 —</div>
+              <div class="poem-line-hk">而係因為有你，</div>
+              <div class="poem-line-hk">我成為了更好嘅自己。</div>
+            </div>
+            <div class="poem-signature" style="font-family:'Noto Serif TC',serif">— <span>Shreyas</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENGLISH ONLY -->
+    <div id="poem-en" style="display:none;max-width:480px;width:100%;margin:0 auto">
+      <div class="poem-lang-label" style="text-align:center;margin-bottom:1rem">To My Cathy</div>
+      <div class="poem-card-single">
+        <div class="poem-quote">"</div>
+        <div class="poem-stanza"><div class="poem-line">Every time I fell, you were the first to lift me up.</div><div class="poem-line">Every time I was lost, you became <span class="poem-accent">my direction.</span></div></div>
+        <div class="poem-stanza"><div class="poem-line">More times than I can count, you stayed through my hardest moments. And I will never forget that.</div></div>
+        <div class="poem-stanza"><div class="poem-line"><span class="poem-accent">I'm sorry</span> — for the times I let you down, for the words I said too fast, for every moment I wasn't enough.</div></div>
+        <div class="poem-stanza"><div class="poem-line">But I promise: I will take better care of you — <span class="poem-accent-gold">in the same way you cared for me.</span></div></div>
+        <div class="poem-stanza"><div class="poem-line">Your career, your dreams — I will stand beside you through every single one.</div></div>
+        <div class="poem-stanza"><div class="poem-line">The world is wide and I want to see all of it <span class="poem-accent">with you beside me.</span> Every airport, every sunset, every city neither of us has seen.</div></div>
+        <div class="poem-stanza"><div class="poem-line">We will build together, stumble together, grow together. <span class="poem-accent-gold">And love each other through all of it.</span></div></div>
+        <div class="poem-stanza"><div class="poem-line"><span class="poem-accent">I love you, Cathy.</span> Not because you are perfect — but because with you, I became a better me.</div></div>
+        <div class="poem-signature">— <span>Shreyas</span></div>
+      </div>
+    </div>
+
+    <!-- CANTONESE ONLY -->
+    <div id="poem-hk" style="display:none;max-width:480px;width:100%;margin:0 auto">
+      <div class="poem-lang-label" style="text-align:center;margin-bottom:1rem">致我嘅Cathy</div>
+      <div class="poem-card-single">
+        <div class="poem-quote">"</div>
+        <div class="poem-stanza"><div class="poem-line-hk">每次我跌低，你第一個扶我起身。</div><div class="poem-line-hk">每次我迷失，你就係<span class="poem-accent">我嘅指南針。</span></div></div>
+        <div class="poem-stanza"><div class="poem-line-hk">數唔盡幾多次，你陪我捱過最難熬嘅時刻。呢份情，我永遠記住。</div></div>
+        <div class="poem-stanza"><div class="poem-line-hk"><span class="poem-accent">對唔住</span> — 有時令你失望，有時講嘢太衝動，有時唔夠細心。呢啲係我嘅過失。</div></div>
+        <div class="poem-stanza"><div class="poem-line-hk">但我承諾：我每一日都會努力，學識更好咁照顧你 — <span class="poem-accent-gold">就好似你照顧我咁。</span></div></div>
+        <div class="poem-stanza"><div class="poem-line-hk">你嘅事業、你嘅夢想 — 我都會站係你身旁，支持你每一步。</div></div>
+        <div class="poem-stanza"><div class="poem-line-hk">世界咁大，我想同你一齊去睇。<span class="poem-accent">由慕尼黑到東京，</span>由巴黎到任何地方，每一個日落，都想同你分享。</div></div>
+        <div class="poem-stanza"><div class="poem-line-hk">我哋一齊打拼，一齊跌跌碰碰，一齊成長。<span class="poem-accent-gold">用愛面對所有嘅一切。</span></div></div>
+        <div class="poem-stanza"><div class="poem-line-hk"><span class="poem-accent">我愛你，Cathy。</span>唔係因為你完美 — 而係因為有你，我成為了更好嘅自己。</div></div>
+        <div class="poem-signature" style="font-family:'Noto Serif TC',serif">— <span>Shreyas</span></div>
+      </div>
+    </div>
+
+    <button class="cta-link" style="color:rgba(255,255,255,0.5);margin-top:2rem" onclick="goTo('s-prop')">
+      <span data-en="continue to the big question →" data-hk="繼續去最重要嘅問題 →">continue to the big question →</span><span>↓</span>
+    </button>
+  </div>
+</section>
+
+<!-- ════ PROPOSAL ════ -->
+<section id="s-prop">
+  <div class="prop-card">
+    <span class="ring-spin">💍</span>
+    <h2 class="prop-h">
+      <span data-en="Will you be my<br><em>future wife, Cathy?</em>" data-hk="" class="prop-h-en">Will you be my<br><em>future wife, Cathy?</em></span>
+      <span data-hk="Cathy，你願意成為<br><em class='prop-h-hk'>我嘅未來太太嗎？</em>" class="prop-h-hk-el" style="display:none"></span>
+    </h2>
+    <div class="letter" id="prop-letter-en">
+      <p>Hey Cathy,</p><br>
+      <p>I know this is a webpage — which is <strong>definitely</strong> the most romantic delivery method in history. You're welcome.</p><br>
+      <p>But seriously — you make every ordinary day feel worth remembering. I want to steal your snacks, fight about the blanket, send you memes at 2am, and get completely lost in cities we've never been to.</p><br>
+      <p>I want to build a career beside yours. Cheer loudest at your wins. Be there on the hard days. Travel every corner of this world with you.</p><br>
+      <p>I'm sorry for my mistakes. I promise to be better, every day, for you.</p><br>
+      <p>So, Cathy...</p>
+    </div>
+    <div class="letter letter-hk" id="prop-letter-hk" style="display:none">
+      <p>Cathy，</p><br>
+      <p>我知道呢個係一個網頁 — 呢個絕對係人類歷史上<strong>最浪漫</strong>嘅表達方式。唔客氣。</p><br>
+      <p>但係認真講 — 你令每一個平凡嘅日子都變得值得記住。我想偷你嘅小食，爭被子，凌晨兩點傳表情包俾你，同你一齊係陌生城市迷路。</p><br>
+      <p>我想係你身旁一起打拼事業。為你嘅每一個成就喝采。困難嘅日子係你身邊。同你一齊周遊列國。</p><br>
+      <p>對唔住我嘅過失。我承諾每一日都為你變得更好。</p><br>
+      <p>所以，Cathy...</p>
+    </div>
+    <div class="prop-btns" id="prop-arena">
+      <button id="marry-yes" onclick="showDialog()"><span data-en="Yes!! 💍✨" data-hk="係！！ 💍✨">Yes!! 💍✨</span></button>
+      <button id="marry-no" onmouseenter="runMarryNo()" onclick="runMarryNo()"><span data-en="Maybe later..." data-hk="遲啲先...">Maybe later...</span></button>
+    </div>
+    <p class="prop-hint" data-en="* the 'maybe later' button has been reported to the authorities" data-hk="* 「遲啲先」按鈕已被舉報至有關當局">* the "maybe later" button has been reported to the authorities</p>
+  </div>
+</section>
+
+<!-- ════ WIN ════ -->
+<section id="s-win">
+  <div class="win-wrap">
+    <div class="breaking" data-en="🚨 BREAKING NEWS 🚨" data-hk="🚨 頭條新聞 🚨">🚨 BREAKING NEWS 🚨</div>
+    <span class="win-face">🎊</span>
+    <h2 class="win-h" data-en="She said YES!!" data-hk="她說好！！">She said YES!!</h2>
+    <p class="win-sub" data-en="the correct answer was chosen. historians will write about this." data-hk="正確答案已被選擇。歷史學家將會記錄呢一刻。">the correct answer was chosen. historians will write about this.</p>
+    <div class="star-row" id="star-row"></div>
+    <div class="meter-wrap">
+      <div class="meter-label" data-en="Shreyas Happiness Level" data-hk="Shreyas 快樂指數">Shreyas Happiness Level</div>
+      <div class="meter-bar-bg"><div class="meter-bar-fill" id="meter-fill"></div></div>
+      <div class="meter-emojis"><span>😐</span><span>😊</span><span>🤩</span><span>🚀 MAX</span></div>
+    </div>
+    <p class="win-msg" id="win-msg-en">Congratulations, <strong>future Mrs. Cathy!!</strong><br><br>Shreyas is doing an extremely embarrassing happy dance right now and nothing can stop him. Scientists confirm you two have a <strong>100% compatibility score.</strong> This love is certified, notarised, and framed. 💝</p>
+    <p class="win-msg" id="win-msg-hk" style="display:none">恭喜，<strong>未來Cathy太太！！</strong><br><br>Shreyas而家正在跳一個極其尷尬嘅開心舞，冇任何事可以阻止到佢。科學家確認你哋嘅<strong>配對分數係100%。</strong>呢份愛情係認證過、公證過、裝裱好嘅。💝</p>
+    <div class="cert">
+      <span class="cert-crown">👑</span>
+      <div class="cert-label" data-en="Official Certificate of Love" data-hk="官方愛情證書">Official Certificate of Love</div>
+      <div class="cert-text" id="cert-text-en">This certifies that<br><span class="rainbow">Cathy</span> &amp; <span class="rainbow">Shreyas</span><br>are officially, irrevocably, and adorably in love — forever.<br><br><span style="font-size:11px;color:var(--muted)">Valid: forever. Expires: never.</span></div>
+      <div class="cert-text" id="cert-text-hk" style="display:none;font-family:'Noto Serif TC',serif">茲證明<br><span class="rainbow">Cathy</span> 與 <span class="rainbow">Shreyas</span><br>正式地、不可撤銷地、可愛地相愛 — 永遠。<br><br><span style="font-size:11px;color:var(--muted)">有效期：永遠。到期日：從不。</span></div>
+    </div>
+    <div class="win-pills pills-strip">
+      <span class="pill-tag pt-a" data-en="future wife unlocked 🔓" data-hk="未來太太已解鎖 🔓">future wife unlocked 🔓</span>
+      <span class="pill-tag pt-b" data-en="happiness: ∞" data-hk="快樂指數：∞">happiness: ∞</span>
+      <span class="pill-tag pt-c" data-en="love: certified ✓" data-hk="愛情：已認證 ✓">love: certified ✓</span>
+      <span class="pill-tag pt-d" data-en="no take-backs 🤝" data-hk="唔可以反悔 🤝">no take-backs 🤝</span>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ══ LANGUAGE SYSTEM ══ */
+let lang = 'en';
+const T = {
+  en:{
+    langBtn:'廣東話',
+    loadTitle:'Loading Shreyas\'s Feelings...',
+    loadSteps:['Initialising romance.exe...','Compiling feelings... 💭','Installing butterflies in stomach...','Calibrating puppy eyes... 🥺','Loading 3 years of memes...','Verifying love authenticity... ✅','Warming up confetti cannon...','Almost there! Do not close this tab.','Love fully loaded. Deploying... 💖','Done! Welcome, Cathy 🎉'],
+    taunts:[
+      {em:'🥺',a:'the correct answer is very obvious 👀',b:'i believe in you, Cathy'},
+      {em:'😢',a:'Trying to say No?? Wildly bold choice.',b:'the button ran away though... 🏃'},
+      {em:'😤',a:'the No button is literally sprinting away.',b:'maybe the universe is trying to tell you something 🌌'},
+      {em:'🙈',a:'it\'s hiding. THE BUTTON IS HIDING FROM YOU.',b:'even it knows the real answer'},
+      {em:'😭',a:'CATHY. it keeps running. IT JUST KEEPS RUNNING.',b:'the No button filed for emergency relocation'},
+      {em:'😅',a:'it\'s training for the Olympics at this point.',b:'and you haven\'t caught it once. interesting.'},
+      {em:'🫣',a:'it\'s getting smaller too. did you notice?',b:'shrinking. like your chances of clicking it 😂'},
+      {em:'💀',a:'the button entered witness protection btw.',b:'new identity. still running from you specifically.'},
+      {em:'🤡',a:'ok I genuinely respect the dedication.',b:'but the YES button is RIGHT THERE 👉'},
+      {em:'😩',a:'LAST. CHANCE. CATHY. LAST. CHANCE.',b:'the No button is now a professional marathon athlete'},
+      {em:'🏳️',a:'the No button has officially retired forever.',b:'one path remains. you know what to do.'},
+    ],
+    toasts:[
+      ['⚠️','The No button is planning an escape route.'],
+      ['📊','Studies show 100% of Cathys love Shreyas.'],
+      ['🚨','Warning: Cute person detected on this page.'],
+      ['💡','Fun fact: Clicking Yes doubles your happiness.'],
+      ['🔬','Science confirms: you two are endgame.'],
+      ['📰','BREAKING: local girl makes best decision ever.'],
+      ['🧠','Your heart already knows the answer btw.'],
+      ['🍪','Clicking Yes comes with unlimited free snacks.*'],
+      ['💌','This message was approved by the universe.'],
+      ['🌈','Multiple sources confirm: he is worth it.'],
+    ],
+    compatVerdicts:{8:'pretty cute ngl',9:'very cute actually',10:'EXTREMELY cute 🔥'},
+    sl2:{9:'very smart',10:'mega genius confirmed 🧠'},
+    sl3:{7:'warming up',8:'getting there 🥰',9:'almost infinite',10:'INFINITE LOVE ♾️'},
+    calcResult:'🎯 PERFECT MATCH — The algorithm has never seen this score before. Statistically impossible. In a good way.',
+    calcBtn:'Calculate our compatibility ✨',
+    calcBtn2:'Proceed to the big question → 💍',
+  },
+  hk:{
+    langBtn:'English',
+    loadTitle:'載入Shreyas嘅感情...',
+    loadSteps:['初始化romance.exe...','編譯感情中... 💭','安裝胃部蝴蝶感...','校準可憐眼... 🥺','載入三年嘅表情包...','驗證愛情真實性... ✅','預熱五彩紙屑炮...','快好喇！唔好關閉呢個分頁。','愛情完全載入。部署中... 💖','完成！歡迎，Cathy 🎉'],
+    taunts:[
+      {em:'🥺',a:'正確答案係好明顯嘅 👀',b:'我相信你，Cathy'},
+      {em:'😢',a:'想話唔係？？好大膽嘅選擇。',b:'但係個掣跑咗喇... 🏃'},
+      {em:'😤',a:'「唔係」掣係度衝刺緊。',b:'或者宇宙係想告訴你啲嘢 🌌'},
+      {em:'🙈',a:'佢係度躲避。個掣係度躲避你。',b:'連佢都知道真正答案係咩'},
+      {em:'😭',a:'CATHY。佢繼續跑。係度繼續跑。',b:'「唔係」掣申請緊緊急搬遷'},
+      {em:'😅',a:'而家佢係練緊奧運喺。',b:'而你一次都冇捉到佢。有趣。'},
+      {em:'🫣',a:'佢越來越細。你有冇留意到？',b:'縮緊。好似你嘅勝算咁 😂'},
+      {em:'💀',a:'個掣進入咗證人保護計劃。',b:'新身份。仲係係度逃避你。'},
+      {em:'🤡',a:'我真係尊重呢份堅持。',b:'但係「係」掣就係度喎 👉'},
+      {em:'😩',a:'最後。機會。Cathy。最後機會。',b:'「唔係」掣依家係職業馬拉松運動員'},
+      {em:'🏳️',a:'「唔係」掣正式永久退休。',b:'只剩一條路。你知道要點做。'},
+    ],
+    toasts:[
+      ['⚠️','「唔係」掣係度計劃逃跑路線。'],
+      ['📊','研究顯示100%嘅Cathy都愛Shreyas。'],
+      ['🚨','警告：係呢個頁面發現可愛嘅人。'],
+      ['💡','趣聞：按「係」會令你嘅快樂翻倍。'],
+      ['🔬','科學確認：你哋係天生一對。'],
+      ['📰','頭條：本地女生做出有史以來最好嘅決定。'],
+      ['🧠','你嘅心已經知道答案喇。'],
+      ['🍪','按「係」附送無限免費小食。*'],
+      ['💌','呢條訊息已獲宇宙認可。'],
+      ['🌈','多個消息來源確認：佢值得。'],
+    ],
+    compatVerdicts:{8:'幾靚仔喎',9:'真係好靚仔',10:'超級靚仔 🔥'},
+    sl2:{9:'好聰明',10:'超級天才確認 🧠'},
+    sl3:{7:'開始升溫',8:'越來越近 🥰',9:'幾乎無限',10:'無限嘅愛 ♾️'},
+    calcResult:'🎯 完美配對 — 算法從未見過呢個分數。統計學上係唔可能嘅。係好嘅方向。',
+    calcBtn:'計算我哋嘅配對度 ✨',
+    calcBtn2:'繼續去最重要嘅問題 → 💍',
+  }
+};
+
+function toggleLang() {
+  lang = lang === 'en' ? 'hk' : 'en';
+  document.getElementById('lang-label').textContent = T[lang].langBtn;
+  applyLang();
+}
+
+function applyLang() {
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = lang === 'hk' ? el.getAttribute('data-hk') : el.getAttribute('data-en');
+    if (val) el.innerHTML = val;
+  });
+  // Proposal heading
+  document.querySelector('.prop-h-en').style.display = lang === 'en' ? '' : 'none';
+  document.querySelector('.prop-h-hk-el').style.display = lang === 'hk' ? '' : 'none';
+  if (lang === 'hk') document.querySelector('.prop-h-hk-el').innerHTML = 'Cathy，你願意成為<br><em style="background:linear-gradient(90deg,var(--pink),var(--gold),var(--lavender));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:\'Noto Serif TC\',serif">我嘅未來太太嗎？</em>';
+  // Proposal letter
+  document.getElementById('prop-letter-en').style.display = lang === 'en' ? '' : 'none';
+  document.getElementById('prop-letter-hk').style.display = lang === 'hk' ? '' : 'none';
+  // Win
+  document.getElementById('win-msg-en').style.display = lang === 'en' ? '' : 'none';
+  document.getElementById('win-msg-hk').style.display = lang === 'hk' ? '' : 'none';
+  document.getElementById('cert-text-en').style.display = lang === 'en' ? '' : 'none';
+  document.getElementById('cert-text-hk').style.display = lang === 'hk' ? '' : 'none';
+  // Update quiz taunts
+  const s = T[lang].taunts[Math.min(qCount, T[lang].taunts.length-1)];
+  document.getElementById('ta').textContent = s.a;
+  document.getElementById('tb').textContent = s.b;
+  // Compat btn
+  const cb = document.getElementById('compat-btn').querySelector('span') || document.getElementById('compat-btn');
+  if (!compatDone) document.getElementById('compat-btn').innerHTML = `<span>${T[lang].calcBtn}</span>`;
+  else document.getElementById('compat-btn').innerHTML = `<span>${T[lang].calcBtn2}</span>`;
+  if (compatDone) {
+    document.getElementById('result-verdict-en').textContent = '🎯 PERFECT MATCH — The algorithm has never seen this score before. You two are statistically impossible. In a good way.';
+    document.getElementById('result-verdict-hk').textContent = '🎯 完美配對 — 算法從未見過呢個分數。你哋喺統計學上係唔可能嘅。係好嘅方向。';
+  }
+}
+
+/* ══ LOADER ══ */
+let li = 0;
+function runLoader() {
+  const steps = T.en.loadSteps;
+  const pcts = [0,12,25,38,50,63,75,88,96,100];
+  if (li >= steps.length) { finishLoader(); return; }
+  document.getElementById('load-bar').style.width = pcts[li]+'%';
+  document.getElementById('load-pct').textContent = pcts[li]+'%';
+  document.getElementById('load-status').textContent = steps[li];
+  li++;
+  setTimeout(runLoader, li===1?200:380+Math.random()*200);
+}
+function finishLoader() {
+  setTimeout(()=>{
+    document.getElementById('loader').style.opacity='0';
+    setTimeout(()=>{ document.getElementById('loader').style.display='none'; startToasts(); },600);
+  },600);
+}
+runLoader();
+
+function goTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+/* ══ BG CANVAS ══ */
+const canvas=document.getElementById('bgCanvas'),ctx=canvas.getContext('2d');
+let W,H,bubbles=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
+const bCols=['rgba(232,85,127,0.06)','rgba(155,143,232,0.07)','rgba(62,203,165,0.06)','rgba(240,165,53,0.05)','rgba(252,228,236,0.12)'];
+for(let i=0;i<10;i++)bubbles.push({x:Math.random()*1200,y:Math.random()*1200,r:80+Math.random()*220,vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,c:bCols[i%bCols.length]});
+function drawBg(){
+  ctx.clearRect(0,0,W,H);
+  bubbles.forEach(b=>{
+    b.x+=b.vx;b.y+=b.vy;
+    if(b.x<-b.r)b.x=W+b.r;if(b.x>W+b.r)b.x=-b.r;
+    if(b.y<-b.r)b.y=H+b.r;if(b.y>H+b.r)b.y=-b.r;
+    const g=ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);
+    g.addColorStop(0,b.c);g.addColorStop(1,'transparent');
+    ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+  });
+  requestAnimationFrame(drawBg);
+}
+drawBg();
+
+/* ══ PARTICLES ══ */
+const fl=document.getElementById('floatLayer');
+const pEm=['💖','💗','💕','🌸','✨','💝','💞','🌷','🦋','🌈','⭐','💫','🎀','🌺'];
+for(let i=0;i<22;i++){
+  const s=document.createElement('span');s.className='fp';s.textContent=pEm[i%pEm.length];
+  s.style.cssText=`left:${Math.random()*100}%;font-size:${10+Math.random()*14}px;animation-duration:${9+Math.random()*11}s;animation-delay:${Math.random()*11}s`;
+  fl.appendChild(s);
+}
+for(let i=0;i<16;i++){
+  const t=document.createElement('span');
+  t.style.cssText=`position:fixed;font-size:${8+Math.random()*12}px;left:${Math.random()*100}%;top:${Math.random()*100}%;pointer-events:none;z-index:1;animation:twinkle ${1.2+Math.random()*2.5}s ${Math.random()*3}s ease-in-out infinite`;
+  t.textContent=['✨','⭐','💫'][i%3];document.body.appendChild(t);
+}
+
+/* ══ POEM STARS ══ */
+const ps=document.getElementById('poem-stars');
+for(let i=0;i<40;i++){
+  const s=document.createElement('span');s.className='pstar';
+  s.textContent=['✦','✧','⋆','·','★'][i%5];
+  s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;font-size:${8+Math.random()*10}px;animation-duration:${1.5+Math.random()*3}s;animation-delay:${Math.random()*4}s`;
+  ps.appendChild(s);
+}
+
+/* ══ TOASTS ══ */
+let toastIdx=0;
+function showToast(icon,msg){
+  const area=document.getElementById('toast-area');
+  const t=document.createElement('div');t.className='toast';
+  t.innerHTML=`<span class="toast-icon">${icon}</span><span class="toast-msg">${msg}</span>`;
+  area.appendChild(t);
+  setTimeout(()=>{t.classList.add('out');setTimeout(()=>t.remove(),400);},3500);
+}
+function startToasts(){
+  function next(){
+    const pool=T[lang].toasts;
+    const [ic,ms]=pool[toastIdx%pool.length];
+    showToast(ic,ms);toastIdx++;
+    setTimeout(next,7000+Math.random()*5000);
+  }
+  setTimeout(next,2000);
+}
+
+/* ══ QUIZ ══ */
+let qCount=0;const MAX=10;
+const pipsEl=document.getElementById('pips');
+for(let i=0;i<MAX;i++){const d=document.createElement('div');d.className='pip';d.id='qp'+i;pipsEl.appendChild(d);}
+const noBtn=document.getElementById('no-btn'),arena=document.getElementById('arena');
+noBtn.style.cssText='position:absolute;right:0;top:50%;transform:translateY(-50%)';
+
+function runNo(){
+  if(qCount>=MAX){noBtn.style.opacity='0';noBtn.style.pointerEvents='none';return;}
+  if(qCount>0){
+    const r=noBtn.getBoundingClientRect();
+    const fp=document.createElement('span');fp.className='footprint';
+    fp.textContent=['👟','🐾','👣'][qCount%3];
+    fp.style.left=(r.left+r.width/2)+'px';fp.style.top=(r.top+r.height/2)+'px';
+    document.body.appendChild(fp);setTimeout(()=>fp.remove(),1600);
+  }
+  const bw=noBtn.offsetWidth,bh=noBtn.offsetHeight;
+  const maxX=arena.offsetWidth-bw-4,maxY=arena.offsetHeight-bh-4;
+  let nx,ny,tries=0;
+  do{nx=4+Math.random()*maxX;ny=4+Math.random()*maxY;tries++;}
+  while(tries<15&&Math.abs(nx-arena.offsetWidth*0.3)<80&&Math.abs(ny-40)<36);
+  noBtn.style.left=nx+'px';noBtn.style.top=ny+'px';
+  noBtn.style.right='auto';noBtn.style.bottom='auto';
+  noBtn.style.position='absolute';noBtn.style.transform='none';
+  noBtn.style.fontSize=Math.max(10,15-qCount*0.6)+'px';
+  noBtn.style.padding=`${Math.max(5,14-qCount)}px ${Math.max(10,26-qCount*2)}px`;
+  if(qCount>=6)noBtn.style.opacity=(1-qCount*0.09).toString();
+  const card=document.getElementById('quiz-card');
+  card.style.animation='shakeCard 0.5s ease';
+  setTimeout(()=>card.style.animation='',520);
+  const s=T[lang].taunts[Math.min(qCount,T[lang].taunts.length-1)];
+  document.getElementById('qface').textContent=s.em;
+  document.getElementById('ta').textContent=s.a;
+  document.getElementById('tb').textContent=s.b;
+  if(qCount<MAX)document.getElementById('qp'+qCount).classList.add('on');
+  qCount++;
+}
+function quizYes(){
+  document.getElementById('s-quiz').style.display='none';
+  goTo('s-cond');animateConds();
+  showToast('🎉',lang==='hk'?'好嘅選擇！繼續去條款...':'Great choice!! Proceeding to terms...');
+}
+function animateConds(){
+  const cds=document.querySelectorAll('.cond');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.style.animationPlayState='running';obs.unobserve(e.target);}});
+  },{threshold:0.15});
+  cds.forEach(c=>{c.style.animationPlayState='paused';obs.observe(c);});
+}
+animateConds();
+
+/* ══ POEM TABS ══ */
+function switchPoem(mode){
+  ['both','en','hk'].forEach(m=>{
+    document.getElementById('poem-'+m).style.display=m===mode?'':'none';
+    document.getElementById('ptab-'+m).classList.toggle('active',m===mode);
+  });
+}
+
+/* ══ COMPAT WIZARD ══ */
+// Floating symbols in compat bg
+(function(){
+  const syms=['💖','✨','🧬','❤️','🔬','💫','🌸','💕','⭐'];
+  const layer=document.getElementById('compat-sym-layer');
+  if(!layer)return;
+  for(let i=0;i<18;i++){
+    const s=document.createElement('span');s.className='compat-sym';
+    s.textContent=syms[i%syms.length];
+    s.style.cssText=`left:${Math.random()*100}%;font-size:${10+Math.random()*12}px;animation-duration:${10+Math.random()*10}s;animation-delay:${Math.random()*10}s`;
+    layer.appendChild(s);
+  }
+})();
+
+let currentQ=0;
+const sliderComments={
+  sl1:{8:{en:'pretty cute ngl',hk:'幾靚仔喎'},9:{en:'very cute actually',hk:'真係好靚仔'},10:{en:'EXTREMELY cute 🔥',hk:'超級靚仔 🔥'}},
+  sl2:{9:{en:'very smart',hk:'好聰明'},10:{en:'mega genius confirmed 🧠',hk:'超級天才確認 🧠'}},
+  sl3:{7:{en:'warming up 🌡️',hk:'開始升溫 🌡️'},8:{en:'getting there 🥰',hk:'越來越近 🥰'},9:{en:'almost infinite',hk:'幾乎無限'},10:{en:'INFINITE LOVE ♾️',hk:'無限嘅愛 ♾️'}},
+};
+function updateSlider(id,outId){
+  const v=parseInt(document.getElementById(id).value);
+  const c=sliderComments[id][v];
+  const txt=c?(lang==='hk'?c.hk:c.en):'off the charts';
+  const el=document.getElementById(outId);
+  el.textContent=v+' / 10 — '+txt;
+  el.style.animation='none';requestAnimationFrame(()=>el.style.animation='fadeUp 0.2s ease both');
+}
+function nextQ(n){
+  const cur=document.getElementById('qc'+(n-1));
+  cur.classList.add('leaving');
+  setTimeout(()=>{
+    cur.classList.remove('active','leaving');
+    cur.style.display='none';
+    const next=document.getElementById('qc'+n);
+    next.style.display='block';
+    requestAnimationFrame(()=>next.classList.add('active'));
+    // update dots
+    document.getElementById('sd'+(n-1)).classList.remove('active');
+    document.getElementById('sd'+(n-1)).classList.add('done');
+    document.getElementById('sd'+n).classList.add('active');
+  },350);
+}
+function pickOpt(el){
+  document.querySelectorAll('.q-opt').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+}
+function showCalcBtn(){
+  // hide q4 next if already shown
+  const btn=document.getElementById('compat-btn');
+  // mark last dot done after short delay
+  setTimeout(()=>{
+    document.getElementById('sd3').classList.remove('active');
+    document.getElementById('sd3').classList.add('done');
+    // hide all q-cards, show scan
+    document.querySelectorAll('.q-card').forEach(c=>{c.style.display='none';c.classList.remove('active');});
+    document.getElementById('step-dots').style.display='none';
+    runScan();
+  },600);
+}
+
+// SCANNING ANIMATION
+const scanSteps=[
+  {pct:15,status:{en:'Initialising love engine...',hk:'初始化愛情引擎...'},emoji:'🧬',check:-1},
+  {pct:30,status:{en:'Measuring heart rate response...',hk:'量度心跳反應...'},emoji:'❤️',check:0},
+  {pct:48,status:{en:'Cross-referencing meme compatibility...',hk:'交叉參考表情包配合度...'},emoji:'📱',check:1},
+  {pct:63,status:{en:'Verifying snack-sharing willingness...',hk:'驗證分享小食意願...'},emoji:'🍕',check:2},
+  {pct:79,status:{en:'Confirming blanket sovereignty clauses...',hk:'確認被子主權條款...'},emoji:'😴',check:3},
+  {pct:95,status:{en:'Generating love certificate...',hk:'生成愛情證書...'},emoji:'💍',check:4},
+  {pct:100,status:{en:'Analysis complete!',hk:'分析完成！'},emoji:'🎉',check:-1},
+];
+function runScan(){
+  const scanEl=document.getElementById('compat-scan');
+  scanEl.style.display='block';
+  let si=0;
+  function step(){
+    if(si>=scanSteps.length){setTimeout(showResult,600);return;}
+    const s=scanSteps[si];
+    document.getElementById('scan-bar').style.width=s.pct+'%';
+    document.getElementById('scan-pct').textContent=s.pct+'%';
+    document.getElementById('scan-status').textContent=lang==='hk'?s.status.hk:s.status.en;
+    document.getElementById('scan-emoji').textContent=s.emoji;
+    if(s.check>=0){
+      const ch=document.getElementById('sc'+s.check);
+      ch.classList.add('done');
+    }
+    si++;
+    setTimeout(step,480+Math.random()*200);
+  }
+  step();
+}
+
+let compatDone=false;
+function showResult(){
+  compatDone=true;
+  document.getElementById('compat-scan').style.display='none';
+  const res=document.getElementById('compat-result');
+  res.style.display='block';
+  const circumference=2*Math.PI*45;
+  // count up number
+  let n=0;
+  const iv=setInterval(()=>{
+    n=Math.min(n+(Math.random()*4|0)+2,100);
+    document.getElementById('result-score').textContent=n+'%';
+    const offset=circumference*(1-n/100);
+    document.getElementById('ring-fill').style.strokeDashoffset=offset;
+    document.getElementById('ring-glow').style.strokeDashoffset=offset;
+    if(n>=100){
+      clearInterval(iv);
+      // verdicts in both languages always shown
+      document.getElementById('result-verdict-en').textContent='🎯 PERFECT MATCH — The algorithm has never seen this score before. You two are statistically impossible. In a good way.';
+      document.getElementById('result-verdict-hk').textContent='🎯 完美配對 — 算法從未見過呢個分數。你哋喺統計學上係唔可能嘅。係好嘅方向。';
+      // spawn stars
+      const sr=document.getElementById('result-stars');
+      ['💖','✨','🌸','💫','🎉','💝','⭐'].forEach((e,i)=>{
+        const s=document.createElement('span');s.className='result-star';s.textContent=e;
+        s.style.animationDelay=i*0.08+'s';sr.appendChild(s);
+      });
+      // show proceed button
+      document.getElementById('compat-btn').style.display='block';
+      showToast('📊',lang==='hk'?'結果出咗：100%配對。係啦。':'Results in: 100% compatible. Obviously.');
+    }
+  },35);
+}
+// old calcCompat alias (not used but kept for safety)
+function calcCompat(){ if(!compatDone) showCalcBtn(); else goTo('s-poem'); }
+
+/* ══ PROPOSAL NO ══ */
+const propArena=document.getElementById('prop-arena'),mno=document.getElementById('marry-no');
+let mCount=0;
+const mMsgsEN=["i'm not ready yet 😅","maybe tomorrow?","let me think 🤔","still thinking...","almost sure!","very soon!","ok fine... almost!","alright FINE!!!"];
+const mMsgsHK=["我仲未準備好 😅","或者明日？","俾我諗諗 🤔","仲係度諗...","幾乎確定！","好快！","好喇好喇... 差唔多！","好啦好啦！！！"];
+function runMarryNo(){
+  if(mCount>=8){mno.style.opacity='0';mno.style.pointerEvents='none';return;}
+  propArena.style.position='relative';mno.style.position='absolute';
+  const pw=propArena.offsetWidth,ph=propArena.offsetHeight||80;
+  const bw=mno.offsetWidth,bh=mno.offsetHeight;
+  mno.style.left=Math.random()*Math.max(10,pw-bw-10)+'px';
+  mno.style.top=Math.random()*Math.max(10,ph-bh-10)+'px';
+  mno.style.transform='none';mno.style.margin='0';
+  const msgs=lang==='hk'?mMsgsHK:mMsgsEN;
+  mno.textContent=msgs[Math.min(mCount,msgs.length-1)];
+  if(mCount>=5)mno.style.opacity=(1-mCount*0.1).toString();
+  mCount++;
+  if(mCount===3)showToast('😂',lang==='hk'?'「遲啲先」掣都跑走喇。哇。':'The "maybe later" button is also running. Wow.');
+}
+
+/* ══ DIALOG ══ */
+const dBodiesEN=['Our records show you actually love him. Clicking No may cause Shreyas to dramatically collapse.','The algorithm says this is a mistake. Reconsider?','Clicking No would make Shreyas cry. Do you want that?','Last chance to make the right choice. Choose wisely.','The No option has been removed for your convenience. 💖'];
+const dBodiesHK=['我哋嘅記錄顯示你其實愛佢。按「唔係」可能令Shreyas戲劇性地倒地。','算法話呢係一個錯誤。再考慮一下？','按「唔係」會令Shreyas喊。你想係咁嗎？','最後機會做出正確選擇。請謹慎選擇。','「唔係」選項已為你方便地移除。 💖'];
+let dCount=0;
+function showDialog(){document.getElementById('fake-dialog').style.display='flex';}
+function closeDialog(){document.getElementById('fake-dialog').style.display='none';winYes();}
+function dodgeDialogNo(){
+  dCount++;
+  const dno=document.getElementById('dialog-no');
+  const msgs=lang==='hk'?['唔係...','嗯...','或者？','事實上...','我猜...','好啦！']:['No...','Hmm...','Maybe?','Actually...','I guess...','Fine ok!'];
+  dno.textContent=msgs[Math.min(dCount,msgs.length-1)];
+  const box=document.querySelector('.dialog-box');
+  const bw=box.offsetWidth,bh=box.offsetHeight;
+  dno.style.transform=`translate(${(Math.random()-0.5)*bw*0.4}px,${(Math.random()-0.5)*bh*0.4}px)`;
+  dno.style.transition='transform 0.3s ease';
+  if(dCount>=4){dno.style.opacity='0';dno.style.pointerEvents='none';}
+  const bodies=lang==='hk'?dBodiesHK:dBodiesEN;
+  document.getElementById('d-body').textContent=bodies[Math.min(dCount,bodies.length-1)];
+  document.getElementById('d-title').textContent=lang==='hk'?'你真係確定嗎？':'Are you absolutely sure?';
+  document.getElementById('d-yes-btn').textContent=lang==='hk'?'我愛佢 💖':'I love him 💖';
+}
+
+/* ══ WIN ══ */
+function winYes(){
+  document.getElementById('s-prop').style.display='none';
+  const ws=document.getElementById('s-win');ws.style.display='flex';
+  ws.scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>{spawnStars();spawnConfetti();startMeter();},400);
+}
+function startMeter(){setTimeout(()=>{document.getElementById('meter-fill').style.width='100%';},300);}
+function spawnStars(){
+  const row=document.getElementById('star-row');
+  ['💖','💕','✨','💝','🌸','🎉','💍','🦋','💫'].forEach((e,i)=>{
+    const sp=document.createElement('span');sp.className='star-s';sp.textContent=e;
+    sp.style.animation=`starPop 0.5s ${i*0.1}s cubic-bezier(0.34,1.56,0.64,1) both`;
+    row.appendChild(sp);
+  });
+}
+function spawnConfetti(){
+  const cols=['#e8557f','#F4C0D1','#f0a535','#9FE1CB','#B5D4F4','#CECBF6','#97C459','#ED93B1','#F0997B','#9b8fe8'];
+  for(let i=0;i<160;i++){
+    setTimeout(()=>{
+      const c=document.createElement('div');c.className='cf';const sz=5+Math.random()*10;
+      c.style.cssText=`left:${Math.random()*100}%;top:-14px;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};border-radius:${Math.random()>.5?'50%':'3px'};animation-duration:${2+Math.random()*3}s;animation-delay:${Math.random()*1.5}s`;
+      document.body.appendChild(c);setTimeout(()=>c.remove(),6000);
+    },i*15);
+  }
+}
+</script>
 </body>
 </html>
