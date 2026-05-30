@@ -11,26 +11,36 @@ const escapeMsgs = {
   en: [
     "nice try 😂",
     "it ran away AGAIN 💀",
-    "the button is faster than you",
-    "have you considered just clicking Yes?",
-    "the No button has hired a lawyer",
-    "this button has Olympic-level reflexes",
-    "it literally lives to escape you",
-    "scientists are studying this button",
-    "the button filed a restraining order",
-    "give up. click Yes. it's easier. 💖"
+    "the button is faster than you. embarrassing.",
+    "have you considered just clicking Yes? 👀",
+    "the No button has retained legal counsel",
+    "this button has Olympic-level reflexes 🥇",
+    "it literally trains every day to escape you",
+    "scientists are now studying this button",
+    "the button filed a restraining order 📄",
+    "that button has left the building 🚪",
+    "it's in witness protection now",
+    "the button called the police on you",
+    "it applied for a visa. it is leaving the country.",
+    "give up. click Yes. your life will improve immediately. 💖",
+    "the button is on a beach somewhere. without you."
   ],
   hk: [
     "想都唔好想 😂",
     "佢又跑走咗 💀",
-    "個掣比你快好多",
-    "不如直接撳「係」呀？",
+    "個掣比你快好多。尷尬。",
+    "不如直接撳「係」呀？👀",
     "「唔係」掣已聘請律師",
-    "呢個掣有奧運級反應",
-    "佢生來就係要逃跑嘅",
+    "呢個掣有奧運級反應 🥇",
+    "佢每日都訓練緊點逃走",
     "科學家正在研究呢個掣",
-    "個掣申請了禁制令",
-    "放棄啦。撳「係」。容易好多。💖"
+    "個掣申請咗禁制令 📄",
+    "個掣已經離開大廈 🚪",
+    "佢依家係證人保護計劃入面",
+    "個掣已經報警告你",
+    "佢申請簽證。佢要離開呢個國家。",
+    "放棄啦。撳「係」。你嘅生活會立即改善。💖",
+    "個掣依家喺某個海灘。冇你。"
   ]
 };
 
@@ -349,12 +359,52 @@ function initCursorTrail() {
 }
 
 /* ============================================================
+   POEM LINE REVEAL
+   ============================================================ */
+function initPoem() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const lines = e.target.querySelectorAll('.poem-line');
+        lines.forEach((line, i) => {
+          setTimeout(() => line.classList.add('visible'), i * 180);
+        });
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  const poemBox = document.querySelector('.poem-box');
+  if (poemBox) obs.observe(poemBox);
+}
+
+/* ============================================================
+   HUSBAND MATERIAL STAGGER
+   ============================================================ */
+function initHusbandMaterial() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.hm-item').forEach((item, i) => {
+          setTimeout(() => item.classList.add('visible'), i * 100);
+        });
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  const hmList = document.querySelector('.hm-list');
+  if (hmList) obs.observe(hmList);
+}
+
+/* ============================================================
    INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
+  document.body.style.paddingBottom = '38px';
   startParticles();
   initReveal();
   initContract();
   initLoveMeter();
   initCursorTrail();
+  initPoem();
+  initHusbandMaterial();
 });
