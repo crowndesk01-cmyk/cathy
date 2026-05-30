@@ -6,7 +6,7 @@
   <title>Chapter 9 — She Said YES 🎉</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css?v=3"/>
 </head>
 <body>
   <canvas id="starsCanvas"></canvas>
@@ -18,15 +18,15 @@
 
   <nav class="chapter-nav">
     <div class="chapter-dots">
-      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
-      <a href="love.html"     class="cdot page-link" title="Ch 2"></a>
-      <a href="evidence.html" class="cdot page-link" title="Ch 3"></a>
-      <a href="contract.html" class="cdot page-link" title="Ch 4"></a>
-      <a href="poem.html"     class="cdot page-link" title="Ch 5"></a>
-      <a href="quiz.html"     class="cdot page-link" title="Ch 6"></a>
-      <a href="husband.html"  class="cdot page-link" title="Ch 7"></a>
-      <a href="proposal.html" class="cdot page-link" title="Ch 8"></a>
-      <a href="yes.html"      class="cdot active"    title="Ch 9 — She Said YES 🎉"></a>
+      <a href="index.html" class="cdot page-link" title="Ch 1 — The Beginning"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 2 — The Evidence"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 3 — The Contract"></a>
+      <a href="poem.html" class="cdot page-link" title="Ch 4 — The Poem"></a>
+      <a href="quiz.html" class="cdot page-link" title="Ch 5 — The Science"></a>
+      <a href="husband.html" class="cdot page-link" title="Ch 6 — The Resume"></a>
+      <a href="proposal.html" class="cdot page-link" title="Ch 7 — The Proposal"></a>
+      <a href="love.html" class="cdot page-link" title="Ch 8 — The Question"></a>
+      <a href="yes.html" class="cdot active" title="Ch 9 — She Said Yes"></a>
     </div>
     <span class="chapter-label" data-en="Chapter 9 / 9 — THE END 🎉" data-hk="第 9 章 / 9 — 完結 🎉">Chapter 9 / 9 — THE END 🎉</span>
   </nav>
@@ -60,6 +60,7 @@
         <div class="celeb-text">
           <p data-en="Cathy — you just made Shreyas the happiest, most dramatic, most unbelievably lucky person on this entire planet." data-hk="Cathy — 你令Shreyas成為整個地球上最快樂、最戲劇化、最難以置信地幸運嘅人。">Cathy — you just made Shreyas the happiest, most dramatic, most unbelievably lucky person on this entire planet.</p>
           <p data-en="This website took way too long to build. You are worth every second of it. And every burnt piece of toast." data-hk="呢個網站花咗好耐去建立。你值得每一秒。同每一片焗焦嘅多士。">This website took way too long to build. You are worth every second of it. And every burnt piece of toast.</p>
+          <p data-en="From here on, it's you and me — the snack thefts, the blanket wars, the 3am memes, the airports, the hard days, the soft ones, and a few thousand ordinary Tuesdays. I can't wait for all of them." data-hk="由呢一刻開始，就係你同我 — 偷零食、被子大戰、凌晨三點嘅表情包、機場、艱難嘅日子、溫柔嘅日子、同幾千個平凡嘅星期二。我等唔切去經歷全部。">From here on, it's you and me — the snack thefts, the blanket wars, the 3am memes, the airports, the hard days, the soft ones, and a few thousand ordinary Tuesdays. I can't wait for all of them.</p>
           <p data-en="Now let's go get those snacks." data-hk="而家我哋去攞嗰啲零食喇。">Now let's go get those snacks. 🍿</p>
         </div>
 
@@ -73,7 +74,7 @@
   </section>
 
   <div class="page-nav">
-    <a href="proposal.html" class="page-link">← Chapter 8</a>
+    <a href="love.html" class="page-link">← Chapter 8</a>
     <span class="spacer"></span>
     <a href="index.html" class="page-link">Start Over 🔄</a>
   </div>
@@ -90,7 +91,9 @@
   </div>
 
   <canvas id="confettiCanvas"></canvas>
-  <script src="script.js"></script>
+  
+    <script>const _PAGE="yes.html";const _PAGE_IDX=8;</script>
+  <script src="script.js?v=6"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       launchConfetti();

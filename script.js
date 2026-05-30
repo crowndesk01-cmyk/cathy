@@ -1,6 +1,25 @@
+/* v4 — love.html is Ch8, Yes/No second-to-last */
 /* ============================================================
    CATHY 💖 — script.js  (multi-page edition)
    ============================================================ */
+
+/* ---- Page order ---- */
+const CHAPTERS = [
+  'index.html','evidence.html','contract.html','poem.html',
+  'quiz.html','husband.html','proposal.html','love.html','yes.html'
+];
+const PAGE = location.pathname.split('/').pop() || 'index.html';
+const PAGE_IDX = CHAPTERS.indexOf(PAGE) === -1 ? 0 : CHAPTERS.indexOf(PAGE);
+
+/* ---- Progress tracking ---- */
+function getProgress() {
+  return parseInt(localStorage.getItem('cathyProgress') || '0');
+}
+function setProgress(idx) {
+  if (idx > getProgress()) localStorage.setItem('cathyProgress', idx);
+}
+/* Mark current page as reached */
+setProgress(PAGE_IDX);
 
 /* ---- State ---- */
 let lang = localStorage.getItem('cathyLang') || 'en';
@@ -184,14 +203,44 @@ function navigateTo(url) {
   setTimeout(() => { window.location.href = url; }, 280);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('a.page-link').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      navigateTo(a.href);
-    });
+/* ============================================================
+   LOCK DOTS — only allow nav to visited chapters
+   ============================================================ */
+function initDots() {
+  const progress = getProgress();
+  document.querySelectorAll('a.cdot').forEach(a => {
+    const href = a.getAttribute('href');
+    const idx  = CHAPTERS.indexOf(href);
+    if (idx < 0) return;
+
+    if (a.classList.contains('active')) {
+      /* current chapter — leave as is */
+    } else if (idx <= progress) {
+      /* Already visited — mark done + allow navigation */
+      if (idx < PAGE_IDX) a.classList.add('done');
+      a.classList.add('page-link');
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        navigateTo(a.href);
+      });
+    } else {
+      /* Not yet reached — locked visual indicator only */
+      a.classList.add('locked');
+      a.removeAttribute('href');
+    }
   });
-});
+}
+
+/* ============================================================
+   NEXT CHAPTER BUTTON
+   ============================================================ */
+function goNext() {
+  const next = CHAPTERS[PAGE_IDX + 1];
+  if (next) {
+    setProgress(PAGE_IDX + 1);
+    navigateTo(next);
+  }
+}
 
 const escapeMsgs = {
   en: [
@@ -254,6 +303,8 @@ function applyLang() {
 const EMOJIS = ['💖','🌸','✨','💕','🌷','💗','⭐','🫧','🌺'];
 
 function spawnParticle() {
+  const container = document.getElementById('particles');
+  if (!container) return;
   const el = document.createElement('div');
   el.className = 'particle';
   el.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
@@ -262,7 +313,7 @@ function spawnParticle() {
   const dur = 7 + Math.random() * 10;
   el.style.animationDuration = dur + 's';
   el.style.animationDelay = (Math.random() * 4) + 's';
-  document.getElementById('particles').appendChild(el);
+  container.appendChild(el);
   setTimeout(() => el.remove(), (dur + 4) * 1000);
 }
 
@@ -284,7 +335,6 @@ function initReveal() {
       }
     });
   }, { threshold: 0.15 });
-
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 }
 
@@ -295,7 +345,10 @@ function initContract() {
   const stampObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        setTimeout(() => document.getElementById('stamp').classList.add('visible'), 600);
+        setTimeout(() => {
+          const stamp = document.getElementById('stamp');
+          if (stamp) stamp.classList.add('visible');
+        }, 600);
         stampObs.unobserve(e.target);
       }
     });
@@ -319,7 +372,7 @@ function initContract() {
 }
 
 /* ============================================================
-   LOVE METER — animates as user scrolls to #love
+   LOVE METER
    ============================================================ */
 function initLoveMeter() {
   const loveSection = document.getElementById('ch2');
@@ -337,7 +390,7 @@ function initLoveMeter() {
 function animateLoveMeter(target) {
   const fill = document.getElementById('loveFill');
   if (!fill) return;
-  let current = 0;
+  let current = parseFloat(fill.style.width) || 0;
   const step = () => {
     current = Math.min(current + 1.5, target);
     fill.style.width = current + '%';
@@ -375,7 +428,7 @@ function runAway(btn) {
 }
 
 /* ============================================================
-   YES HANDLER
+   YES HANDLER — page-aware, goes to NEXT chapter
    ============================================================ */
 function handleYes() {
   animateLoveMeter(100);
@@ -416,13 +469,17 @@ function nextStep(currentId, nextId, progress) {
 }
 
 function showQuizResult() {
-  const qs3    = document.getElementById('qs3');
+  /* hide whichever step is currently active (works for any number of questions) */
+  const active = document.querySelector('.q-step.active');
   const result = document.getElementById('qResult');
   const bar    = document.getElementById('qProgress');
 
-  qs3.style.opacity = '0';
-  qs3.style.transform = 'translateX(-30px)';
-  qs3.style.transition = 'all 0.3s ease';
+  if (active) {
+    active.style.opacity = '0';
+    active.style.transform = 'translateX(-30px)';
+    active.style.transition = 'all 0.3s ease';
+  }
+  if (bar) bar.style.width = '100%';
 
   setTimeout(() => {
     qs3.classList.remove('active');
@@ -454,10 +511,11 @@ function animateScore() {
 /* ============================================================
    CONFETTI
    ============================================================ */
-const CONF_COLORS = ['#e91e8c','#ff6bac','#c260d4','#ffd700','#ff4d88','#fff','#f9a8d4','#a78bfa'];
+const CONF_COLORS = ['#e0b87a','#f3d9a4','#e2998f','#f0b8af','#ecd4a0','#fff','#d98c7a','#e8d09a'];
 
 function launchConfetti() {
   const canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
   canvas.style.display = 'block';
   canvas.width  = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -488,7 +546,6 @@ function launchConfetti() {
       p.rot += p.vr;
       p.vy  += 0.08;
       if (p.y < canvas.height + 40) any = true;
-
       ctx.save();
       ctx.globalAlpha = Math.max(0, p.alpha);
       ctx.translate(p.x, p.y);
@@ -504,17 +561,10 @@ function launchConfetti() {
       ctx.restore();
     });
     if (any) requestAnimationFrame(draw);
-    else {
-      alive = false;
-      canvas.style.display = 'none';
-    }
+    else { alive = false; canvas.style.display = 'none'; }
   };
   requestAnimationFrame(draw);
-
-  setTimeout(() => {
-    alive = false;
-    canvas.style.display = 'none';
-  }, 6000);
+  setTimeout(() => { alive = false; canvas.style.display = 'none'; }, 6000);
 }
 
 /* ============================================================
@@ -591,6 +641,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lbl) lbl.textContent = lang === 'en' ? '廣東話 🇭🇰' : 'English 🇬🇧';
   if (lang !== 'en') applyLang();
 
+  initDots();   /* ← lock forward dots */
   initStars();
   initReveal();
   initContract();
