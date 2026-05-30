@@ -1,72 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chapter 1 — The Beginning 💌</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-
   <canvas id="starsCanvas"></canvas>
-
-  <!-- Language Toggle -->
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
-    <span id="langLabel">廣東話 🇭🇰</span>
-  </button>
-
-  <!-- Chapter Navigation -->
-  <nav class="chapter-nav">
-    <span class="chapter-brand">C &amp; S</span>
-    <div class="chapter-dots">
-      <a href="index.html"    class="cdot active"    title="Ch 1 — The Beginning"></a>
-      <a href="love.html"     class="cdot page-link" title="Ch 2 — The Question"></a>
-      <a href="evidence.html" class="cdot page-link" title="Ch 3 — The Evidence"></a>
-      <a href="contract.html" class="cdot page-link" title="Ch 4 — The Contract"></a>
-      <a href="poem.html"     class="cdot page-link" title="Ch 5 — The Poem"></a>
-      <a href="quiz.html"     class="cdot page-link" title="Ch 6 — The Science"></a>
-      <a href="husband.html"  class="cdot page-link" title="Ch 7 — The Resume"></a>
-      <a href="proposal.html" class="cdot page-link" title="Ch 8 — The Proposal"></a>
-      <a href="yes.html"      class="cdot page-link" title="Ch 9 — She Said Yes"></a>
-    </div>
-    <span class="chapter-info">01 / 09</span>
-  </nav>
-
-  <!-- Particle layer -->
   <div class="particles" id="particles"></div>
-
-  <!-- ============ BREAKING NEWS TICKER ============ -->
+  <button class="lang-toggle" id="langToggle" onclick="toggleLang()"><span id="langLabel">廣東話 🇭🇰</span></button>
+  <nav class="chapter-nav">
+    <div class="chapter-dots">
+      <a href="index.html" class="cdot active" title="Ch 1 — The Beginning"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 2 — The Evidence"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 3 — The Contract"></a>
+      <a href="poem.html" class="cdot page-link" title="Ch 4 — The Poem"></a>
+      <a href="quiz.html" class="cdot page-link" title="Ch 5 — The Science"></a>
+      <a href="husband.html" class="cdot page-link" title="Ch 6 — The Resume"></a>
+      <a href="proposal.html" class="cdot page-link" title="Ch 7 — The Proposal"></a>
+      <a href="love.html" class="cdot page-link" title="Ch 8 — The Question"></a>
+      <a href="yes.html" class="cdot page-link" title="Ch 9 — She Said Yes"></a>
+    </div>
+    <span class="chapter-label" data-en="Chapter 1 / 9" data-hk="第 一 章 / 9">Chapter 1 / 9</span>
+  </nav>
   <div class="ticker-wrap">
     <div class="ticker-label" data-en="🔴 BREAKING" data-hk="🔴 突發">🔴 BREAKING</div>
-    <div class="ticker-track">
-      <div class="ticker-content" id="tickerContent">
-        <span data-en="Local man builds entire webpage to confess feelings. Historians baffled. &nbsp;•&nbsp;" data-hk="本地男子建立整個網頁表白。歷史學家困惑不解。&nbsp;•&nbsp;">Local man builds entire webpage to confess feelings. Historians baffled. &nbsp;•&nbsp;</span>
-        <span data-en="Scientists confirm: Cathy's smile is classified as a natural disaster. &nbsp;•&nbsp;" data-hk="科學家確認：Cathy嘅笑容被列為自然災害。&nbsp;•&nbsp;">Scientists confirm: Cathy's smile is classified as a natural disaster. &nbsp;•&nbsp;</span>
-        <span data-en="'No' button spotted fleeing the country. Authorities alerted. &nbsp;•&nbsp;" data-hk="「唔係」掣被發現逃離境外。當局已收到通報。&nbsp;•&nbsp;">'No' button spotted fleeing the country. Authorities alerted. &nbsp;•&nbsp;</span>
-        <span data-en="Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;" data-hk="相容性分數達100%。演算法因震驚而崩潰。&nbsp;•&nbsp;">Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;</span>
-        <span data-en="Shreyas still cannot cook. Cathy's snacks remain at risk. &nbsp;•&nbsp;" data-hk="Shreyas仍然唔識煮飯。Cathy嘅小食仍處於危險之中。&nbsp;•&nbsp;">Shreyas still cannot cook. Cathy's snacks remain at risk. &nbsp;•&nbsp;</span>
-        <span data-en="Sources say blanket war ongoing since Day 1. No resolution in sight. &nbsp;•&nbsp;" data-hk="消息人士透露被子大戰自第一天起持續至今。和平無望。&nbsp;•&nbsp;">Sources say blanket war ongoing since Day 1. No resolution in sight. &nbsp;•&nbsp;</span>
-      </div>
-    </div>
+    <div class="ticker-track"><div class="ticker-content" id="tickerContent">
+      <span data-en="Local man builds entire webpage to confess feelings. Historians baffled. &nbsp;•&nbsp;" data-hk="本地男子建立整個網頁表白。歷史學家困惑不解。&nbsp;•&nbsp;">Local man builds entire webpage to confess feelings. Historians baffled. &nbsp;•&nbsp;</span>
+      <span data-en="Scientists confirm: Cathy's smile is classified as a natural disaster. &nbsp;•&nbsp;" data-hk="科學家確認：Cathy嘅笑容被列為自然災害。&nbsp;•&nbsp;">Scientists confirm: Cathy's smile is classified as a natural disaster. &nbsp;•&nbsp;</span>
+      <span data-en="'No' button spotted fleeing the country. Authorities alerted. &nbsp;•&nbsp;" data-hk="「唔係」掣被發現逃離境外。當局已收到通報。&nbsp;•&nbsp;">'No' button spotted fleeing the country. Authorities alerted. &nbsp;•&nbsp;</span>
+      <span data-en="Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;" data-hk="相容性分數達100%。演算法因震驚而崩潰。&nbsp;•&nbsp;">Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;</span>
+      <span data-en="Shreyas still cannot cook. Cathy's snacks remain at risk. &nbsp;•&nbsp;" data-hk="Shreyas仍然唔識煮飯。Cathy嘅小食仍處於危險之中。&nbsp;•&nbsp;">Shreyas still cannot cook. Cathy's snacks remain at risk. &nbsp;•&nbsp;</span>
+      <span data-en="Sources say blanket war ongoing since Day 1. No resolution in sight. &nbsp;•&nbsp;" data-hk="消息人士透露被子大戰自第一天起持續至今。和平無望。&nbsp;•&nbsp;">Sources say blanket war ongoing since Day 1. No resolution in sight. &nbsp;•&nbsp;</span>
+      <span data-en="No button reportedly hired a lawyer. Case dismissed. Button still running. &nbsp;•&nbsp;" data-hk="「唔係」掣據報聘請律師。案件撤銷。個掣仍在逃。&nbsp;•&nbsp;">No button reportedly hired a lawyer. Case dismissed. Button still running. &nbsp;•&nbsp;</span>
+    </div></div>
   </div>
-
-  <!-- ============ HERO — Chapter 1 ============ -->
   <section class="sec" id="hero">
-    <div class="deco d1">💌</div>
-    <div class="deco d2">✨</div>
-    <div class="deco d3">🌸</div>
-    <div class="deco d4">💕</div>
+    <div class="deco d1">💌</div><div class="deco d2">✨</div><div class="deco d3">🌸</div><div class="deco d4">💕</div>
     <div class="wrap">
-      <p class="tag reveal"
-         data-en="✉️ chapter one — the beginning"
-         data-hk="✉️ 第一章 — 開始">✉️ chapter one — the beginning</p>
+      <p class="tag reveal" data-en="✉️ chapter one — the beginning" data-hk="✉️ 第一章 — 開始">✉️ chapter one — the beginning</p>
       <h1 class="hero-h1 reveal" data-delay="200">
         <span data-en="Hey Cathy," data-hk="嗨，Cathy，">Hey Cathy,</span><br>
-        <span class="grad"
-              data-en="I need to tell you something..."
-              data-hk="我有嘢想同你講...">I need to tell you something...</span>
+        <span class="grad" data-en="I need to tell you something..." data-hk="我有嘢想同你講...">I need to tell you something...</span>
       </h1>
       <p class="hero-p reveal" data-delay="400"
          data-en="This is the most important webpage you will ever open in your entire life. No pressure though. Totally fine. Completely normal."
@@ -74,25 +52,13 @@
         This is the most important webpage you will ever open in your entire life.<br>
         No pressure though. Totally fine. Completely normal.
       </p>
-      <a href="love.html" class="btn btn-primary reveal page-link" data-delay="600"
-         data-en="Begin →" data-hk="開始 →">Begin →</a>
+      <a href="evidence.html" class="btn btn-primary reveal page-link" data-delay="600"
+         data-en="Begin the story →" data-hk="開始故事 →">Begin the story →</a>
       <div class="scroll-dot reveal" data-delay="800"></div>
     </div>
   </section>
-
-
-
-  <!-- Page nav -->
-  <div class="page-nav">
-    <span class="spacer"></span>
-    <a href="love.html" class="page-link">Chapter 2 →</a>
-  </div>
-
-  <!-- Confetti canvas -->
+  <div class="page-nav"><span class="spacer"></span><a href="evidence.html" class="page-link">Chapter 2 →</a></div>
   <canvas id="confettiCanvas"></canvas>
-
-  
   <script>const _PAGE="index.html";const _PAGE_IDX=0;</script>
-  <script src="script.js?v=3"></script>
-</body>
-</html>
+  <script src="script.js?v=4"></script>
+</body></html>
