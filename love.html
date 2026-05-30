@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chapter 2 — The Question 💖</title>
+  <title>Chapter 8 — The Big Question 💖</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
@@ -11,86 +11,78 @@
 <body>
   <canvas id="starsCanvas"></canvas>
   <div class="particles" id="particles"></div>
-
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
-    <span id="langLabel">廣東話 🇭🇰</span>
-  </button>
-
+  <button class="lang-toggle" id="langToggle" onclick="toggleLang()"><span id="langLabel">廣東話 🇭🇰</span></button>
   <nav class="chapter-nav">
     <div class="chapter-dots">
-      <a href="index.html"    class="cdot page-link" title="Ch 1 — The Beginning"></a>
-      <a href="love.html"     class="cdot active"    title="Ch 2 — The Question"></a>
-      <a href="evidence.html" class="cdot page-link" title="Ch 3 — The Evidence"></a>
-      <a href="contract.html" class="cdot page-link" title="Ch 4 — The Contract"></a>
-      <a href="poem.html"     class="cdot page-link" title="Ch 5 — The Poem"></a>
-      <a href="quiz.html"     class="cdot page-link" title="Ch 6 — The Science"></a>
-      <a href="husband.html"  class="cdot page-link" title="Ch 7 — The Resume"></a>
-      <a href="proposal.html" class="cdot page-link" title="Ch 8 — The Proposal"></a>
-      <a href="yes.html"      class="cdot page-link" title="Ch 9 — She Said Yes"></a>
+      <a href="index.html" class="cdot page-link" title="Ch 1 — The Beginning"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 2 — The Evidence"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 3 — The Contract"></a>
+      <a href="poem.html" class="cdot page-link" title="Ch 4 — The Poem"></a>
+      <a href="quiz.html" class="cdot page-link" title="Ch 5 — The Science"></a>
+      <a href="husband.html" class="cdot page-link" title="Ch 6 — The Resume"></a>
+      <a href="proposal.html" class="cdot page-link" title="Ch 7 — The Proposal"></a>
+      <a href="love.html" class="cdot active" title="Ch 8 — The Question"></a>
+      <a href="yes.html" class="cdot page-link" title="Ch 9 — She Said Yes"></a>
     </div>
-    <span class="chapter-label" data-en="Chapter 2 / 9" data-hk="第 2 章 / 9">Chapter 2 / 9</span>
+    <span class="chapter-label" data-en="Chapter 8 / 9" data-hk="第 八 章 / 9">Chapter 8 / 9</span>
   </nav>
-
   <section class="sec" id="love">
-    <div class="deco d1">💝</div>
-    <div class="deco d2">✨</div>
-    <div class="deco d3">🌸</div>
-    <div class="deco d4">💕</div>
+    <div class="deco d1">💝</div><div class="deco d2">✨</div><div class="deco d3">🌸</div><div class="deco d4">💕</div>
     <div class="wrap">
-      <div class="card glass reveal">
+      <div class="card glass reveal" style="max-width:520px">
         <div class="sec-label">
-          <span data-en="💝 the big question" data-hk="💝 大問題">💝 the big question</span>
+          <span data-en="💝 the moment you've been waiting for" data-hk="💝 你一直等待的時刻">💝 the moment you've been waiting for</span>
         </div>
         <h2 data-en="Cathy, do you love me?" data-hk="Cathy，你愛我嗎？">Cathy, do you love me?</h2>
         <p class="sec-note"
-           data-en="think very carefully. the button on the right has strong opinions."
-           data-hk="好好諗清楚。右邊嗰個掣有自己嘅想法。">
-          think very carefully. the button on the right has strong opinions.
+           data-en="You have read 7 chapters of evidence. The case is overwhelming. The court awaits your verdict."
+           data-hk="你已閱讀7章嘅證據。案情確鑿。法庭等待你嘅裁決。">
+          You have read 7 chapters of evidence. The case is overwhelming. The court awaits your verdict.
         </p>
 
         <div class="love-meter-wrap">
           <span class="love-meter-icon">💗</span>
-          <div class="love-meter-track">
-            <div class="love-meter-fill" id="loveFill"></div>
-          </div>
+          <div class="love-meter-track"><div class="love-meter-fill" id="loveFill"></div></div>
           <span style="font-size:0.78rem;color:var(--text-s);">love%</span>
         </div>
 
-        <div class="btn-row">
-          <button class="btn btn-yes pulse-btn" onclick="handleYes()">
-            <span data-en="Yes! 💖" data-hk="係！💖">Yes! 💖</span>
-          </button>
+        <p class="sec-note" style="margin-top:0.5rem;font-size:0.8rem;opacity:0.6"
+           data-en="(The No button has been informed of its duties. It is not happy about them.)"
+           data-hk="（「唔係」掣已被告知其職責。它對此並不滿意。）">
+          (The No button has been informed of its duties. It is not happy about them.)
+        </p>
+
+        <div class="btn-row" style="position:relative;min-height:80px;margin-top:1.5rem">
+          <button class="btn btn-yes pulse-btn" onclick="handleYes()"
+                  data-en="Yes, I do 💖" data-hk="係，我愛你 💖">Yes, I do 💖</button>
           <button class="btn btn-no" id="noBtn1"
-                  onmouseover="runAway(this)" ontouchstart="runAway(this)">
-            <span data-en="No" data-hk="唔係">No</span>
-          </button>
+                  onmouseover="runAway(this)" ontouchstart="runAway(this)"
+                  data-en="No" data-hk="唔係">No</button>
         </div>
         <p class="escape-msg" id="escapeMsg"></p>
+        <p class="maybe-note"
+           data-en="(The 'No' button is contractually obligated to run. It has no choice. Neither do you.)"
+           data-hk="（「唔係」掣根據合約必須逃跑。它冇得揀。你都冇。）">
+          (The 'No' button is contractually obligated to run. It has no choice. Neither do you.)
+        </p>
       </div>
     </div>
   </section>
-
-  <div class="page-nav">
-    <a href="index.html" class="page-link">← Chapter 1</a>
+    <div class="page-nav">
+    <a href="proposal.html" class="page-link">← Chapter 7</a>
     <span class="spacer"></span>
-    <a href="evidence.html" class="page-link">Chapter 3 →</a>
+    <span></span>
   </div>
-
   <div class="ticker-wrap">
     <div class="ticker-label" data-en="🔴 BREAKING" data-hk="🔴 突發">🔴 BREAKING</div>
-    <div class="ticker-track">
-      <div class="ticker-content" id="tickerContent">
-        <span data-en="Local man builds entire webpage to confess feelings. Historians baffled. &nbsp;•&nbsp;" data-hk="本地男子建立整個網頁表白。歷史學家困惑不解。&nbsp;•&nbsp;">Local man builds entire webpage to confess feelings. Historians baffled. &nbsp;•&nbsp;</span>
-        <span data-en="Scientists confirm: Cathy's smile is classified as a natural disaster. &nbsp;•&nbsp;" data-hk="科學家確認：Cathy嘅笑容被列為自然災害。&nbsp;•&nbsp;">Scientists confirm: Cathy's smile is classified as a natural disaster. &nbsp;•&nbsp;</span>
-        <span data-en="'No' button spotted fleeing the country. Authorities alerted. &nbsp;•&nbsp;" data-hk="「唔係」掣被發現逃離境外。當局已收到通報。&nbsp;•&nbsp;">'No' button spotted fleeing the country. Authorities alerted. &nbsp;•&nbsp;</span>
-        <span data-en="Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;" data-hk="相容性分數達100%。演算法因震驚而崩潰。&nbsp;•&nbsp;">Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;</span>
-      </div>
-    </div>
+    <div class="ticker-track"><div class="ticker-content">
+      <span>The 'No' button has already started running. Embarrassing, honestly. &nbsp;•&nbsp;</span>
+      <span>Shreyas is somewhere pacing. Aggressively. &nbsp;•&nbsp;</span>
+      <span>Court is in session. The defendant (love) awaits your verdict. &nbsp;•&nbsp;</span>
+      <span>All 7 chapters of evidence point to the same answer. You know it. &nbsp;•&nbsp;</span>
+    </div></div>
   </div>
-
   <canvas id="confettiCanvas"></canvas>
-  
-  <script>const _PAGE="love.html";const _PAGE_IDX=1;</script>
-  <script src="script.js?v=3"></script>
-</body>
-</html>
+  <script>const _PAGE="love.html";const _PAGE_IDX=7;</script>
+  <script src="script.js?v=4"></script>
+</body></html>
