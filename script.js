@@ -6,6 +6,130 @@
 let lang = localStorage.getItem('cathyLang') || 'en';
 let noCount = 0;
 let loveFillValue = 0;
+const chapterAnswers = {};
+
+/* ============================================================
+   INTERACTIVE ANSWERS — each chapter asks, then unlocks next
+   ============================================================ */
+const responseMsgs = {
+  1: {
+    yes:   { en: "Yay! Okay hold my hand, here we go 🥰", hk: "耶！好啦拖住我隻手，出發喇 🥰" },
+    maybe: { en: "Aww don't be scared cutie, I'll be gentle 🥺", hk: "Aww 唔好驚啦靚女，我會好溫柔㗎 🥺" }
+  },
+  2: {
+    yes: { en: "PHEW. Okay good. My heart can resume beating now 💓", hk: "鬆一口氣。好。我個心可以繼續跳喇 💓" }
+  },
+  3: {
+    guilty:    { en: "Guilty as charged. I'll serve a life sentence with you 😤💖", hk: "認晒罪。我願意同你一齊服無期徒刑 😤💖" },
+    convinced: { en: "The court is pleased. Case closed with a kiss 💋", hk: "法庭好滿意。以一個吻結案 💋" }
+  },
+  4: {
+    agree:  { en: "Signed, sealed, yours. No takebacks ✍️💖", hk: "簽咗、封咗、係你嘅喇。冇得反悔 ✍️💖" },
+    lawyer: { en: "Your lawyer called. They also said yes 📞😏", hk: "你律師打嚟。佢都話yes 📞😏" }
+  },
+  5: {
+    cried:  { en: "Don't cry! Okay cry a little. I'm crying too 😭💕", hk: "唔好喊！好啦喊少少。我都喊緊 😭💕" },
+    awww:   { en: "YOUR dummy. Specifically. Forever 🥺", hk: "係你嘅蠢蛋。特登咁。永遠 🥺" },
+    cringe: { en: "Cringe is just love with confidence 😆💖", hk: "核突即係有自信嘅愛 😆💖" }
+  },
+  7: {
+    keep:      { en: "Best hire of your life. I start immediately 💼💕", hk: "你一生最正嘅聘請。我即刻上工 💼💕" },
+    probation: { en: "I'll pass probation in record time. Watch me 😏", hk: "我會破紀錄咁通過試用期。睇住 😏" }
+  }
+};
+
+function answer(ch, key, btn) {
+  /* record her choice */
+  const block = btn.closest('.q-block');
+  const picks = block.querySelectorAll('.q-pick, .btn-no');
+  picks.forEach(b => {
+    b.disabled = true;
+    if (b !== btn) b.classList.add('faded');
+  });
+  btn.classList.add('selected');
+  chapterAnswers[ch] = btn.textContent.trim();
+
+  /* show response */
+  const resp = document.getElementById('resp' + ch);
+  if (resp && responseMsgs[ch] && responseMsgs[ch][key]) {
+    resp.textContent = responseMsgs[ch][key][lang];
+    resp.classList.add('show');
+  }
+
+  if (ch === 2) animateLoveMeter(100);
+
+  /* unlock next chapter */
+  unlockChapter(ch + 1);
+}
+
+function unlockChapter(n) {
+  const next = document.getElementById('ch' + n);
+  if (!next || !next.classList.contains('locked')) return;
+  setTimeout(() => {
+    next.classList.remove('locked');
+    next.querySelectorAll('.reveal').forEach(el => {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const d = parseInt(e.target.dataset.delay || 0);
+            setTimeout(() => e.target.classList.add('visible'), d);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      obs.observe(el);
+    });
+    next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 900);
+}
+
+/* ============================================================
+   SCROLL-SPY — highlight active chapter dot
+   ============================================================ */
+function initScrollSpy() {
+  const dots = document.querySelectorAll('.cdot');
+  const info = document.getElementById('chapterInfo');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const n = parseInt(e.target.dataset.chapter);
+        dots.forEach((d, i) => d.classList.toggle('active', i === n - 1));
+        if (info) info.textContent = String(n).padStart(2, '0') + ' / 09';
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.chapter').forEach(c => obs.observe(c));
+}
+
+/* ============================================================
+   RECAP — replay her answers in the final chapter
+   ============================================================ */
+const recapLabels = {
+  1: { en: "You bravely pressed Begin",        hk: "你勇敢咁撳咗開始" },
+  2: { en: "Do you love me?",                  hk: "你愛唔愛我？" },
+  3: { en: "The verdict",                      hk: "裁決" },
+  4: { en: "The contract",                     hk: "合約" },
+  5: { en: "The poem",                         hk: "首詩" },
+  7: { en: "Boyfriend material?",              hk: "好男友料子？" },
+  8: { en: "Will you be mine?",                hk: "你願意做我嘅人嗎？" }
+};
+
+function buildRecap() {
+  const box = document.getElementById('recap');
+  if (!box) return;
+  box.innerHTML = '';
+  const title = document.createElement('p');
+  title.className = 'recap-title';
+  title.textContent = lang === 'en' ? 'Everything you said along the way 💌' : '你一路講過嘅嘢 💌';
+  box.appendChild(title);
+  Object.keys(recapLabels).forEach(ch => {
+    if (!chapterAnswers[ch]) return;
+    const row = document.createElement('div');
+    row.className = 'recap-row';
+    row.innerHTML = `<span class="recap-q">${recapLabels[ch][lang]}</span><span class="recap-a">${chapterAnswers[ch]}</span>`;
+    box.appendChild(row);
+  });
+}
 
 /* ============================================================
    STAR CANVAS
@@ -198,7 +322,7 @@ function initContract() {
    LOVE METER — animates as user scrolls to #love
    ============================================================ */
 function initLoveMeter() {
-  const loveSection = document.getElementById('love');
+  const loveSection = document.getElementById('ch2');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -243,7 +367,8 @@ function runAway(btn) {
   btn.style.transition = 'left 0.18s ease, top 0.18s ease';
 
   const msgs = escapeMsgs[lang];
-  const msgEl = document.getElementById('escapeMsg');
+  const chapter = btn.closest('.chapter') || document;
+  const msgEl = chapter.querySelector('.escape-msg');
   if (msgEl) msgEl.textContent = msgs[Math.min(noCount - 1, msgs.length - 1)];
 
   animateLoveMeter(Math.min(78 + noCount * 3, 96));
@@ -255,7 +380,18 @@ function runAway(btn) {
 function handleYes() {
   animateLoveMeter(100);
   launchConfetti();
-  setTimeout(() => navigateTo('yes.html'), 650);
+  chapterAnswers[8] = lang === 'en' ? 'Yes, always 💍' : '係，永遠 💍';
+  const block = document.querySelector('#ch8 .q-block');
+  if (block) block.querySelectorAll('button').forEach(b => b.disabled = true);
+  buildRecap();
+  unlockChapter(9);
+  /* cycle celebration emoji */
+  const emojis = ['🎉','💍','💖','🎊','✨','🥂','💝','🌸'];
+  let i = 0;
+  setInterval(() => {
+    const el = document.getElementById('celebEmoji');
+    if (el) { el.textContent = emojis[i % emojis.length]; i++; }
+  }, 700);
 }
 
 /* ============================================================
@@ -290,9 +426,12 @@ function showQuizResult() {
 
   setTimeout(() => {
     qs3.classList.remove('active');
+    result.classList.remove('hidden');
     result.classList.add('active');
     if (bar) bar.style.width = '100%';
     animateScore();
+    chapterAnswers[6] = lang === 'en' ? '100% compatible 🧪' : '100% 相容 🧪';
+    unlockChapter(7);
   }, 300);
 }
 
@@ -453,11 +592,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lang !== 'en') applyLang();
 
   initStars();
-  startParticles();
   initReveal();
   initContract();
   initLoveMeter();
   initCursorTrail();
   initPoem();
   initHusbandMaterial();
+  initScrollSpy();
 });
