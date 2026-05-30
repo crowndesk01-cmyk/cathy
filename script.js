@@ -334,19 +334,23 @@ function nextStep(currentId, nextId, progress) {
 }
 
 function showQuizResult() {
-  const qs3    = document.getElementById('qs3');
+  /* hide whichever step is currently active (works for any number of questions) */
+  const active = document.querySelector('.q-step.active');
   const result = document.getElementById('qResult');
   const bar    = document.getElementById('qProgress');
 
-  qs3.style.opacity = '0';
-  qs3.style.transform = 'translateX(-30px)';
-  qs3.style.transition = 'all 0.3s ease';
+  if (active) {
+    active.style.opacity = '0';
+    active.style.transform = 'translateX(-30px)';
+    active.style.transition = 'all 0.3s ease';
+  }
+  if (bar) bar.style.width = '100%';
 
   setTimeout(() => {
-    qs3.classList.remove('active');
-    result.classList.add('active');
-    if (bar) bar.style.width = '100%';
+    if (active) active.classList.remove('active');
+    if (result) { result.classList.remove('hidden'); result.classList.add('active'); }
     animateScore();
+    if (typeof launchConfetti === 'function') launchConfetti();
   }, 300);
 }
 
