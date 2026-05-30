@@ -88,21 +88,19 @@ function initDots() {
     const idx  = CHAPTERS.indexOf(href);
     if (idx < 0) return;
 
-    if (idx <= progress) {
-      /* Already visited — allow navigation */
-      if (!a.classList.contains('active')) {
-        a.classList.add('page-link');
-        a.addEventListener('click', e => {
-          e.preventDefault();
-          navigateTo(a.href);
-        });
-      }
+    if (a.classList.contains('active')) {
+      /* current chapter — leave as is */
+    } else if (idx <= progress) {
+      /* Already visited — mark done + allow navigation */
+      if (idx < PAGE_IDX) a.classList.add('done');
+      a.classList.add('page-link');
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        navigateTo(a.href);
+      });
     } else {
-      /* Not yet reached — make it a visual indicator only */
+      /* Not yet reached — locked visual indicator only */
       a.classList.add('locked');
-      a.style.cursor = 'default';
-      a.style.pointerEvents = 'none';
-      a.style.opacity = '0.3';
       a.removeAttribute('href');
     }
   });
@@ -371,7 +369,7 @@ function animateScore() {
 /* ============================================================
    CONFETTI
    ============================================================ */
-const CONF_COLORS = ['#e91e8c','#ff6bac','#c260d4','#ffd700','#ff4d88','#fff','#f9a8d4','#a78bfa'];
+const CONF_COLORS = ['#e0b87a','#f3d9a4','#e2998f','#f0b8af','#ecd4a0','#fff','#d98c7a','#e8d09a'];
 
 function launchConfetti() {
   const canvas = document.getElementById('confettiCanvas');
