@@ -1,11 +1,12 @@
+/* v4 — love.html is Ch8, Yes/No second-to-last */
 /* ============================================================
    CATHY 💖 — script.js  (multi-page edition)
    ============================================================ */
 
 /* ---- Page order ---- */
 const CHAPTERS = [
-  'index.html','love.html','evidence.html','contract.html',
-  'poem.html','quiz.html','husband.html','proposal.html','yes.html'
+  'index.html','evidence.html','contract.html','poem.html',
+  'quiz.html','husband.html','proposal.html','love.html','yes.html'
 ];
 const PAGE = location.pathname.split('/').pop() || 'index.html';
 const PAGE_IDX = CHAPTERS.indexOf(PAGE) === -1 ? 0 : CHAPTERS.indexOf(PAGE);
@@ -308,7 +309,7 @@ function runAway(btn) {
 function handleYes() {
   animateLoveMeter(100);
   launchConfetti();
-  const next = CHAPTERS[PAGE_IDX + 1] || 'yes.html';
+  const next = CHAPTERS[PAGE_IDX + 1] || 'yes.html'; // always use chapter order
   setProgress(PAGE_IDX + 1);
   setTimeout(() => navigateTo(next), 650);
 }
