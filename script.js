@@ -2,10 +2,27 @@
    CATHY 💖 — script.js  (multi-page edition)
    ============================================================ */
 
+/* ---- Page order ---- */
+const CHAPTERS = [
+  'index.html','love.html','evidence.html','contract.html',
+  'poem.html','quiz.html','husband.html','proposal.html','yes.html'
+];
+const PAGE = location.pathname.split('/').pop() || 'index.html';
+const PAGE_IDX = CHAPTERS.indexOf(PAGE) === -1 ? 0 : CHAPTERS.indexOf(PAGE);
+
+/* ---- Progress tracking ---- */
+function getProgress() {
+  return parseInt(localStorage.getItem('cathyProgress') || '0');
+}
+function setProgress(idx) {
+  if (idx > getProgress()) localStorage.setItem('cathyProgress', idx);
+}
+/* Mark current page as reached */
+setProgress(PAGE_IDX);
+
 /* ---- State ---- */
 let lang = localStorage.getItem('cathyLang') || 'en';
 let noCount = 0;
-let loveFillValue = 0;
 
 /* ============================================================
    STAR CANVAS
@@ -60,14 +77,46 @@ function navigateTo(url) {
   setTimeout(() => { window.location.href = url; }, 280);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('a.page-link').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      navigateTo(a.href);
-    });
+/* ============================================================
+   LOCK DOTS — only allow nav to visited chapters
+   ============================================================ */
+function initDots() {
+  const progress = getProgress();
+  document.querySelectorAll('a.cdot').forEach(a => {
+    const href = a.getAttribute('href');
+    const idx  = CHAPTERS.indexOf(href);
+    if (idx < 0) return;
+
+    if (idx <= progress) {
+      /* Already visited — allow navigation */
+      if (!a.classList.contains('active')) {
+        a.classList.add('page-link');
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          navigateTo(a.href);
+        });
+      }
+    } else {
+      /* Not yet reached — make it a visual indicator only */
+      a.classList.add('locked');
+      a.style.cursor = 'default';
+      a.style.pointerEvents = 'none';
+      a.style.opacity = '0.3';
+      a.removeAttribute('href');
+    }
   });
-});
+}
+
+/* ============================================================
+   NEXT CHAPTER BUTTON
+   ============================================================ */
+function goNext() {
+  const next = CHAPTERS[PAGE_IDX + 1];
+  if (next) {
+    setProgress(PAGE_IDX + 1);
+    navigateTo(next);
+  }
+}
 
 const escapeMsgs = {
   en: [
@@ -130,6 +179,8 @@ function applyLang() {
 const EMOJIS = ['💖','🌸','✨','💕','🌷','💗','⭐','🫧','🌺'];
 
 function spawnParticle() {
+  const container = document.getElementById('particles');
+  if (!container) return;
   const el = document.createElement('div');
   el.className = 'particle';
   el.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
@@ -138,7 +189,7 @@ function spawnParticle() {
   const dur = 7 + Math.random() * 10;
   el.style.animationDuration = dur + 's';
   el.style.animationDelay = (Math.random() * 4) + 's';
-  document.getElementById('particles').appendChild(el);
+  container.appendChild(el);
   setTimeout(() => el.remove(), (dur + 4) * 1000);
 }
 
@@ -160,7 +211,6 @@ function initReveal() {
       }
     });
   }, { threshold: 0.15 });
-
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 }
 
@@ -171,7 +221,10 @@ function initContract() {
   const stampObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        setTimeout(() => document.getElementById('stamp').classList.add('visible'), 600);
+        setTimeout(() => {
+          const stamp = document.getElementById('stamp');
+          if (stamp) stamp.classList.add('visible');
+        }, 600);
         stampObs.unobserve(e.target);
       }
     });
@@ -195,7 +248,7 @@ function initContract() {
 }
 
 /* ============================================================
-   LOVE METER — animates as user scrolls to #love
+   LOVE METER
    ============================================================ */
 function initLoveMeter() {
   const loveSection = document.getElementById('love');
@@ -213,7 +266,7 @@ function initLoveMeter() {
 function animateLoveMeter(target) {
   const fill = document.getElementById('loveFill');
   if (!fill) return;
-  let current = 0;
+  let current = parseFloat(fill.style.width) || 0;
   const step = () => {
     current = Math.min(current + 1.5, target);
     fill.style.width = current + '%';
@@ -250,12 +303,14 @@ function runAway(btn) {
 }
 
 /* ============================================================
-   YES HANDLER
+   YES HANDLER — page-aware, goes to NEXT chapter
    ============================================================ */
 function handleYes() {
   animateLoveMeter(100);
   launchConfetti();
-  setTimeout(() => navigateTo('yes.html'), 650);
+  const next = CHAPTERS[PAGE_IDX + 1] || 'yes.html';
+  setProgress(PAGE_IDX + 1);
+  setTimeout(() => navigateTo(next), 650);
 }
 
 /* ============================================================
@@ -319,6 +374,7 @@ const CONF_COLORS = ['#e91e8c','#ff6bac','#c260d4','#ffd700','#ff4d88','#fff','#
 
 function launchConfetti() {
   const canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
   canvas.style.display = 'block';
   canvas.width  = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -349,7 +405,6 @@ function launchConfetti() {
       p.rot += p.vr;
       p.vy  += 0.08;
       if (p.y < canvas.height + 40) any = true;
-
       ctx.save();
       ctx.globalAlpha = Math.max(0, p.alpha);
       ctx.translate(p.x, p.y);
@@ -365,17 +420,10 @@ function launchConfetti() {
       ctx.restore();
     });
     if (any) requestAnimationFrame(draw);
-    else {
-      alive = false;
-      canvas.style.display = 'none';
-    }
+    else { alive = false; canvas.style.display = 'none'; }
   };
   requestAnimationFrame(draw);
-
-  setTimeout(() => {
-    alive = false;
-    canvas.style.display = 'none';
-  }, 6000);
+  setTimeout(() => { alive = false; canvas.style.display = 'none'; }, 6000);
 }
 
 /* ============================================================
@@ -452,6 +500,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lbl) lbl.textContent = lang === 'en' ? '廣東話 🇭🇰' : 'English 🇬🇧';
   if (lang !== 'en') applyLang();
 
+  initDots();   /* ← lock forward dots */
   initStars();
   startParticles();
   initReveal();
