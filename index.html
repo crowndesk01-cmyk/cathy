@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cathy 💖 A Message From Shreyas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Language Toggle -->
+  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
+    <span id="langLabel">廣東話 🇭🇰</span>
+  </button>
+
+  <!-- Particle layer -->
+  <div class="particles" id="particles"></div>
+
+  <!-- ============ HERO ============ -->
+  <section class="sec" id="hero">
+    <div class="deco d1">💌</div>
+    <div class="deco d2">✨</div>
+    <div class="deco d3">🌸</div>
+    <div class="deco d4">💕</div>
+    <div class="wrap">
+      <p class="tag reveal"
+         data-en="✉️ a very important message"
+         data-hk="✉️ 一封非常重要嘅信">✉️ a very important message</p>
+      <h1 class="hero-h1 reveal" data-delay="200">
+        <span data-en="Hey Cathy," data-hk="嗨，Cathy，">Hey Cathy,</span><br>
+        <span class="grad"
+              data-en="I need to tell you something..."
+              data-hk="我有嘢想同你講...">I need to tell you something...</span>
+      </h1>
+      <p class="hero-p reveal" data-delay="400"
+         data-en="This is the most important webpage you will ever open in your entire life. No pressure though. Totally fine. Completely normal."
+         data-hk="呢個係你呢世人打開過最重要嘅網頁。唔緊張㗎。完全正常。真係。">
+        This is the most important webpage you will ever open in your entire life.<br>
+        No pressure though. Totally fine. Completely normal.
+      </p>
+      <a href="#love" class="btn btn-primary reveal" data-delay="600"
+         data-en="I'm ready 💌" data-hk="我準備好了 💌">I'm ready 💌</a>
+      <div class="scroll-dot reveal" data-delay="800"></div>
+    </div>
+  </section>
+
+  <!-- ============ LOVE QUESTION ============ -->
+  <section class="sec" id="love">
+    <div class="wrap">
+      <div class="card glass reveal">
+        <div class="sec-label">
+          <span data-en="💝 the big question" data-hk="💝 大問題">💝 the big question</span>
+        </div>
+        <h2 data-en="Cathy, do you love me?" data-hk="Cathy，你愛我嗎？">Cathy, do you love me?</h2>
+        <p class="sec-note"
+           data-en="think very carefully. the button on the right has strong opinions."
+           data-hk="好好諗清楚。右邊嗰個掣有自己嘅想法。">
+          think very carefully. the button on the right has strong opinions.
+        </p>
+        <div class="love-meter-wrap">
+          <div class="love-meter-track">
+            <div class="love-meter-fill" id="loveFill"></div>
+          </div>
+          <span class="love-meter-icon">❤️</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-yes pulse-btn" onclick="handleYes()">
+            <span data-en="Yes! 💖" data-hk="係！💖">Yes! 💖</span>
+          </button>
+          <button class="btn btn-no" id="noBtn1"
+                  onmouseover="runAway(this)" ontouchstart="runAway(this)">
+            <span data-en="No" data-hk="唔係">No</span>
+          </button>
+        </div>
+        <p class="escape-msg" id="escapeMsg"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTRACT ============ -->
+  <section class="sec" id="contract">
+    <div class="wrap">
+      <div class="card parchment reveal">
+        <div class="stamp" id="stamp">SIGNED ✓</div>
+        <div class="sec-label">
+          <span data-en="📜 legally binding" data-hk="📜 具法律效力">📜 legally binding</span>
+        </div>
+        <h2 data-en="Funny (But Real) Contract" data-hk="有趣（但真實）合約">Funny (But Real) Contract</h2>
+        <p class="sec-note"
+           data-en="Please read carefully. You already scrolled this far so legally you agree. The court has spoken."
+           data-hk="請細心閱讀。你已經scroll到呢度，所以法律上你已經同意。法院已判決。">
+          Please read carefully. You already scrolled this far so legally you agree. The court has spoken.
+        </p>
+        <div class="parchment-inner">
+          <p class="ct-title"
+             data-en="OFFICIAL TERMS &amp; CONDITIONS OF CATHY'S HEART"
+             data-hk="CATHY嘅心之官方條款及細則">OFFICIAL TERMS &amp; CONDITIONS OF CATHY'S HEART</p>
+          <ul class="ct-list">
+            <li class="ct-item stagger">
+              <span class="cn">§1</span>
+              <span data-en="Shreyas reserves the right to steal exactly one snack per day. No more. (Probably more.)"
+                    data-hk="Shreyas保留每日偷一件小食嘅權利。唔多於一件。（大概唔止。）">
+                Shreyas reserves the right to steal exactly one snack per day. No more. (Probably more.)
+              </span>
+            </li>
+            <li class="ct-item stagger">
+              <span class="cn">§2</span>
+              <span data-en='The blanket shall be shared "equally". Interpretation of "equally" is subject to ongoing negotiation.'
+                    data-hk='被子應該「平均」分配。「平均」嘅解釋仍在持續談判中。'>
+                The blanket shall be shared "equally". Interpretation of "equally" is subject to ongoing negotiation.
+              </span>
+            </li>
+            <li class="ct-item stagger">
+              <span class="cn">§3</span>
+              <span data-en='Memes may be sent at any hour, including 2:00 AM, 3:17 AM, and "I know you are asleep but look at this."'
+                    data-hk='表情包可以任何時間發送，包括凌晨2時、3時17分，以及「我知道你瞓緊覺但係你睇呢個」。'>
+                Memes may be sent at any hour, including 2:00 AM, 3:17 AM, and "I know you are asleep but look at this."
+              </span>
+            </li>
+            <li class="ct-item stagger">
+              <span class="cn">§4</span>
+              <span data-en="Getting lost together in foreign cities is classified as a feature, not a bug."
+                    data-hk="一齊喺異地迷路被歸類為特色，而非錯誤。">
+                Getting lost together in foreign cities is classified as a feature, not a bug.
+              </span>
+            </li>
+            <li class="ct-item stagger">
+              <span class="cn">§5</span>
+              <span data-en="Both parties agree that Shreyas is, objectively, very funny. (This clause is non-negotiable.)"
+                    data-hk="雙方同意Shreyas客觀上非常有趣。（呢條款不容談判。）">
+                Both parties agree that Shreyas is, objectively, very funny. (This clause is non-negotiable.)
+              </span>
+            </li>
+            <li class="ct-item stagger">
+              <span class="cn">§6</span>
+              <span data-en='In the event of an argument, the party who last said "I love you" wins by default.'
+                    data-hk='爭執期間，最後說「我愛你」嘅一方自動勝出。'>
+                In the event of an argument, the party who last said "I love you" wins by default.
+              </span>
+            </li>
+            <li class="ct-item stagger">
+              <span class="cn">§7</span>
+              <span data-en="This contract is valid for one (1) lifetime, renewable upon mutual agreement."
+                    data-hk="本合約有效期為一（1）個終生，可經雙方同意續期。">
+                This contract is valid for one (1) lifetime, renewable upon mutual agreement.
+              </span>
+            </li>
+          </ul>
+          <p class="ct-sign"
+             data-en="By continuing to read this webpage, you have electronically signed this contract. — The Management"
+             data-hk="繼續閱讀本網頁即代表您已電子簽署本合約。— 管理層">
+            By continuing to read this webpage, you have electronically signed this contract.<br>
+            <em>— The Management</em>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="sec" id="quiz">
+    <div class="wrap">
+      <div class="card glass reveal">
+        <div class="sec-label">
+          <span data-en="🔬 totally real science" data-hk="🔬 完全真實嘅科學">🔬 totally real science</span>
+        </div>
+        <h2 data-en="Compatibility Test™" data-hk="相容性測試™">Compatibility Test™</h2>
+        <p class="sec-note"
+           data-en="A completely unbiased test. Results are totally not predetermined. Please answer honestly. It doesn't matter."
+           data-hk="完全公正嘅測試。結果絕對唔係預先決定好嘅。請誠實作答。唔重要㗎。">
+          A completely unbiased test. Results are totally not predetermined. Please answer honestly. It doesn't matter.
+        </p>
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="qProgress"></div></div>
+        <div class="quiz-wrap" id="quizWrap">
+          <div class="q-step active" id="qs1">
+            <p class="q-text" data-en="Q1: On a scale of 1–10, how cute is Shreyas?"
+               data-hk="Q1：1至10分，Shreyas有幾可愛？">Q1: On a scale of 1–10, how cute is Shreyas?</p>
+            <div class="q-opts">
+              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="10 🥰" data-hk="10分 🥰">10 🥰</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="Honestly, a 10" data-hk="老實講，10分">Honestly, a 10</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="Off the charts 📊" data-hk="超出圖表 📊">Off the charts 📊</button>
+            </div>
+          </div>
+          <div class="q-step" id="qs2">
+            <p class="q-text" data-en="Q2: Do you smile when you see a message from Shreyas?"
+               data-hk="Q2：你見到Shreyas嘅訊息會唔會微笑？">Q2: Do you smile when you see a message from Shreyas?</p>
+            <div class="q-opts">
+              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Yes, always 🥹" data-hk="係，每次都係 🥹">Yes, always 🥹</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Sometimes (= always)" data-hk="有時候（= 每次）">Sometimes (= always)</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="I try not to but yes 😭" data-hk="我試圖唔笑但係會 😭">I try not to but yes 😭</button>
+            </div>
+          </div>
+          <div class="q-step" id="qs3">
+            <p class="q-text" data-en="Q3: Final verdict on Shreyas?"
+               data-hk="Q3：對Shreyas嘅最終評價？">Q3: Final verdict on Shreyas?</p>
+            <div class="q-opts">
+              <button class="q-btn" onclick="showQuizResult()" data-en="He's the one 💕" data-hk="佢就係那個人 💕">He's the one 💕</button>
+              <button class="q-btn" onclick="showQuizResult()" data-en="Pretty great, honestly" data-hk="老實說還不錯">Pretty great, honestly</button>
+              <button class="q-btn" onclick="showQuizResult()" data-en="Ugh fine, I like him 😤" data-hk="唉好啦，我鍾意佢 😤">Ugh fine, I like him 😤</button>
+            </div>
+          </div>
+          <div class="q-step q-result" id="qResult">
+            <div class="score-ring">
+              <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" class="ring-bg"/>
+                <circle cx="60" cy="60" r="52" class="ring-fill" id="ringFill"/>
+              </svg>
+              <span class="score-num" id="scoreNum">0%</span>
+            </div>
+            <p class="result-title" data-en="COMPATIBILITY CONFIRMED 🎉" data-hk="相容性已確認 🎉">COMPATIBILITY CONFIRMED 🎉</p>
+            <p class="result-note"
+               data-en="Scientists are genuinely astonished. The algorithm has never seen numbers this high. You two are a certified scientific miracle."
+               data-hk="科學家真係嚇到目瞪口呆。演算法從未見過咁高嘅數字。你哋係官方認證嘅科學奇蹟。">
+              Scientists are genuinely astonished. The algorithm has never seen numbers this high. You two are a certified scientific miracle.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROPOSAL ============ -->
+  <section class="sec" id="proposal">
+    <div class="wrap">
+      <div class="card proposal-card reveal">
+        <div class="ring-float">💍</div>
+        <div class="sec-label">
+          <span data-en="💍 the main event" data-hk="💍 重頭戲">💍 the main event</span>
+        </div>
+        <h2 data-en="Will you be my future wife, Cathy?" data-hk="Cathy，你願意做我未來嘅太太嗎？">
+          Will you be my future wife, Cathy?
+        </h2>
+        <div class="letter">
+          <div class="letter-en">
+            <p>Hey Cathy,</p>
+            <p>I know this is a webpage — which is definitely the most romantic delivery method in history. You're welcome.</p>
+            <p>But seriously — you make every ordinary day feel worth remembering. I want to steal your snacks, fight about the blanket, send you memes at 2am, and get completely lost in cities we've never been to.</p>
+            <p>I want to build a career beside yours. Cheer loudest at your wins. Be there on the hard days. Travel every corner of this world with you.</p>
+            <p>I'm sorry for my mistakes. I promise to be better, every day, for you.</p>
+            <p><strong>So, Cathy...</strong></p>
+          </div>
+          <div class="letter-div"><span>🌸</span><span>💖</span><span>🌸</span></div>
+          <div class="letter-hk">
+            <p>Cathy，</p>
+            <p>我知道呢個係一個網頁 — 呢個絕對係人類歷史上最浪漫嘅表達方式。唔客氣。</p>
+            <p>但係認真講 — 你令每一個平凡嘅日子都變得值得記住。我想偷你嘅小食，爭被子，凌晨兩點傳表情包俾你，同你一齊係陌生城市迷路。</p>
+            <p>我想係你身旁一起打拼事業。為你嘅每一個成就喝采。困難嘅日子係你身邊。同你一齊周遊列國。</p>
+            <p>對唔住我嘅過失。我承諾每一日都為你變得更好。</p>
+            <p><strong>所以，Cathy...</strong></p>
+          </div>
+        </div>
+        <div class="prop-btns">
+          <button class="btn btn-yes btn-huge pulse-btn" onclick="handleYes()">
+            <span class="ring-icon">💍</span>
+            <span data-en="Yes, I will! �" data-hk="我願意！💕">Yes, I will! 💕</span>
+          </button>
+          <button class="btn btn-ghost" id="maybeBtn"
+                  onmouseover="runAway(this)" ontouchstart="runAway(this)">
+            <span data-en="Maybe later..." data-hk="或者遲啲...">Maybe later...</span>
+          </button>
+        </div>
+        <p class="maybe-note"
+           data-en='* the "maybe later" button has been reported to the authorities'
+           data-hk="* 「或者遲啲」掣已被舉報至當局">
+          * the "maybe later" button has been reported to the authorities
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ YES / CELEBRATION ============ -->
+  <section class="sec hidden" id="celebration">
+    <div class="wrap">
+      <div class="card celebrate-card">
+        <div class="celeb-emoji" id="celebEmoji">🎉</div>
+        <h2 data-en="She said YES!!" data-hk="她說願意了！！">She said YES!!</h2>
+        <p class="celeb-sub"
+           data-en="the correct answer was chosen. historians will write about this."
+           data-hk="正確答案已選擇。歷史學家將會書寫此事。">
+          the correct answer was chosen. historians will write about this.
+        </p>
+        <div class="celeb-text">
+          <p>
+            <strong data-en="Congratulations, future Mrs. Cathy!!" data-hk="恭喜，未來Cathy太太！！">Congratulations, future Mrs. Cathy!!</strong><br>
+            <span data-en="Shreyas is doing an extremely embarrassing happy dance right now and nothing can stop him."
+                  data-hk="Shreyas而家正在跳一個極其尷尬嘅開心舞，冇任何事可以阻止到佢。">
+              Shreyas is doing an extremely embarrassing happy dance right now and nothing can stop him.
+            </span>
+          </p>
+          <p>
+            <span data-en="Scientists confirm you two have a 100% compatibility score."
+                  data-hk="科學家確認你哋嘅配對分數係100%。">
+              Scientists confirm you two have a 100% compatibility score.
+            </span><br>
+            <span data-en="This love is certified, notarised, and framed. 💝"
+                  data-hk="呢份愛情係認證過、公證過、裝裱好嘅。💝">
+              This love is certified, notarised, and framed. 💝
+            </span>
+          </p>
+        </div>
+        <div class="badges">
+          <span class="badge" data-en="✅ Certified" data-hk="✅ 已認證">✅ Certified</span>
+          <span class="badge" data-en="📜 Notarised" data-hk="📜 已公證">📜 Notarised</span>
+          <span class="badge" data-en="🖼️ Framed" data-hk="🖼️ 已裝裱">🖼️ Framed</span>
+          <span class="badge" data-en="💯 100%" data-hk="💯 100%">💯 100%</span>
+          <span class="badge" data-en="🏆 Legendary" data-hk="🏆 傳奇">🏆 Legendary</span>
+        </div>
+        <div class="dancer" id="dancer">🕺</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Confetti canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
