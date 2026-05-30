@@ -3,17 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cathy 💖 A Message From Shreyas</title>
+  <title>Chapter 1 — The Beginning 💌</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <canvas id="starsCanvas"></canvas>
+
   <!-- Language Toggle -->
   <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
     <span id="langLabel">廣東話 🇭🇰</span>
   </button>
+
+  <!-- Chapter Navigation -->
+  <nav class="chapter-nav">
+    <div class="chapter-dots">
+      <a href="index.html"    class="cdot active"    title="Ch 1 — The Beginning"></a>
+      <a href="love.html"     class="cdot page-link" title="Ch 2 — The Question"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 3 — The Evidence"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 4 — The Contract"></a>
+      <a href="poem.html"     class="cdot page-link" title="Ch 5 — The Poem"></a>
+      <a href="quiz.html"     class="cdot page-link" title="Ch 6 — The Science"></a>
+      <a href="husband.html"  class="cdot page-link" title="Ch 7 — The Resume"></a>
+      <a href="proposal.html" class="cdot page-link" title="Ch 8 — The Proposal"></a>
+      <a href="yes.html"      class="cdot page-link" title="Ch 9 — She Said Yes"></a>
+    </div>
+    <span class="chapter-label" data-en="Chapter 1 / 9" data-hk="第 1 章 / 9">Chapter 1 / 9</span>
+  </nav>
 
   <!-- Particle layer -->
   <div class="particles" id="particles"></div>
@@ -33,7 +51,7 @@
     </div>
   </div>
 
-  <!-- ============ HERO ============ -->
+  <!-- ============ HERO — Chapter 1 ============ -->
   <section class="sec" id="hero">
     <div class="deco d1">💌</div>
     <div class="deco d2">✨</div>
@@ -41,8 +59,8 @@
     <div class="deco d4">💕</div>
     <div class="wrap">
       <p class="tag reveal"
-         data-en="✉️ a very important message"
-         data-hk="✉️ 一封非常重要嘅信">✉️ a very important message</p>
+         data-en="✉️ chapter one — the beginning"
+         data-hk="✉️ 第一章 — 開始">✉️ chapter one — the beginning</p>
       <h1 class="hero-h1 reveal" data-delay="200">
         <span data-en="Hey Cathy," data-hk="嗨，Cathy，">Hey Cathy,</span><br>
         <span class="grad"
@@ -55,8 +73,8 @@
         This is the most important webpage you will ever open in your entire life.<br>
         No pressure though. Totally fine. Completely normal.
       </p>
-      <a href="#love" class="btn btn-primary reveal" data-delay="600"
-         data-en="I'm ready 💌" data-hk="我準備好了 💌">I'm ready 💌</a>
+      <a href="love.html" class="btn btn-primary reveal page-link" data-delay="600"
+         data-en="Begin the story 💌" data-hk="開始故事 💌">Begin the story 💌</a>
       <div class="scroll-dot reveal" data-delay="800"></div>
     </div>
   </section>
@@ -464,6 +482,12 @@
       </div>
     </div>
   </section>
+
+  <!-- Page nav -->
+  <div class="page-nav">
+    <span class="spacer"></span>
+    <a href="love.html" class="page-link">Chapter 2 →</a>
+  </div>
 
   <!-- Confetti canvas -->
   <canvas id="confettiCanvas"></canvas>

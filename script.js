@@ -1,11 +1,73 @@
 /* ============================================================
-   CATHY 💖 — script.js
+   CATHY 💖 — script.js  (multi-page edition)
    ============================================================ */
 
 /* ---- State ---- */
-let lang = 'en';
+let lang = localStorage.getItem('cathyLang') || 'en';
 let noCount = 0;
 let loveFillValue = 0;
+
+/* ============================================================
+   STAR CANVAS
+   ============================================================ */
+function initStars() {
+  const canvas = document.getElementById('starsCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, stars = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); buildStars(); });
+
+  function buildStars() {
+    stars = Array.from({ length: 200 }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: 0.3 + Math.random() * 1.2,
+      a: Math.random(),
+      da: (Math.random() - 0.5) * 0.008,
+      speed: 0.1 + Math.random() * 0.15
+    }));
+  }
+  buildStars();
+
+  function drawStars() {
+    ctx.clearRect(0, 0, W, H);
+    stars.forEach(s => {
+      s.a = Math.max(0.05, Math.min(1, s.a + s.da));
+      if (s.a <= 0.05 || s.a >= 1) s.da *= -1;
+      s.y -= s.speed;
+      if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; }
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(253,240,224,${s.a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+}
+
+/* ============================================================
+   PAGE TRANSITIONS
+   ============================================================ */
+function navigateTo(url) {
+  document.body.classList.add('fade-out');
+  setTimeout(() => { window.location.href = url; }, 330);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('a.page-link').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      navigateTo(a.href);
+    });
+  });
+});
 
 const escapeMsgs = {
   en: [
@@ -49,8 +111,9 @@ const escapeMsgs = {
    ============================================================ */
 function toggleLang() {
   lang = lang === 'en' ? 'hk' : 'en';
-  document.getElementById('langLabel').textContent =
-    lang === 'en' ? '廣東話 🇭🇰' : 'English 🇬🇧';
+  localStorage.setItem('cathyLang', lang);
+  const lbl = document.getElementById('langLabel');
+  if (lbl) lbl.textContent = lang === 'en' ? '廣東話 🇭🇰' : 'English 🇬🇧';
   applyLang();
 }
 
@@ -399,7 +462,12 @@ function initHusbandMaterial() {
    INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.style.paddingBottom = '38px';
+  /* apply saved lang */
+  const lbl = document.getElementById('langLabel');
+  if (lbl) lbl.textContent = lang === 'en' ? '廣東話 🇭🇰' : 'English 🇬🇧';
+  if (lang !== 'en') applyLang();
+
+  initStars();
   startParticles();
   initReveal();
   initContract();

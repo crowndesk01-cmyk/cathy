@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chapter 6 — The Science 🔬</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <canvas id="starsCanvas"></canvas>
+  <div class="particles" id="particles"></div>
+
+  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
+    <span id="langLabel">廣東話 🇭🇰</span>
+  </button>
+
+  <nav class="chapter-nav">
+    <div class="chapter-dots">
+      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
+      <a href="love.html"     class="cdot page-link" title="Ch 2"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 3"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 4"></a>
+      <a href="poem.html"     class="cdot page-link" title="Ch 5"></a>
+      <a href="quiz.html"     class="cdot active"    title="Ch 6 — The Science"></a>
+      <a href="husband.html"  class="cdot page-link" title="Ch 7"></a>
+      <a href="proposal.html" class="cdot page-link" title="Ch 8"></a>
+      <a href="yes.html"      class="cdot page-link" title="Ch 9"></a>
+    </div>
+    <span class="chapter-label" data-en="Chapter 6 / 9" data-hk="第 6 章 / 9">Chapter 6 / 9</span>
+  </nav>
+
+  <section class="sec" id="quiz">
+    <div class="deco d1">🔬</div>
+    <div class="deco d2">🧪</div>
+    <div class="deco d3">📈</div>
+    <div class="deco d4">🏆</div>
+    <div class="wrap">
+      <div class="card glass reveal">
+        <div class="sec-label">
+          <span data-en="🔬 totally real science" data-hk="🔬 完全真實嘅科學">🔬 totally real science</span>
+        </div>
+        <h2 data-en="Compatibility Test™" data-hk="相容性測試™">Compatibility Test™</h2>
+        <p class="sec-note"
+           data-en="A completely unbiased test. Results are totally not predetermined."
+           data-hk="完全公正嘅測試。結果完全唔係預先設定嘅。">
+          A completely unbiased test. Results are totally not predetermined.
+        </p>
+
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="qProgress" style="width:0%"></div>
+        </div>
+
+        <div class="quiz-wrap">
+          <div class="q-step active" id="qs1">
+            <p class="q-text" data-en="Q1 — How would you describe Shreyas?" data-hk="問題1 — 你會點形容Shreyas？">Q1 — How would you describe Shreyas?</p>
+            <div class="q-opts">
+              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="Annoying (affectionately)" data-hk="煩人（出於愛）">Annoying (affectionately)</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="Surprisingly loveable" data-hk="出乎意料地可愛">Surprisingly loveable</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="A complete disaster honestly" data-hk="老實說係完全嘅災難">A complete disaster honestly</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="My person 💖" data-hk="我的人 💖">My person 💖</button>
+            </div>
+          </div>
+
+          <div class="q-step" id="qs2">
+            <p class="q-text" data-en="Q2 — When Shreyas sends a meme at 3am, you..." data-hk="問題2 — 當Shreyas凌晨3時發表情包，你...">Q2 — When Shreyas sends a meme at 3am, you...</p>
+            <div class="q-opts">
+              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Laugh and send one back" data-hk="大笑然後回發一個">Laugh and send one back</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Roll your eyes (but smile)" data-hk="翻白眼（但微笑）">Roll your eyes (but smile)</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Put phone down. Pick it back up." data-hk="放低電話。再拎番起。">Put phone down. Pick it back up.</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Already awake waiting for it" data-hk="已經醒著等緊">Already awake waiting for it</button>
+            </div>
+          </div>
+
+          <div class="q-step" id="qs3">
+            <p class="q-text" data-en="Q3 — Final question. Be honest." data-hk="問題3 — 最後一題。要誠實。">Q3 — Final question. Be honest.</p>
+            <div class="q-opts">
+              <button class="q-btn" onclick="showQuizResult()" data-en="I love him 💖" data-hk="我愛他 💖">I love him 💖</button>
+              <button class="q-btn" onclick="showQuizResult()" data-en="I love him more than he knows" data-hk="我愛他比他知道的多">I love him more than he knows</button>
+              <button class="q-btn" onclick="showQuizResult()" data-en="He's my favourite chaos" data-hk="佢係我最鍾意嘅混亂">He's my favourite chaos</button>
+              <button class="q-btn" onclick="showQuizResult()" data-en="Obviously. Next question." data-hk="廢話。下一題。">Obviously. Next question.</button>
+            </div>
+          </div>
+
+          <div class="q-result hidden" id="qResult">
+            <div class="score-ring">
+              <svg viewBox="0 0 110 110">
+                <circle class="ring-bg" cx="55" cy="55" r="52"/>
+                <circle class="ring-fill" id="ringFill" cx="55" cy="55" r="52"/>
+              </svg>
+              <span class="score-num" id="scoreNum">0%</span>
+            </div>
+            <p class="result-title" data-en="COMPATIBILITY: CERTIFIED ✨" data-hk="相容性：已認證 ✨">COMPATIBILITY: CERTIFIED ✨</p>
+            <p class="result-note"
+               data-en="Scientists are genuinely astonished. The algorithm has never seen numbers this high. You two are a certified scientific miracle."
+               data-hk="科學家真係嚇到目瞪口呆。演算法從未見過咁高嘅數字。你哋係官方認證嘅科學奇蹟。">
+              Scientists are genuinely astonished. The algorithm has never seen numbers this high. You two are a certified scientific miracle.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a href="poem.html" class="page-link">← Chapter 5</a>
+    <span class="spacer"></span>
+    <a href="husband.html" class="page-link">Chapter 7 →</a>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-label">🔴 BREAKING</div>
+    <div class="ticker-track"><div class="ticker-content">
+      <span>Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;</span>
+      <span>Scientists confirm no further testing required. Case closed. &nbsp;•&nbsp;</span>
+      <span>Quiz declared legally admissible as evidence. &nbsp;•&nbsp;</span>
+    </div></div>
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>

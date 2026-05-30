@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chapter 7 — The Resume 🏆</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <canvas id="starsCanvas"></canvas>
+  <div class="particles" id="particles"></div>
+
+  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
+    <span id="langLabel">廣東話 🇭🇰</span>
+  </button>
+
+  <nav class="chapter-nav">
+    <div class="chapter-dots">
+      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
+      <a href="love.html"     class="cdot page-link" title="Ch 2"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 3"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 4"></a>
+      <a href="poem.html"     class="cdot page-link" title="Ch 5"></a>
+      <a href="quiz.html"     class="cdot page-link" title="Ch 6"></a>
+      <a href="husband.html"  class="cdot active"    title="Ch 7 — The Resume"></a>
+      <a href="proposal.html" class="cdot page-link" title="Ch 8"></a>
+      <a href="yes.html"      class="cdot page-link" title="Ch 9"></a>
+    </div>
+    <span class="chapter-label" data-en="Chapter 7 / 9" data-hk="第 7 章 / 9">Chapter 7 / 9</span>
+  </nav>
+
+  <section class="sec" id="husband">
+    <div class="deco d1">🏆</div>
+    <div class="deco d2">📋</div>
+    <div class="deco d3">✅</div>
+    <div class="deco d4">🎖️</div>
+    <div class="wrap">
+      <div class="card glass reveal">
+        <div class="sec-label">
+          <span data-en="🏆 peer-reviewed research" data-hk="🏆 同行評審研究">🏆 peer-reviewed research</span>
+        </div>
+        <h2 data-en="Is Shreyas Husband Material?" data-hk="Shreyas係好老公料子嗎？">Is Shreyas Husband Material?</h2>
+        <p class="sec-note"
+           data-en="A rigorous 8-point evaluation. Results: embarrassingly yes."
+           data-hk="嚴謹嘅8點評估。結果：令人尷尬地係。">
+          A rigorous 8-point evaluation. Results: embarrassingly yes.
+        </p>
+        <ul class="hm-list">
+          <li class="hm-item stagger-hm">
+            <span class="hm-icon">✅</span>
+            <span data-en="Will never judge your 2am snack choices. (Will steal them though.)" data-hk="永遠唔會評判你凌晨2時嘅小食選擇。（但係會偷。）">Will never judge your 2am snack choices. (Will steal them though.)</span>
+          </li>
+          <li class="hm-item stagger-hm">
+            <span class="hm-icon">✅</span>
+            <span data-en="Professionally trained in the art of Pretending to Listen™" data-hk="已專業訓練「扮認真聆聽™」嘅藝術">Professionally trained in the art of Pretending to Listen™</span>
+          </li>
+          <li class="hm-item stagger-hm">
+            <span class="hm-icon">✅</span>
+            <span data-en="Can assemble IKEA furniture. (Disclaimer: eventually. Mostly.)" data-hk="識砌IKEA傢俬。（免責聲明：最終係識。大部分情況。）">Can assemble IKEA furniture. (Disclaimer: eventually. Mostly.)</span>
+          </li>
+          <li class="hm-item stagger-hm">
+            <span class="hm-icon">✅</span>
+            <span data-en="Will always let you have the last bite — after taking it, feeling guilty, and returning it." data-hk="永遠會讓你食最後一口 — 喺食咗之後，感到愧疚，然後還返。">Will always let you have the last bite — after taking it, feeling guilty, and returning it.</span>
+          </li>
+          <li class="hm-item stagger-hm">
+            <span class="hm-icon">✅</span>
+            <span data-en="Certified in the ancient art of Sending Memes at 3am" data-hk="持有「凌晨3時傳送表情包」古老藝術認證">Certified in the ancient art of Sending Memes at 3am</span>
+          </li>
+          <li class="hm-item stagger-hm">
+            <span class="hm-icon">✅</span>
+            <span data-en="Will cheer embarrassingly loud at every single one of your wins" data-hk="每次你嬴都會尷尬地大聲喝采">Will cheer embarrassingly loud at every single one of your wins</span>
+          </li>
+          <li class="hm-item stagger-hm">
+            <span class="hm-icon">✅</span>
+            <span data-en="Trained navigator. Will confidently get you lost in 47 countries." data-hk="受訓導航員。會自信地帶你喺47個國家迷路。">Trained navigator. Will confidently get you lost in 47 countries.</span>
+          </li>
+          <li class="hm-item stagger-hm">
+            <span class="hm-icon">✅</span>
+            <span data-en="100% committed to being embarrassingly, publicly, aggressively in love with you" data-hk="100%致力於以令人尷尬、公開、積極嘅方式愛你">100% committed to being embarrassingly, publicly, aggressively in love with you</span>
+          </li>
+        </ul>
+        <div class="hm-verdict">
+          <div class="hm-score">12 / 10</div>
+          <p data-en="EXCEEDS ALL KNOWN STANDARDS. The committee recommends immediate acceptance." data-hk="超越所有已知標準。委員會建議立即接受。">EXCEEDS ALL KNOWN STANDARDS. The committee recommends immediate acceptance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a href="quiz.html" class="page-link">← Chapter 6</a>
+    <span class="spacer"></span>
+    <a href="proposal.html" class="page-link">Chapter 8 →</a>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-label">🔴 BREAKING</div>
+    <div class="ticker-track"><div class="ticker-content">
+      <span>Husband material evaluation complete. Score: 12/10. Committee overwhelmed. &nbsp;•&nbsp;</span>
+      <span>IKEA furniture still 70% assembled. Investigation continues. &nbsp;•&nbsp;</span>
+      <span>Last bite reported stolen and returned. Sources say it was still warm. &nbsp;•&nbsp;</span>
+    </div></div>
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chapter 4 — The Contract 📜</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <canvas id="starsCanvas"></canvas>
+  <div class="particles" id="particles"></div>
+
+  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
+    <span id="langLabel">廣東話 🇭🇰</span>
+  </button>
+
+  <nav class="chapter-nav">
+    <div class="chapter-dots">
+      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
+      <a href="love.html"     class="cdot page-link" title="Ch 2"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 3"></a>
+      <a href="contract.html" class="cdot active"    title="Ch 4 — The Contract"></a>
+      <a href="poem.html"     class="cdot page-link" title="Ch 5"></a>
+      <a href="quiz.html"     class="cdot page-link" title="Ch 6"></a>
+      <a href="husband.html"  class="cdot page-link" title="Ch 7"></a>
+      <a href="proposal.html" class="cdot page-link" title="Ch 8"></a>
+      <a href="yes.html"      class="cdot page-link" title="Ch 9"></a>
+    </div>
+    <span class="chapter-label" data-en="Chapter 4 / 9" data-hk="第 4 章 / 9">Chapter 4 / 9</span>
+  </nav>
+
+  <section class="sec" id="contract">
+    <div class="deco d1">📜</div>
+    <div class="deco d2">⚖️</div>
+    <div class="deco d3">🪶</div>
+    <div class="deco d4">🏛️</div>
+    <div class="wrap">
+      <div class="card parchment reveal">
+        <div class="stamp" id="stamp">SIGNED ✓</div>
+        <div class="sec-label">
+          <span data-en="📜 legally binding" data-hk="📜 具法律效力">📜 legally binding</span>
+        </div>
+        <h2 data-en="Funny (But Real) Contract" data-hk="有趣（但真實）合約">Funny (But Real) Contract</h2>
+        <p class="sec-note"
+           data-en="This document is legally binding in 47 fictional jurisdictions and one very real heart."
+           data-hk="本文件在47個虛構司法管轄區及一個非常真實的心中具有法律效力。">
+          This document is legally binding in 47 fictional jurisdictions and one very real heart.
+        </p>
+        <div class="parchment-inner">
+          <p class="ct-title"
+             data-en="ARTICLES OF ETERNAL DEVOTION — SHREYAS & CATHY"
+             data-hk="永恆奉獻條款 — SHREYAS & CATHY">
+            ARTICLES OF ETERNAL DEVOTION — SHREYAS &amp; CATHY
+          </p>
+          <ul class="ct-list">
+            <li class="ct-item">
+              <span class="cn">§ I</span>
+              <span data-en="Party A (Shreyas) agrees to be aggressively, embarrassingly, publicly in love with Party B (Cathy) at all times." data-hk="甲方（Shreyas）同意在任何時候以積極、令人尷尬、公開的方式愛乙方（Cathy）。">Party A (Shreyas) agrees to be aggressively, embarrassingly, publicly in love with Party B (Cathy) at all times.</span>
+            </li>
+            <li class="ct-item">
+              <span class="cn">§ II</span>
+              <span data-en="Party A shall never, under any circumstances, choose sleep over answering Party B's 3am texts. (Exceptions: death. Maybe.)" data-hk="甲方在任何情況下都不得選擇睡覺而不回覆乙方凌晨3時的訊息。（例外情況：死亡。也許。）">Party A shall never, under any circumstances, choose sleep over answering Party B's 3am texts. (Exceptions: death. Maybe.)</span>
+            </li>
+            <li class="ct-item">
+              <span class="cn">§ III</span>
+              <span data-en="Party A accepts full responsibility for blanket theft, accidental snack consumption, and general chaos." data-hk="甲方對偷被子、意外食零食及一般混亂承擔全部責任。">Party A accepts full responsibility for blanket theft, accidental snack consumption, and general chaos.</span>
+            </li>
+            <li class="ct-item">
+              <span class="cn">§ IV</span>
+              <span data-en="Party A vows to cheer embarrassingly loud at every one of Party B's wins, no matter how small." data-hk="甲方誓言為乙方每次勝利以令人尷尬的大聲喝采，無論大小。">Party A vows to cheer embarrassingly loud at every one of Party B's wins, no matter how small.</span>
+            </li>
+            <li class="ct-item">
+              <span class="cn">§ V</span>
+              <span data-en="In the event Party A becomes the worst person in the world, Party B reserves the right to yell at him. Party A agrees this is fair." data-hk="如甲方成為世上最差嘅人，乙方保留對其大喊大叫的權利。甲方同意這是公平的。">In the event Party A becomes the worst person in the world, Party B reserves the right to yell at him. Party A agrees this is fair.</span>
+            </li>
+            <li class="ct-item">
+              <span class="cn">§ VI</span>
+              <span data-en="This contract has no termination clause. It's permanent. Like glitter. Sorry." data-hk="本合約沒有終止條款。係永久的。就像閃粉一樣。對唔住。">This contract has no termination clause. It's permanent. Like glitter. Sorry.</span>
+            </li>
+          </ul>
+          <p class="ct-sign"
+             data-en="By continuing to read this webpage, you have electronically signed this contract. — The Management"
+             data-hk="繼續閱讀本網頁即代表您已電子簽署本合約。— 管理層">
+            By continuing to read this webpage, you have electronically signed this contract.<br>
+            <em>— The Management</em>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a href="evidence.html" class="page-link">← Chapter 3</a>
+    <span class="spacer"></span>
+    <a href="poem.html" class="page-link">Chapter 5 →</a>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-label">🔴 BREAKING</div>
+    <div class="ticker-track"><div class="ticker-content">
+      <span>Contract signed electronically by every visitor. No refunds. &nbsp;•&nbsp;</span>
+      <span>Legal experts confirm: love is legally binding in this jurisdiction. &nbsp;•&nbsp;</span>
+      <span>§ VI enforced. Termination impossible. Like glitter. &nbsp;•&nbsp;</span>
+    </div></div>
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>

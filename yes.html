@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chapter 9 — She Said YES 🎉</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <canvas id="starsCanvas"></canvas>
+  <div class="particles" id="particles"></div>
+
+  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
+    <span id="langLabel">廣東話 🇭🇰</span>
+  </button>
+
+  <nav class="chapter-nav">
+    <div class="chapter-dots">
+      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
+      <a href="love.html"     class="cdot page-link" title="Ch 2"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 3"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 4"></a>
+      <a href="poem.html"     class="cdot page-link" title="Ch 5"></a>
+      <a href="quiz.html"     class="cdot page-link" title="Ch 6"></a>
+      <a href="husband.html"  class="cdot page-link" title="Ch 7"></a>
+      <a href="proposal.html" class="cdot page-link" title="Ch 8"></a>
+      <a href="yes.html"      class="cdot active"    title="Ch 9 — She Said YES 🎉"></a>
+    </div>
+    <span class="chapter-label" data-en="Chapter 9 / 9 — THE END 🎉" data-hk="第 9 章 / 9 — 完結 🎉">Chapter 9 / 9 — THE END 🎉</span>
+  </nav>
+
+  <section class="sec" id="celebration">
+    <div class="deco d1">🎉</div>
+    <div class="deco d2">💍</div>
+    <div class="deco d3">🥂</div>
+    <div class="deco d4">🎊</div>
+    <div class="wrap">
+      <div class="card glass celebrate-card reveal">
+        <span id="celebEmoji">🎉</span>
+        <div class="sec-label">
+          <span data-en="🎊 she said yes!!!" data-hk="🎊 佢答應咗!!!">🎊 she said yes!!!</span>
+        </div>
+        <h2 class="grad-text" data-en="The best chapter." data-hk="最好的一章。">The best chapter.</h2>
+        <p class="celeb-sub"
+           data-en="Historians will write about this day. Probably."
+           data-hk="歷史學家將會記載這一天。可能。">
+          Historians will write about this day. Probably.
+        </p>
+
+        <div class="badges">
+          <span class="badge" data-en="💍 Future Wife Confirmed" data-hk="💍 未來太太已確認">💍 Future Wife Confirmed</span>
+          <span class="badge" data-en="🍿 Snack Rights: Shared" data-hk="🍿 零食權：共享">🍿 Snack Rights: Shared</span>
+          <span class="badge" data-en="🛏️ Blanket War: Ongoing" data-hk="🛏️ 被子大戰：持續中">🛏️ Blanket War: Ongoing</span>
+          <span class="badge" data-en="✅ 'No' Button: Retired" data-hk="✅「唔係」掣：已退役">✅ 'No' Button: Retired</span>
+          <span class="badge" data-en="💖 Love Level: ∞" data-hk="💖 愛情等級：∞">💖 Love Level: ∞</span>
+        </div>
+
+        <div class="celeb-text">
+          <p data-en="Cathy — you just made Shreyas the happiest, most dramatic, most unbelievably lucky person on this entire planet." data-hk="Cathy — 你令Shreyas成為整個地球上最快樂、最戲劇化、最難以置信地幸運嘅人。">Cathy — you just made Shreyas the happiest, most dramatic, most unbelievably lucky person on this entire planet.</p>
+          <p data-en="This website took way too long to build. You are worth every second of it. And every burnt piece of toast." data-hk="呢個網站花咗好耐去建立。你值得每一秒。同每一片焗焦嘅多士。">This website took way too long to build. You are worth every second of it. And every burnt piece of toast.</p>
+          <p data-en="Now let's go get those snacks." data-hk="而家我哋去攞嗰啲零食喇。">Now let's go get those snacks. 🍿</p>
+        </div>
+
+        <span class="dancer" id="celebDancer">💃</span>
+        <br><br>
+        <button class="btn btn-primary" onclick="launchConfetti()">
+          <span data-en="🎊 Celebrate Again!" data-hk="🎊 再慶祝一次！">🎊 Celebrate Again!</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a href="proposal.html" class="page-link">← Chapter 8</a>
+    <span class="spacer"></span>
+    <a href="index.html" class="page-link">Start Over 🔄</a>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-label">🔴 BREAKING</div>
+    <div class="ticker-track"><div class="ticker-content">
+      <span>SHE SAID YES. Shreyas reportedly cannot stop smiling. &nbsp;•&nbsp;</span>
+      <span>'No' button permanently retired. Thrown into the sun. &nbsp;•&nbsp;</span>
+      <span>Snack treaty signed. Both parties satisfied. &nbsp;•&nbsp;</span>
+      <span>Blanket war ongoing. No resolution expected. Nation at peace. &nbsp;•&nbsp;</span>
+      <span>Love Level: ∞. Measuring equipment destroyed. &nbsp;•&nbsp;</span>
+    </div></div>
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      launchConfetti();
+      const emojis = ['🎉','💍','💖','🎊','✨','🥂','💝','🌸'];
+      let i = 0;
+      setInterval(() => {
+        const el = document.getElementById('celebEmoji');
+        if (el) { el.textContent = emojis[i % emojis.length]; i++; }
+      }, 700);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chapter 3 — The Evidence 🔬</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <canvas id="starsCanvas"></canvas>
+  <div class="particles" id="particles"></div>
+
+  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
+    <span id="langLabel">廣東話 🇭🇰</span>
+  </button>
+
+  <nav class="chapter-nav">
+    <div class="chapter-dots">
+      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
+      <a href="love.html"     class="cdot page-link" title="Ch 2"></a>
+      <a href="evidence.html" class="cdot active"    title="Ch 3 — The Evidence"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 4"></a>
+      <a href="poem.html"     class="cdot page-link" title="Ch 5"></a>
+      <a href="quiz.html"     class="cdot page-link" title="Ch 6"></a>
+      <a href="husband.html"  class="cdot page-link" title="Ch 7"></a>
+      <a href="proposal.html" class="cdot page-link" title="Ch 8"></a>
+      <a href="yes.html"      class="cdot page-link" title="Ch 9"></a>
+    </div>
+    <span class="chapter-label" data-en="Chapter 3 / 9" data-hk="第 3 章 / 9">Chapter 3 / 9</span>
+  </nav>
+
+  <section class="sec" id="evidence">
+    <div class="deco d1">🔬</div>
+    <div class="deco d2">📊</div>
+    <div class="deco d3">🧬</div>
+    <div class="deco d4">📰</div>
+    <div class="wrap">
+      <div class="sec-label reveal">
+        <span data-en="🔬 submitted to the supreme court of love" data-hk="🔬 已提交愛情最高法院">🔬 submitted to the supreme court of love</span>
+      </div>
+      <h2 class="reveal" data-delay="100" data-en="The Evidence" data-hk="呈堂證供">The Evidence</h2>
+      <p class="sec-note reveal" data-delay="200"
+         data-en="Exhibit A through D. All evidence has been notarised by a very official cat."
+         data-hk="證物A至D。所有證據已由一隻非常官方嘅貓公證。">
+        Exhibit A through D. All evidence has been notarised by a very official cat.
+      </p>
+      <div class="ev-grid reveal" data-delay="300">
+        <div class="ev-card">
+          <div class="ev-top">📊 Exhibit A</div>
+          <div class="ev-big">∞</div>
+          <div class="ev-label" data-en="Times you've made Shreyas smile" data-hk="你令Shreyas微笑嘅次數">Times you've made Shreyas smile</div>
+          <div class="ev-note" data-en="(calculator broke)" data-hk="（計算機壞咗）">(calculator broke)</div>
+        </div>
+        <div class="ev-card">
+          <div class="ev-top">🧬 Exhibit B</div>
+          <div class="ev-big">0.00001%</div>
+          <div class="ev-label" data-en="Chance a better person exists" data-hk="更好嘅人存在嘅機率">Chance a better person exists</div>
+          <div class="ev-note" data-en="(margin of error: also 0)" data-hk="（誤差範圍：同樣係0）">(margin of error: also 0)</div>
+        </div>
+        <div class="ev-card">
+          <div class="ev-top">📰 Exhibit C</div>
+          <div class="ev-headline" data-en="&quot;LOCAL WOMAN TOO AMAZING,<br>SHREYAS FILES FOR EMOTIONAL BANKRUPTCY&quot;" data-hk="&quot;本地女子過於優秀，<br>Shreyas申請情感破產&quot;">&quot;LOCAL WOMAN TOO AMAZING,<br>SHREYAS FILES FOR EMOTIONAL BANKRUPTCY&quot;</div>
+          <div class="ev-note" data-en="— The Daily Heart, 2025" data-hk="— 每日心報，2025年">— The Daily Heart, 2025</div>
+        </div>
+        <div class="ev-card">
+          <div class="ev-top">🧪 Exhibit D</div>
+          <div class="ev-big">3am</div>
+          <div class="ev-label" data-en="Time Shreyas still thinks about you" data-hk="Shreyas仍然掛住你嘅時間">Time Shreyas still thinks about you</div>
+          <div class="ev-note" data-en="(also 3pm. and 3:17pm. and always.)" data-hk="（同埋下午3時。3時17分。同埋一直都係。）">(also 3pm. and 3:17pm. and always.)</div>
+        </div>
+      </div>
+      <p class="ev-verdict reveal" data-delay="500"
+         data-en="VERDICT: The court rules in favour of love. The defendant (Shreyas's heart) has no objections."
+         data-hk="裁決：法院裁定愛情勝訴。被告（Shreyas嘅心）表示無異議。">
+        VERDICT: The court rules in favour of love. The defendant (Shreyas's heart) has no objections.
+      </p>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a href="love.html" class="page-link">← Chapter 2</a>
+    <span class="spacer"></span>
+    <a href="contract.html" class="page-link">Chapter 4 →</a>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-label">🔴 BREAKING</div>
+    <div class="ticker-track"><div class="ticker-content">
+      <span>Scientists confirm: Cathy's smile is classified as a natural disaster. &nbsp;•&nbsp;</span>
+      <span>Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;</span>
+      <span>Evidence submitted. Jury deliberating. All signs point to YES. &nbsp;•&nbsp;</span>
+    </div></div>
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
