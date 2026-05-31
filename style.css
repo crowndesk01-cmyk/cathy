@@ -198,7 +198,7 @@ h2 {
 .btn-huge { font-size:1.1rem; padding:16px 44px; }
 .btn-no {
   background:#f6f2fd; border:1.5px dashed #b9a3e8;
-  color:#7a5bc4; font-weight:700;
+  color:#7a5bc4; font-weight:700; white-space:nowrap;
 }
 .btn-row { display:flex; gap:14px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:8px; }
 .pulse-btn { animation:pulseBeat 1.9s ease-in-out infinite; }

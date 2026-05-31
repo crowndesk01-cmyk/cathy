@@ -58,9 +58,45 @@ const escapeMsgs = {
 };
 
 /* ============================================================
-   NO BUTTON — runs away FOREVER (never vanishes, runs 10s of times)
+   NO BUTTON — runs away FOREVER + begs (escalating emotional blackmail)
    ============================================================ */
 let lastPointer = { x: -999, y: -999 };
+
+/* the button's own text changes each time — it pleads harder every dodge */
+const noPleas = {
+  en: [
+    "wait… really? 🥺",
+    "you sure?? 😟",
+    "please reconsider 🥹",
+    "don't do this to me 💔",
+    "i'll actually cry 😢",
+    "i built a whole WEBSITE 😭",
+    "9 chapters… for THIS?? 😭",
+    "my heart is cracking 💔😭",
+    "think of the snacks 🍿😭",
+    "i'm on my knees 🙏😭",
+    "PLEASE i'm begging 😭😭",
+    "now you're just being mean 🥺💔",
+    "i'll sob right here 😭😭😭",
+    "click Yes… save me 🥺💖"
+  ],
+  hk: [
+    "吓… 真係？🥺",
+    "你肯定呀？😟",
+    "求下你再諗下 🥹",
+    "唔好咁對我 💔",
+    "我真係會喊㗎 😢",
+    "我整咗成個網站呀 😭",
+    "9章… 就為咗咁？😭",
+    "我個心裂緊 💔😭",
+    "諗下啲零食呀 🍿😭",
+    "我跪低喇 🙏😭",
+    "求下你 我求緊你 😭😭",
+    "你而家係咪存心㗎 🥺💔",
+    "我即刻喺度喊俾你睇 😭😭😭",
+    "撳「係」啦… 救下我 🥺💖"
+  ]
+};
 
 function runAway(btn) {
   /* tiny cooldown so it doesn't teleport 60x/second */
@@ -69,14 +105,16 @@ function runAway(btn) {
   btn.dataset.lastFlee = now;
   noCount++;
 
-  /* escalating taunt — shows it has run many times */
+  /* the No button itself begs — text escalates every single dodge */
+  const pleas = noPleas[lang];
+  btn.textContent = pleas[Math.min(noCount - 1, pleas.length - 1)];
+
+  /* narrator commentary below the buttons (the running gag) */
   const msgs = escapeMsgs[lang];
   const msgEl = document.getElementById('escapeMsg') || document.getElementById('escapeMsg8');
-  if (msgEl) {
-    const taunt = msgs[Math.min(noCount - 1, msgs.length - 1)];
-    msgEl.textContent = '#' + noCount + ' — ' + taunt;
-  }
+  if (msgEl) msgEl.textContent = msgs[Math.min(noCount - 1, msgs.length - 1)];
 
+  /* measure AFTER the text change so the new (wider) button still fits on screen */
   const bw = btn.offsetWidth || 90, bh = btn.offsetHeight || 44;
   const pad = 18;
   const maxX = window.innerWidth  - bw - pad;
@@ -94,9 +132,9 @@ function runAway(btn) {
   x = Math.max(pad, Math.min(maxX, x));
   y = Math.max(pad, Math.min(maxY, y));
 
-  /* shrink a little each dodge, but NEVER vanish — floors at 0.6 */
-  const scale = Math.max(0.6, 1 - noCount * 0.035);
-  const rot   = (Math.random() - 0.5) * 44;
+  /* barely shrink — the pleading text must stay readable */
+  const scale = Math.max(0.9, 1 - noCount * 0.012);
+  const rot   = (Math.random() - 0.5) * 36;
 
   btn.style.position   = 'fixed';
   btn.style.zIndex     = '7000';
