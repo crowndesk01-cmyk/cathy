@@ -140,14 +140,13 @@ body.page-out { animation:pageFadeOut .3s ease forwards; }
 
 /* decos */
 .deco {
-  position:absolute; font-size:2.2rem; opacity:.3; pointer-events:none; z-index:1;
-  animation:bobble ease-in-out infinite;
+  position:absolute; font-size:2.2rem; opacity:.22; pointer-events:none; z-index:1;
+  transform:rotate(-5deg);
 }
-.d1 { top:12%; left:7%;  animation-duration:4s; }
-.d2 { top:15%; right:8%; animation-duration:5.2s; animation-delay:.6s; }
-.d3 { bottom:18%; left:10%; animation-duration:4.6s; animation-delay:1s; }
-.d4 { bottom:14%; right:9%; animation-duration:5.8s; animation-delay:1.8s; }
-@keyframes bobble { 0%,100% { transform:translateY(0) rotate(-6deg); } 50% { transform:translateY(-15px) rotate(6deg); } }
+.d1 { top:12%; left:7%; }
+.d2 { top:15%; right:8%; transform:rotate(5deg); }
+.d3 { bottom:18%; left:10%; }
+.d4 { bottom:14%; right:9%; transform:rotate(5deg); }
 
 /* ===================== CARDS ===================== */
 .card, .glass {

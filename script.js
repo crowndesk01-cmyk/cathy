@@ -208,34 +208,29 @@ function initStars() {
   let W, H, stars = [];
 
   function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-  resize();
-  window.addEventListener('resize', () => { resize(); build(); });
 
   function build() {
-    stars = Array.from({ length: 220 }, () => ({
+    stars = Array.from({ length: 150 }, () => ({
       x: Math.random() * W, y: Math.random() * H,
       r: .2 + Math.random() * 1.1,
-      a: Math.random(), da: (Math.random() - .5) * .007,
-      speed: .08 + Math.random() * .12
+      a: .2 + Math.random() * .5
     }));
   }
-  build();
 
+  /* static starfield — drawn once, no animation loop */
   function draw() {
     ctx.clearRect(0, 0, W, H);
     stars.forEach(s => {
-      s.a = Math.max(.04, Math.min(1, s.a + s.da));
-      if (s.a <= .04 || s.a >= 1) s.da *= -1;
-      s.y -= s.speed;
-      if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; }
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,240,255,${s.a * .65})`;
+      ctx.fillStyle = `rgba(255,240,255,${s.a * .55})`;
       ctx.fill();
     });
-    requestAnimationFrame(draw);
   }
-  draw();
+
+  function render() { resize(); build(); draw(); }
+  render();
+  window.addEventListener('resize', render);
 }
 
 /* ============================================================
@@ -525,7 +520,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initPoem();
   initHusbandMaterial();
   initRunaway();
-  startParticles();
 
   /* love.html: pre-warm meter */
   const fill = document.getElementById('loveFill');
