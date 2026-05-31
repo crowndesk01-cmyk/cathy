@@ -105,10 +105,9 @@ function runAway(btn) {
   btn.dataset.lastFlee = now;
   noCount++;
 
-  /* escalating plea — small on the running button, HUGE in the centre banner */
+  /* escalating plea — shown HUGE in the centre banner; the button stays a clean "No" */
   const pleas = noPleas[lang];
   const plea  = pleas[Math.min(noCount - 1, pleas.length - 1)];
-  btn.textContent = plea.text;
 
   /* BIG on-screen plea: giant emoji + big text, pops on every dodge */
   const bp = document.getElementById('bigPlea');
