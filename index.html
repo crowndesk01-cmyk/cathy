@@ -1,336 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cathy &amp; Shreyas — A Story in 9 Chapters 💌</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cathy 💖 — A Story in 9 Chapters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=7"/>
 </head>
 <body>
   <canvas id="starsCanvas"></canvas>
+  <div class="particles" id="particles"></div>
 
-  <!-- Language Toggle -->
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
-    <span id="langLabel">廣東話 🇭🇰</span>
-  </button>
+  <button class="lang-toggle" onclick="toggleLang()"><span id="langLabel">廣東話 🇭🇰</span></button>
 
-  <!-- Chapter Navigation (scroll-spy) -->
   <nav class="chapter-nav">
     <span class="chapter-brand">C &amp; S</span>
     <div class="chapter-dots">
-      <a href="#ch1" class="cdot active" title="Ch 1 — The Beginning"></a>
-      <a href="#ch2" class="cdot"        title="Ch 2 — The Question"></a>
-      <a href="#ch3" class="cdot"        title="Ch 3 — The Evidence"></a>
-      <a href="#ch4" class="cdot"        title="Ch 4 — The Contract"></a>
-      <a href="#ch5" class="cdot"        title="Ch 5 — The Poem"></a>
-      <a href="#ch6" class="cdot"        title="Ch 6 — The Science"></a>
-      <a href="#ch7" class="cdot"        title="Ch 7 — The Resume"></a>
-      <a href="#ch8" class="cdot"        title="Ch 8 — The Proposal"></a>
-      <a href="#ch9" class="cdot"        title="Ch 9 — She Said Yes"></a>
+      <a href="index.html"    class="cdot active"    title="Ch 1 — The Beginning"></a>
+      <a href="evidence.html" class="cdot"           title="Ch 2 — The Evidence"></a>
+      <a href="contract.html" class="cdot"           title="Ch 3 — The Contract"></a>
+      <a href="poem.html"     class="cdot"           title="Ch 4 — The Poem"></a>
+      <a href="quiz.html"     class="cdot"           title="Ch 5 — The Quiz"></a>
+      <a href="husband.html"  class="cdot"           title="Ch 6 — The Resume"></a>
+      <a href="proposal.html" class="cdot"           title="Ch 7 — The Letter"></a>
+      <a href="love.html"     class="cdot"           title="Ch 8 — The Question"></a>
+      <a href="yes.html"      class="cdot"           title="Ch 9 — She Said Yes"></a>
     </div>
-    <span class="chapter-info" id="chapterInfo">01 / 09</span>
+    <span class="chapter-label" data-en="Chapter 1 / 9" data-hk="第 一 章 / 9">Chapter 1 / 9</span>
   </nav>
 
-  <!-- ============ CH 1 — HERO ============ -->
-  <section class="sec chapter" id="ch1" data-chapter="1">
+  <section class="sec" id="main">
+    <div class="deco d1">✉️</div>
+    <div class="deco d2">💌</div>
+    <div class="deco d3">🌸</div>
+    <div class="deco d4">⭐</div>
     <div class="wrap">
-      <p class="tag reveal" data-en="✉️ chapter one — the beginning" data-hk="✉️ 第一章 — 開始">✉️ chapter one — the beginning</p>
-      <h1 class="hero-h1 reveal" data-delay="200">
+      <div class="tag reveal"
+           data-en="✉️ incoming transmission"
+           data-hk="✉️ 緊急傳送中">✉️ incoming transmission</div>
+
+      <h1 class="hero-h1 reveal" data-delay="150">
         <span data-en="Hey Cathy," data-hk="嗨，Cathy，">Hey Cathy,</span><br>
-        <span class="grad" data-en="I built you a whole website 🥹" data-hk="我幫你整咗成個網站 🥹">I built you a whole website 🥹</span>
+        <span class="grad" data-en="I did something." data-hk="我做咗件嘢。">I did something.</span>
       </h1>
-      <p class="hero-p reveal" data-delay="400"
-         data-en="Yes, instead of just texting you like a normal person. It's 9 chapters long. There will be questions. There is no skip button. I'm so sorry (not really)."
-         data-hk="係呀，唔似正常人咁direct send訊息俾你。總共9章。仲會問你問題。冇得skip。真係好對唔住（呃你㗎）。">
-        Yes, instead of just texting you like a normal person.<br>
-        It's 9 chapters long. There will be questions. There's no skip button. 💀
+
+      <p class="hero-p reveal" data-delay="300"
+         data-en="Instead of texting you like a normal person, I made a whole website. 9 chapters. With questions. There is no skip button. I checked twice. I'm not sorry."
+         data-hk="唔係好似正常人咁send訊息俾你，我整咗成個網站。9章。有問題題目。冇skip掣。我check過兩次。我唔覺得對唔住。">
+        Instead of texting you like a normal person, I made a whole website.<br>
+        9 chapters. With questions. There's no skip button. 💀
       </p>
+
+      <p class="hero-p reveal" data-delay="450" style="font-size:.88rem;margin-top:-8px"
+         data-en="(I Googled 'how to tell someone you love them' and accidentally made a website. That's essentially what happened.)"
+         data-hk="（我Google「點樣話俾人知你鍾意佢」，然後不小心整咗個網站。大致上就係咁。）">
+        <em>(I Googled "how to tell someone you love them" and accidentally made a website. That's basically what happened.)</em>
+      </p>
+
       <div class="q-block reveal" data-delay="600">
-        <p class="q-prompt" data-en="Ready to begin, cutie? 🥺" data-hk="準備好未呀，靚女？🥺">Ready to begin, cutie? 🥺</p>
+        <p class="q-prompt"
+           data-en="Ready? (There's only one right answer here.) 🥺"
+           data-hk="準備好未？（呢度得一個正確答案。）🥺">Ready? (There's only one right answer here.) 🥺</p>
         <div class="q-answers">
-          <button class="q-pick" onclick="answer(1,'yes', this)" data-en="Okay fine, let's go 💖" data-hk="好啦好啦，開始 💖">Okay fine, let's go 💖</button>
-          <button class="q-pick ghost" onclick="answer(1,'maybe', this)" data-en="I'm scared 👀" data-hk="我驚驚 👀">I'm scared 👀</button>
+          <button class="q-pick" onclick="beginStory(this)"
+                  data-en="Okay fine, let's go 💖"
+                  data-hk="好啦好啦，出發 💖">Okay fine, let's go 💖</button>
+          <button class="q-pick ghost" onclick="beginStory(this)"
+                  data-en="I'm scared but okay 👀"
+                  data-hk="我驚但好啦 👀">I'm scared but okay 👀</button>
         </div>
         <p class="q-response" id="resp1"></p>
+        <div id="nextBtn" style="display:none;margin-top:20px">
+          <button class="btn btn-primary" onclick="goNext()">
+            <span data-en="Chapter 2 — The Evidence →" data-hk="第二章 — 呈堂證供 →">Chapter 2 — The Evidence →</span>
+          </button>
+        </div>
       </div>
-      <div class="scroll-hint" id="hint1" data-en="↓ scroll, my love" data-hk="↓ 向下scroll啦寶貝">↓ scroll, my love</div>
+
+      <div class="scroll-hint reveal" data-delay="800"
+           data-en="↓ your story starts here"
+           data-hk="↓ 你嘅故事由此開始">↓ your story starts here</div>
     </div>
   </section>
 
-  <!-- ============ CH 2 — THE QUESTION ============ -->
-  <section class="sec chapter locked" id="ch2" data-chapter="2">
-    <div class="wrap">
-      <div class="card reveal">
-        <div class="sec-label"><span data-en="💝 the big scary question" data-hk="💝 大大個得人驚嘅問題">💝 the big scary question</span></div>
-        <h2 data-en="Cathy… do you love me?" data-hk="Cathy… 你愛唔愛我呀？">Cathy… do you love me?</h2>
-        <p class="sec-note" data-en="Think carefully. The 'No' button has commitment issues and tends to flee." data-hk="諗清楚啲。個「唔係」掣有承諾恐懼症，成日想走佬。">Think carefully. The 'No' button has commitment issues and tends to flee.</p>
-        <div class="love-meter-wrap">
-          <span class="love-meter-icon">💗</span>
-          <div class="love-meter-track"><div class="love-meter-fill" id="loveFill"></div></div>
-          <span style="font-size:0.78rem;color:var(--text-s);">love%</span>
-        </div>
-        <div class="q-block">
-          <div class="q-answers">
-            <button class="q-pick" onclick="answer(2,'yes', this)" data-en="Yes!! Obviously 💖" data-hk="係呀!! 梗係啦 💖">Yes!! Obviously 💖</button>
-            <button class="btn btn-no" id="noBtn2" onmouseover="runAway(this)" ontouchstart="runAway(this)">
-              <span data-en="No" data-hk="唔係">No</span>
-            </button>
-          </div>
-          <p class="escape-msg" id="escapeMsg"></p>
-          <p class="q-response" id="resp2"></p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="ticker-wrap">
+    <div class="ticker-label">🔴 BREAKING</div>
+    <div class="ticker-track"><div class="ticker-content">
+      <span data-en="Website detected. 9 chapters. No escape. Proceed with caution. &nbsp;•&nbsp;" data-hk="偵測到網站。9章。無法逃脫。謹慎前行。&nbsp;•&nbsp;">Website detected. 9 chapters. No escape. Proceed with caution. &nbsp;•&nbsp;</span>
+      <span data-en="Shreyas reportedly spent too long on this. You are worth every minute. &nbsp;•&nbsp;" data-hk="有報道指Shreyas花咗太多時間喺呢個上面。你值得每一分鐘。&nbsp;•&nbsp;">Shreyas reportedly spent too long on this. You are worth every minute. &nbsp;•&nbsp;</span>
+      <span data-en="Breaking: Local man builds website instead of just saying 'I love you'. Experts baffled. &nbsp;•&nbsp;" data-hk="突發：本地男子建網站代替直接說「我愛你」。專家困惑。&nbsp;•&nbsp;">Breaking: Local man builds website instead of saying 'I love you'. Experts baffled. &nbsp;•&nbsp;</span>
+    </div></div>
+  </div>
 
-  <!-- ============ CH 3 — THE EVIDENCE ============ -->
-  <section class="sec chapter locked" id="ch3" data-chapter="3">
-    <div class="wrap">
-      <div class="sec-label reveal"><span data-en="🔬 submitted to the supreme court of love" data-hk="🔬 已提交愛情最高法院">🔬 submitted to the supreme court of love</span></div>
-      <h2 class="reveal" data-delay="100" data-en="The Evidence" data-hk="呈堂證供">The Evidence</h2>
-      <p class="sec-note reveal" data-delay="200" data-en="Exhibit A through D. All notarised by a very official (and very cute) cat." data-hk="證物A至D。全部由一隻好官方（同好得意）嘅貓公證。">Exhibit A through D. All notarised by a very official (and very cute) cat. 🐱</p>
-      <div class="ev-grid reveal" data-delay="300">
-        <div class="ev-card">
-          <div class="ev-top">📊 Exhibit A</div>
-          <div class="ev-big">∞</div>
-          <div class="ev-label" data-en="Times you've made me smile like an idiot" data-hk="你令我傻笑嘅次數">Times you've made me smile like an idiot</div>
-          <div class="ev-note" data-en="(my calculator gave up)" data-hk="（我個計算機放棄咗）">(my calculator gave up)</div>
-        </div>
-        <div class="ev-card">
-          <div class="ev-top">🧬 Exhibit B</div>
-          <div class="ev-big">0.00001%</div>
-          <div class="ev-label" data-en="Chance someone cuter than you exists" data-hk="有人比你更靚仔嘅機率">Chance someone cuter than you exists</div>
-          <div class="ev-note" data-en="(margin of error: also 0)" data-hk="（誤差範圍：都係0）">(margin of error: also 0)</div>
-        </div>
-        <div class="ev-card">
-          <div class="ev-top">📰 Exhibit C</div>
-          <div class="ev-headline" data-en="&quot;LOCAL WOMAN TOO ADORABLE,<br>MAN FILES FOR EMOTIONAL BANKRUPTCY&quot;" data-hk="&quot;本地女子過於可愛，<br>男子申請情感破產&quot;">&quot;LOCAL WOMAN TOO ADORABLE,<br>MAN FILES FOR EMOTIONAL BANKRUPTCY&quot;</div>
-          <div class="ev-note" data-en="— The Daily Heart, 2025" data-hk="— 每日心報，2025年">— The Daily Heart, 2025</div>
-        </div>
-        <div class="ev-card">
-          <div class="ev-top">🧪 Exhibit D</div>
-          <div class="ev-big">3am</div>
-          <div class="ev-label" data-en="Time I still think about you" data-hk="我仲掛住你嘅時間">Time I still think about you</div>
-          <div class="ev-note" data-en="(also 3pm. and always.)" data-hk="（同埋下午3時。同埋永遠。）">(also 3pm. and always.)</div>
-        </div>
-      </div>
-      <div class="q-block reveal" data-delay="500">
-        <p class="q-prompt" data-en="Verdict, your honour? ⚖️" data-hk="法官大人，你嘅裁決？⚖️">Verdict, your honour? ⚖️</p>
-        <div class="q-answers">
-          <button class="q-pick" onclick="answer(3,'guilty', this)" data-en="Guilty of being adorable 😤" data-hk="可愛罪成立 😤">Guilty of being adorable 😤</button>
-          <button class="q-pick" onclick="answer(3,'convinced', this)" data-en="Okay I'm convinced 🥰" data-hk="好啦我信你 🥰">Okay I'm convinced 🥰</button>
-        </div>
-        <p class="q-response" id="resp3"></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CH 4 — THE CONTRACT ============ -->
-  <section class="sec chapter locked" id="ch4" data-chapter="4">
-    <div class="wrap">
-      <div class="card parchment reveal">
-        <div class="stamp" id="stamp">SIGNED ✓</div>
-        <div class="sec-label"><span data-en="📜 legally binding (in my heart)" data-hk="📜 具法律效力（喺我個心度）">📜 legally binding (in my heart)</span></div>
-        <h2 data-en="A Tiny Little Contract" data-hk="一份細細嘅合約">A Tiny Little Contract</h2>
-        <p class="sec-note" data-en="Binding in 47 fictional countries and one extremely real heart." data-hk="喺47個虛構國家同一個非常真實嘅心入面具效力。">Binding in 47 fictional countries and one extremely real heart.</p>
-        <div class="parchment-inner">
-          <p class="ct-title" data-en="ARTICLES OF ETERNAL CUTENESS — SHREYAS &amp; CATHY" data-hk="永恆可愛條款 — SHREYAS &amp; CATHY">ARTICLES OF ETERNAL CUTENESS — SHREYAS &amp; CATHY</p>
-          <ul class="ct-list">
-            <li class="ct-item"><span class="cn">§ I</span><span data-en="I shall be embarrassingly, publicly, aggressively in love with you. Forever. Loudly." data-hk="我會以令人尷尬、公開、好大聲嘅方式愛你。永遠咁。">I shall be embarrassingly, publicly, aggressively in love with you. Forever. Loudly.</span></li>
-            <li class="ct-item"><span class="cn">§ II</span><span data-en="I will answer your 3am texts. Sleep is for people who aren't dating you." data-hk="我會覆你凌晨3點嘅訊息。瞓覺係俾啲冇同你拍拖嘅人。">I will answer your 3am texts. Sleep is for people who aren't dating you.</span></li>
-            <li class="ct-item"><span class="cn">§ III</span><span data-en="I accept full blame for snack theft, blanket theft, and stealing your hoodies." data-hk="我為偷零食、偷被、偷你件衞衣承擔全責。">I accept full blame for snack theft, blanket theft, and stealing your hoodies.</span></li>
-            <li class="ct-item"><span class="cn">§ IV</span><span data-en="I will cheer way too loud at every win of yours. Even the tiny ones. Especially those." data-hk="我會為你每次勝利大大聲歡呼。連好細嘅都係。尤其係嗰啲。">I will cheer way too loud at every win of yours. Even the tiny ones.</span></li>
-            <li class="ct-item"><span class="cn">§ V</span><span data-en="This contract has no termination clause. It's permanent. Like glitter. Sorry not sorry. ✨" data-hk="本合約冇終止條款。永久㗎。好似閃粉咁。唔好意思囉（其實唔覺）✨">This contract has no termination clause. It's permanent. Like glitter. ✨</span></li>
-          </ul>
-        </div>
-        <div class="q-block">
-          <p class="q-prompt" data-en="Do you accept these (very reasonable) terms? ✍️" data-hk="你接唔接受呢啲（好合理嘅）條款？✍️">Do you accept these (very reasonable) terms? ✍️</p>
-          <div class="q-answers">
-            <button class="q-pick" onclick="answer(4,'agree', this)" data-en="I agree 🥹✍️" data-hk="我同意 🥹✍️">I agree 🥹✍️</button>
-            <button class="q-pick ghost" onclick="answer(4,'lawyer', this)" data-en="Let me call my lawyer 📞😏" data-hk="俾我打俾律師先 📞😏">Let me call my lawyer 📞😏</button>
-          </div>
-          <p class="q-response" id="resp4"></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CH 5 — THE POEM ============ -->
-  <section class="sec chapter locked" id="ch5" data-chapter="5">
-    <div class="wrap">
-      <div class="card reveal">
-        <div class="sec-label"><span data-en="✍️ a poem. yes. a real one." data-hk="✍️ 一首詩。係。真詩嚟㗎。">✍️ a poem. yes. a real one.</span></div>
-        <h2 data-en="Ode to Cathy" data-hk="Cathy頌">Ode to Cathy</h2>
-        <p class="sec-note" data-en="Certified by the International Society of People Helplessly Fond of You." data-hk="由國際無可救藥咁鍾意你人士協會認證。">Certified by the International Society of People Helplessly Fond of You.</p>
-        <div class="poem-box">
-          <div class="poem-en">
-            <p class="poem-line">Roses are red,<br>Violets are blue,<br>I Googled "perfect person"<br>and it just showed me you.</p>
-            <p class="poem-line">I burnt my toast again today,<br>forgot I had a pan,<br>too busy daydreaming<br>about being your man.</p>
-            <p class="poem-line">You laugh and suddenly<br>gravity forgets its job,<br>you smile and honestly Cathy,<br>I become a little blob. 🫠</p>
-            <p class="poem-line poem-final">Some people write love songs,<br>some paint, some make art —<br>I built a whole <em>website</em>, dummy,<br>straight from my dumb heart. 💖</p>
-          </div>
-          <div class="poem-div"><span>✨</span><span>🌸</span><span>✨</span></div>
-          <div class="poem-hk">
-            <p class="poem-line">玫瑰係紅色，<br>紫羅蘭係藍色，<br>我Google「完美嘅人」<br>佢就show咗你出嚟。</p>
-            <p class="poem-line">我今日又焗燶咗多士，<br>唔記得個鑊喺爐上，<br>淨係顧住發夢<br>諗住點先娶到你返屋企。</p>
-            <p class="poem-line">你一笑，地心吸力<br>突然唔記得做嘢，<br>你一笑，老實講Cathy，<br>我成個人溶埋。🫠</p>
-            <p class="poem-line poem-final">有人寫情歌，<br>有人畫畫整藝術 —<br>我整咗成個<em>網站</em>俾你，蠢蛋，<br>由我個蠢心而發。💖</p>
-          </div>
-        </div>
-        <div class="q-block">
-          <p class="q-prompt" data-en="Be honest… did that make you go 'awww'? 🥹" data-hk="老實講… 係咪令你『awww』咗一聲？🥹">Be honest… did that make you go 'awww'? 🥹</p>
-          <div class="q-answers">
-            <button class="q-pick" onclick="answer(5,'cried', this)" data-en="I cried a little 😭" data-hk="我喊咗少少 😭">I cried a little 😭</button>
-            <button class="q-pick" onclick="answer(5,'awww', this)" data-en="Awww you dummy 🥺" data-hk="Awww你個蠢蛋 🥺">Awww you dummy 🥺</button>
-            <button class="q-pick ghost" onclick="answer(5,'cringe', this)" data-en="So cringe (loved it) 😆" data-hk="好核突（但鍾意）😆">So cringe (loved it) 😆</button>
-          </div>
-          <p class="q-response" id="resp5"></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CH 6 — THE SCIENCE (QUIZ) ============ -->
-  <section class="sec chapter locked" id="ch6" data-chapter="6">
-    <div class="wrap">
-      <div class="card reveal">
-        <div class="sec-label"><span data-en="🔬 totally real, unbiased science" data-hk="🔬 完全真實、公正嘅科學">🔬 totally real, unbiased science</span></div>
-        <h2 data-en="Compatibility Test™" data-hk="相容性測試™">Compatibility Test™</h2>
-        <p class="sec-note" data-en="Results are 100% not predetermined. (They're 100% predetermined.)" data-hk="結果100%唔係預設嘅。（其實100%預設咗。）">Results are 100% not predetermined. (They're 100% predetermined.)</p>
-        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="qProgress" style="width:0%"></div></div>
-        <div class="quiz-wrap">
-          <div class="q-step active" id="qs1">
-            <p class="q-text" data-en="Q1 — Be honest, how cute is Shreyas?" data-hk="問題1 — 老實講，Shreyas有幾可愛？">Q1 — Be honest, how cute is Shreyas?</p>
-            <div class="q-opts">
-              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="A solid 10/10 🥰" data-hk="實實在在10/10 🥰">A solid 10/10 🥰</button>
-              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="Annoyingly cute 😤" data-hk="煩到死咁可愛 😤">Annoyingly cute 😤</button>
-              <button class="q-btn" onclick="nextStep('qs1','qs2',33)" data-en="Off the charts 📈" data-hk="爆晒錶 📈">Off the charts 📈</button>
-            </div>
-          </div>
-          <div class="q-step" id="qs2">
-            <p class="q-text" data-en="Q2 — He sends a meme at 3am. You…" data-hk="問題2 — 佢凌晨3點send表情包。你…">Q2 — He sends a meme at 3am. You…</p>
-            <div class="q-opts">
-              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Laugh & send one back 😂" data-hk="大笑然後回send一個 😂">Laugh & send one back 😂</button>
-              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="Roll my eyes (but smile) 🙄💕" data-hk="碌眼（但微笑）🙄💕">Roll my eyes (but smile) 🙄💕</button>
-              <button class="q-btn" onclick="nextStep('qs2','qs3',66)" data-en="I was already awake waiting 🥹" data-hk="我本身已經醒住等緊 🥹">I was already awake waiting 🥹</button>
-            </div>
-          </div>
-          <div class="q-step" id="qs3">
-            <p class="q-text" data-en="Q3 — Final question. No lying." data-hk="問題3 — 最後一題。唔准呃。">Q3 — Final question. No lying.</p>
-            <div class="q-opts">
-              <button class="q-btn" onclick="showQuizResult()" data-en="He's my favourite human 💖" data-hk="佢係我最鍾意嘅人 💖">He's my favourite human 💖</button>
-              <button class="q-btn" onclick="showQuizResult()" data-en="My favourite chaos 🌪️💕" data-hk="我最鍾意嘅混亂 🌪️💕">My favourite chaos 🌪️💕</button>
-              <button class="q-btn" onclick="showQuizResult()" data-en="Obviously mine. Next. 😤" data-hk="梗係我嘅。下一題。😤">Obviously mine. Next. 😤</button>
-            </div>
-          </div>
-          <div class="q-result hidden" id="qResult">
-            <div class="score-ring">
-              <svg viewBox="0 0 110 110">
-                <circle class="ring-bg" cx="55" cy="55" r="52"/>
-                <circle class="ring-fill" id="ringFill" cx="55" cy="55" r="52"/>
-              </svg>
-              <span class="score-num" id="scoreNum">0%</span>
-            </div>
-            <p class="result-title" data-en="COMPATIBILITY: CERTIFIED ✨" data-hk="相容性：已認證 ✨">COMPATIBILITY: CERTIFIED ✨</p>
-            <p class="result-note" data-en="The algorithm short-circuited. It has never seen numbers this cute. You two are a scientific miracle (and a little gross, lovingly)." data-hk="演算法短路咗。佢未見過咁可愛嘅數字。你哋係科學奇蹟（同埋有少少核突，好愛你哋咁講）。">The algorithm short-circuited. You two are a scientific miracle. 🧪💖</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CH 7 — THE RESUME ============ -->
-  <section class="sec chapter locked" id="ch7" data-chapter="7">
-    <div class="wrap">
-      <div class="card reveal">
-        <div class="sec-label"><span data-en="🏆 peer-reviewed (by me)" data-hk="🏆 同行評審（我評嘅）">🏆 peer-reviewed (by me)</span></div>
-        <h2 data-en="Is Shreyas Boyfriend Material?" data-hk="Shreyas係咪好男友料子？">Is Shreyas Boyfriend Material?</h2>
-        <p class="sec-note" data-en="A rigorous 7-point evaluation. Spoiler: embarrassingly yes." data-hk="嚴謹嘅7點評估。劇透：尷尬地係。">A rigorous 7-point evaluation. Spoiler: embarrassingly yes.</p>
-        <ul class="hm-list">
-          <li class="hm-item stagger-hm"><span class="hm-icon">✅</span><span data-en="Will never judge your 2am snack choices. (Will absolutely steal them.)" data-hk="永遠唔會批評你凌晨2點食零食。（但一定會偷。）">Will never judge your 2am snack choices. (Will absolutely steal them.)</span></li>
-          <li class="hm-item stagger-hm"><span class="hm-icon">✅</span><span data-en="Professionally trained in Pretending to Listen™ (working on it, promise)" data-hk="專業訓練「扮聽緊你講嘢™」（仲學緊，真）">Professionally trained in Pretending to Listen™ (working on it, promise)</span></li>
-          <li class="hm-item stagger-hm"><span class="hm-icon">✅</span><span data-en="Can assemble IKEA furniture. Eventually. Mostly. With 3 spare screws." data-hk="識砌IKEA傢俬。最終啦。大致上。剩低3粒螺絲。">Can assemble IKEA furniture. Eventually. Mostly. With 3 spare screws.</span></li>
-          <li class="hm-item stagger-hm"><span class="hm-icon">✅</span><span data-en="Gives you the last bite — after eating it, feeling guilty, and buying a new one." data-hk="俾返最後一啖你 — 喺食咗、內疚、再買過之後。">Gives you the last bite — after eating it, feeling guilty, and buying a new one.</span></li>
-          <li class="hm-item stagger-hm"><span class="hm-icon">✅</span><span data-en="Certified master of the ancient art of Sending Memes At 3am" data-hk="「凌晨3點傳表情包」古老藝術認證大師">Certified master of Sending Memes At 3am</span></li>
-          <li class="hm-item stagger-hm"><span class="hm-icon">✅</span><span data-en="Cheers embarrassingly loud at every single one of your wins" data-hk="為你每次勝利尷尬咁大聲歡呼">Cheers embarrassingly loud at every single one of your wins</span></li>
-          <li class="hm-item stagger-hm"><span class="hm-icon">✅</span><span data-en="100% committed to being aggressively, publicly in love with you" data-hk="100%致力以積極、公開嘅方式愛你">100% committed to being aggressively, publicly in love with you</span></li>
-        </ul>
-        <div class="hm-verdict"><div class="hm-score">12 / 10</div><p data-en="EXCEEDS ALL KNOWN STANDARDS. Committee recommends immediate keeping forever." data-hk="超越所有已知標準。委員會建議即刻永遠keep住。">EXCEEDS ALL KNOWN STANDARDS. Committee recommends keeping forever.</p></div>
-        <div class="q-block">
-          <p class="q-prompt" data-en="So… should you keep him? 🥺" data-hk="咁… 你keep唔keep佢呀？🥺">So… should you keep him? 🥺</p>
-          <div class="q-answers">
-            <button class="q-pick" onclick="answer(7,'keep', this)" data-en="Hired. Keeping him. 💼💕" data-hk="請咗。Keep住。💼💕">Hired. Keeping him. 💼💕</button>
-            <button class="q-pick ghost" onclick="answer(7,'probation', this)" data-en="Fine, but you're on probation 😏" data-hk="好啦，但你試用期住 😏">Fine, but you're on probation 😏</button>
-          </div>
-          <p class="q-response" id="resp7"></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CH 8 — THE PROPOSAL ============ -->
-  <section class="sec chapter locked" id="ch8" data-chapter="8">
-    <div class="wrap">
-      <div class="card proposal-card reveal">
-        <span class="ring-float">💍</span>
-        <div class="sec-label"><span data-en="💍 the main event (deep breaths)" data-hk="💍 重頭戲（深呼吸）">💍 the main event (deep breaths)</span></div>
-        <h2 data-en="Will you be mine, Cathy?" data-hk="Cathy，你願意做我嘅人嗎？">Will you be mine, Cathy?</h2>
-        <div class="letter">
-          <p data-en="My dearest Cathy," data-hk="我最親愛嘅Cathy，">My dearest Cathy,</p>
-          <p data-en="I built this entire website because I'm a tiny bit dramatic and a whole lot in love with you. Every chapter, every dumb joke, every burnt-toast pun — it was all just an excuse to say how I feel."
-             data-hk="我整咗成個網站，因為我有少少戲劇化，加上非常非常愛你。每一章、每個蠢笑話、每個燶多士爛gag — 都只係藉口嚟講我點諗。">
-            I built this entire website because I'm a tiny bit dramatic and a whole lot in love with you. Every chapter was just an excuse to say how I feel.
-          </p>
-          <p data-en="You make boring days feel like something worth remembering. And I'd really, really like a lifetime of boring days with you."
-             data-hk="你令悶嘅日子都變得值得記住。而我真係真係好想同你過一世咁悶嘅日子。">
-            You make boring days feel worth remembering. And I'd really like a lifetime of boring days with you.
-          </p>
-          <p data-en="So, Cathy — will you be my person? Officially. With snacks. (Shared. Mostly.)"
-             data-hk="所以，Cathy — 你願唔願做我嘅人？正式咁。有零食。（共享。大致上。）">
-            So, Cathy — will you be my person? Officially. With snacks. (Shared. Mostly.) 🍿
-          </p>
-        </div>
-        <div class="q-block">
-          <div class="q-answers prop-btns">
-            <button class="btn btn-yes btn-huge pulse-btn" onclick="handleYes()"><span data-en="Yes, always 💍" data-hk="係，永遠 💍">Yes, always 💍</span></button>
-            <button class="btn btn-no" id="noBtn8" onmouseover="runAway(this)" ontouchstart="runAway(this)"><span data-en="No" data-hk="唔係">No</span></button>
-          </div>
-          <p class="escape-msg" id="escapeMsg8"></p>
-          <p class="maybe-note" data-en="(The 'No' button is contractually obligated to run. It has no choice, poor thing.)" data-hk="（個「唔係」掣根據合約必須走佬。佢冇得揀，好慘。）">(The 'No' button is contractually obligated to run. Poor thing.)</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CH 9 — SHE SAID YES ============ -->
-  <section class="sec chapter locked" id="ch9" data-chapter="9">
-    <div class="wrap">
-      <div class="card celebrate-card reveal">
-        <span id="celebEmoji" style="font-size:3rem;display:block;">🎉</span>
-        <div class="sec-label"><span data-en="🎊 she said yes!!!" data-hk="🎊 佢答應咗!!!">🎊 she said yes!!!</span></div>
-        <h2 class="grad" data-en="The best chapter. 💖" data-hk="最好嘅一章。💖">The best chapter. 💖</h2>
-        <p class="celeb-sub" data-en="Historians will write about this day. Probably. I'll make them." data-hk="歷史學家會記載呢一日。可能。我會逼佢哋。">Historians will write about this day. (I'll make them.)</p>
-        <div class="badges">
-          <span class="badge" data-en="💍 My Person: Confirmed" data-hk="💍 我嘅人：已確認">💍 My Person: Confirmed</span>
-          <span class="badge" data-en="🍿 Snack Rights: Shared" data-hk="🍿 零食權：共享">🍿 Snack Rights: Shared</span>
-          <span class="badge" data-en="🛏️ Blanket War: Ongoing" data-hk="🛏️ 被子大戰：持續">🛏️ Blanket War: Ongoing</span>
-          <span class="badge" data-en="✅ 'No' Button: Retired" data-hk="✅「唔係」掣：退役">✅ 'No' Button: Retired</span>
-          <span class="badge" data-en="💖 Love Level: ∞" data-hk="💖 愛情等級：∞">💖 Love Level: ∞</span>
-        </div>
-        <div class="recap" id="recap"></div>
-        <div class="celeb-text">
-          <p data-en="Cathy — you just made me the happiest, most dramatic, luckiest dummy on this whole planet." data-hk="Cathy — 你令我成為呢個地球上最開心、最戲劇化、最好彩嘅蠢蛋。">Cathy — you just made me the happiest, luckiest dummy on this whole planet.</p>
-          <p data-en="This website took way too long to make. You're worth every second. And every burnt piece of toast. 🥹" data-hk="呢個網站整到好耐。你值得每一秒。同每一塊燶多士。🥹">This website took way too long to make. You're worth every second. 🥹</p>
-        </div>
-        <button class="btn btn-primary" onclick="launchConfetti()"><span data-en="🎊 Celebrate again!" data-hk="🎊 再慶祝一次！">🎊 Celebrate again!</span></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Confetti canvas -->
   <canvas id="confettiCanvas"></canvas>
-  <script>const _PAGE="index.html";const _PAGE_IDX=0;</script>
-  <script src="script.js?v=6"></script>
-</body></html>
+  <script>const _PAGE="index.html"; const _PAGE_IDX=0;</script>
+  <script src="script.js?v=7"></script>
+  <script>
+    function beginStory(btn) {
+      btn.classList.add('selected');
+      btn.closest('.q-answers').querySelectorAll('.q-pick').forEach(b => { b.disabled=true; if(b!==btn) b.classList.add('faded'); });
+      const resp = document.getElementById('resp1');
+      const replies = { en: ["Yay! Okay here we go 🥰 — hold tight, it gets better.", "Aww don't be scared cutie 🥺 — I promise it's worth it."] };
+      const idx = btn.classList.contains('ghost') ? 1 : 0;
+      resp.textContent = (lang==='hk') ? (idx===0 ? '耶！出發喇 🥰 — 係好嘅。' : 'Aww 唔好驚啦靚女 🥺 — 呢個值得嘅。') : replies.en[idx];
+      resp.classList.add('show');
+      document.getElementById('nextBtn').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

@@ -3,93 +3,207 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chapter 5 — The Poem ✍️</title>
+  <title>Chapter 4 — The Poem ✍️</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css?v=3"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=7"/>
 </head>
 <body>
   <canvas id="starsCanvas"></canvas>
   <div class="particles" id="particles"></div>
-
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
-    <span id="langLabel">廣東話 🇭🇰</span>
-  </button>
+  <button class="lang-toggle" onclick="toggleLang()"><span id="langLabel">廣東話 🇭🇰</span></button>
 
   <nav class="chapter-nav">
+    <span class="chapter-brand">C &amp; S</span>
     <div class="chapter-dots">
-      <a href="index.html" class="cdot page-link" title="Ch 1 — The Beginning"></a>
-      <a href="evidence.html" class="cdot page-link" title="Ch 2 — The Evidence"></a>
-      <a href="contract.html" class="cdot page-link" title="Ch 3 — The Contract"></a>
-      <a href="poem.html" class="cdot active" title="Ch 4 — The Poem"></a>
-      <a href="quiz.html" class="cdot page-link" title="Ch 5 — The Science"></a>
-      <a href="husband.html" class="cdot page-link" title="Ch 6 — The Resume"></a>
-      <a href="proposal.html" class="cdot page-link" title="Ch 7 — The Proposal"></a>
-      <a href="love.html" class="cdot page-link" title="Ch 8 — The Question"></a>
-      <a href="yes.html" class="cdot page-link" title="Ch 9 — She Said Yes"></a>
+      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 2"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 3"></a>
+      <a href="poem.html"     class="cdot active"    title="Ch 4 — The Poem"></a>
+      <a href="quiz.html"     class="cdot"           title="Ch 5"></a>
+      <a href="husband.html"  class="cdot"           title="Ch 6"></a>
+      <a href="proposal.html" class="cdot"           title="Ch 7"></a>
+      <a href="love.html"     class="cdot"           title="Ch 8"></a>
+      <a href="yes.html"      class="cdot"           title="Ch 9"></a>
     </div>
     <span class="chapter-label" data-en="Chapter 4 / 9" data-hk="第 四 章 / 9">Chapter 4 / 9</span>
   </nav>
 
-  <section class="sec" id="poem">
-    <div class="deco d1">✍️</div>
-    <div class="deco d2">🌸</div>
-    <div class="deco d3">📖</div>
-    <div class="deco d4">🪶</div>
+  <section class="sec">
+    <div class="deco d1">✍️</div><div class="deco d2">🌹</div>
+    <div class="deco d3">📖</div><div class="deco d4">🌙</div>
     <div class="wrap">
-      <div class="card glass reveal">
-        <div class="sec-label">
-          <span data-en="✍️ a poem. yes, a real one." data-hk="✍️ 一首詩。係，真係一首詩。">✍️ a poem. yes, a real one.</span>
-        </div>
+
+      <div class="card reveal">
+        <div class="tag"
+             data-en="✍️ a real poem. yes, really."
+             data-hk="✍️ 一首真詩。係，真嘅。">✍️ a real poem. yes, really.</div>
+
         <h2 data-en="Ode to Cathy" data-hk="Cathy頌">Ode to Cathy</h2>
+
         <p class="sec-note"
-           data-en="Certified by the International Society of People Who Are Extremely Fond of You."
-           data-hk="由國際非常喜歡你人士協會認證。">
-          Certified by the International Society of People Who Are Extremely Fond of You.
+           data-en="Certified by the International Society of People Helplessly Fond of You (est. the moment I met you)."
+           data-hk="由國際無可救藥鍾意你人士協會認證（成立於我遇見你嗰刻）。">
+          Certified by the International Society of People Helplessly Fond of You.
         </p>
+
         <div class="poem-box">
-          <div class="poem-en">
-            <p class="poem-line">Roses are red,<br>Violets are blue,<br>I Googled &quot;perfect person&quot;<br>and it showed me you.</p>
-            <p class="poem-line">I burnt my toast again today,<br>forgot I had a pan,<br>I was too busy daydreaming<br>about being your man.</p>
-            <p class="poem-line">You laugh and I forget<br>what gravity is for,<br>you smile and honestly Cathy<br>my knees hit the floor.</p>
-            <p class="poem-line">Some people write love songs,<br>some write novels or art —<br>I built a <em>website</em> for you,<br>straight from my heart.</p>
-            <p class="poem-line">But under all the jokes,<br>the truth is rather plain:<br>you are the calm I run to<br>through every kind of rain.</p>
-            <p class="poem-line">You held me when I struggled,<br>you stayed when things were hard —<br>so let me spend a lifetime<br>not letting down my guard.</p>
-            <p class="poem-line poem-final">So here is my poem,<br>my webpage, my proof —<br>I love you completely,<br>you absolute goof. 💖</p>
+          <div class="poem-en" id="poemEn">
+
+            <p class="poem-line">
+              Roses are red,<br>
+              violets are blue,<br>
+              I Googled "perfect person"<br>
+              and it just showed me you.
+            </p>
+
+            <p class="poem-line">
+              I burnt the pasta again today —<br>
+              stood there watching it smoke,<br>
+              too busy thinking about<br>
+              your laugh, your face,<br>
+              and how completely gone I am for you.
+            </p>
+
+            <p class="poem-line">
+              You smile and gravity<br>
+              forgets its whole job.<br>
+              You text first and I have to put<br>
+              the phone down and walk<br>
+              around the room exactly twice. 🫠
+            </p>
+
+            <p class="poem-line">
+              You held me on the hard days.<br>
+              You stayed through the messy parts.<br>
+              You showed up — quietly, steadily,<br>
+              like you always knew I'd need you there.<br>
+              (I always did.)
+            </p>
+
+            <p class="poem-line poem-final">
+              Some people write songs,<br>
+              some paint, some buy flowers —<br>
+              I built a whole <em>website</em>, you dummy,<br>
+              straight from my embarrassingly big heart. 💖
+            </p>
+
           </div>
+
           <div class="poem-div"><span>✨</span><span>🌸</span><span>✨</span></div>
-          <div class="poem-hk">
-            <p class="poem-line">玫瑰係紅色，<br>紫羅蘭係藍色，<br>我Google「完美嘅人」<br>結果出現咗你。</p>
-            <p class="poem-line">我今日又焗焦咗多士，<br>唔記得鑊仲喺爐上，<br>因為我一直發緊夢<br>諗住點先可以娶你返屋企。</p>
-            <p class="poem-line">你一笑，我唔記得<br>地心吸力係乜嘢，<br>你微笑，老實講Cathy<br>我雙腳軟晒。</p>
-            <p class="poem-line">有人寫情歌，<br>有人寫小說或畫畫 —<br>我幫你建咗個<em>網頁</em>，<br>直接由心而發。</p>
-            <p class="poem-line">但喺所有笑話底下，<br>真相其實好簡單：<br>你係我嘅避風港，<br>無論落幾大嘅雨。</p>
-            <p class="poem-line">我跌低時你扶住我，<br>艱難時你冇走開 —<br>所以俾我用一世，<br>好好咁去愛你。</p>
-            <p class="poem-line poem-final">所以呢首係我嘅詩，<br>我嘅網頁，我嘅証明 —<br>我完全愛你，<br>你呢個傻瓜。 💖</p>
+
+          <div class="poem-hk" id="poemHk" style="display:none">
+
+            <p class="poem-line">
+              玫瑰係紅色，<br>
+              紫羅蘭係藍色，<br>
+              我Google「最完美嘅人」，<br>
+              佢就show咗你出嚟。
+            </p>
+
+            <p class="poem-line">
+              我今日又煮燶咗意粉——<br>
+              企喺度睇住佢冒煙，<br>
+              淨係諗住你嘅笑聲、你嘅樣，<br>
+              同我有幾完全為你而瘋。
+            </p>
+
+            <p class="poem-line">
+              你一笑，地心吸力<br>
+              突然唔記得做嘢。<br>
+              你先send訊息，我要放低電話<br>
+              喺房間行足兩圈先平靜返。🫠
+            </p>
+
+            <p class="poem-line">
+              喺我最難熬嘅日子，你撐住我。<br>
+              你喺一片混亂中留低。<br>
+              你出現——安靜地、堅定地，<br>
+              好似你一早知道我需要你。<br>
+              （我係需要。）
+            </p>
+
+            <p class="poem-line poem-final">
+              有人寫情歌，<br>
+              有人畫畫、有人買花——<br>
+              我整咗成個<em>網站</em>俾你，蠢蛋，<br>
+              由我個大得出奇嘅蠢心而發。💖
+            </p>
+
+          </div>
+        </div>
+
+        <div style="margin-top:24px;text-align:center">
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px">
+            <button class="q-btn" onclick="switchPoem('en')" id="btnEn"
+                    data-en="🇬🇧 English" data-hk="🇬🇧 英文">🇬🇧 English</button>
+            <button class="q-btn" onclick="switchPoem('hk')" id="btnHk"
+                    data-en="🇭🇰 廣東話" data-hk="🇭🇰 廣東話">🇭🇰 廣東話</button>
+          </div>
+
+          <p class="q-prompt" style="margin-top:16px"
+             data-en="Be honest... did you feel something? 🥹"
+             data-hk="老實講... 你有感受到嘢嗎？🥹">Be honest... did you feel something? 🥹</p>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap" id="poemBtns">
+            <button class="q-pick" onclick="reactPoem(this,'cried')"
+                    data-en="I cried a little 😭" data-hk="我喊咗少少 😭">I cried a little 😭</button>
+            <button class="q-pick" onclick="reactPoem(this,'awww')"
+                    data-en="Awww you dummy 🥺" data-hk="Awww你個蠢蛋 🥺">Awww you dummy 🥺</button>
+            <button class="q-pick ghost" onclick="reactPoem(this,'cringe')"
+                    data-en="So cringe (but I loved it) 😆" data-hk="好核突（但我鍾意）😆">So cringe (but I loved it) 😆</button>
+          </div>
+          <p class="q-response" id="poemResp"></p>
+          <div id="nextBtn" style="display:none;margin-top:20px">
+            <button class="btn btn-primary" onclick="goNext()">
+              <span data-en="Chapter 5 — The Quiz →" data-hk="第五章 — 測驗 →">Chapter 5 — The Quiz →</span>
+            </button>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
   <div class="page-nav">
     <a href="contract.html" class="page-link">← Chapter 3</a>
     <span class="spacer"></span>
-    <a href="quiz.html" class="page-link">Chapter 5 →</a>
+    <button onclick="goNext()">Chapter 5 →</button>
   </div>
 
   <div class="ticker-wrap">
     <div class="ticker-label">🔴 BREAKING</div>
     <div class="ticker-track"><div class="ticker-content">
-      <span>Local man writes poem. Critics give it 12/10. Cathy gives no comment yet. &nbsp;•&nbsp;</span>
-      <span>Toast burnt again. Investigation ongoing. &nbsp;•&nbsp;</span>
-      <span>Knees reportedly still on the floor. Physiotherapists baffled. &nbsp;•&nbsp;</span>
+      <span>Poem filed. Pasta confirmed burnt. Man claims it was "worth it". &nbsp;•&nbsp;</span>
+      <span>International Society of People Helplessly Fond of Cathy reaches record membership. &nbsp;•&nbsp;</span>
+      <span>Verse 4 caused 3 separate emotional crises during drafting. All worth it. &nbsp;•&nbsp;</span>
     </div></div>
   </div>
 
   <canvas id="confettiCanvas"></canvas>
-  
-    <script>const _PAGE="poem.html";const _PAGE_IDX=3;</script>
-  <script src="script.js?v=6"></script>
+  <script>const _PAGE="poem.html"; const _PAGE_IDX=3;</script>
+  <script src="script.js?v=7"></script>
+  <script>
+    function switchPoem(l) {
+      document.getElementById('poemEn').style.display = l==='en' ? 'flex' : 'none';
+      document.getElementById('poemHk').style.display = l==='hk' ? 'flex' : 'none';
+      // re-trigger reveal
+      document.querySelectorAll('.poem-line').forEach((line,i) => {
+        line.classList.remove('visible');
+        setTimeout(() => line.classList.add('visible'), i * 180);
+      });
+    }
+    function reactPoem(btn, key) {
+      document.getElementById('poemBtns').querySelectorAll('.q-pick').forEach(b => { b.disabled=true; if(b!==btn) b.classList.add('faded'); });
+      btn.classList.add('selected');
+      const msgs = {
+        cried:  { en:"Don't cry! Okay, cry a little. I'm crying too. 😭💕", hk:"唔好喊！好啦喊少少。我都喊緊。😭💕" },
+        awww:   { en:"YOUR dummy. Specifically. Forever. 🥺", hk:"係你嘅蠢蛋。特登咁。永遠。🥺" },
+        cringe: { en:"Cringe is just love with confidence. 😆💖", hk:"核突即係有自信嘅愛。😆💖" }
+      };
+      const r = document.getElementById('poemResp');
+      r.textContent = msgs[key][lang]; r.classList.add('show');
+      document.getElementById('nextBtn').style.display = 'block';
+    }
+  </script>
 </body>
 </html>

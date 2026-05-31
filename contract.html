@@ -3,124 +3,170 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chapter 4 — The Contract 📜</title>
+  <title>Chapter 3 — The Contract 📜</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css?v=3"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=7"/>
 </head>
 <body>
   <canvas id="starsCanvas"></canvas>
   <div class="particles" id="particles"></div>
-
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
-    <span id="langLabel">廣東話 🇭🇰</span>
-  </button>
+  <button class="lang-toggle" onclick="toggleLang()"><span id="langLabel">廣東話 🇭🇰</span></button>
 
   <nav class="chapter-nav">
+    <span class="chapter-brand">C &amp; S</span>
     <div class="chapter-dots">
-      <a href="index.html" class="cdot page-link" title="Ch 1 — The Beginning"></a>
-      <a href="evidence.html" class="cdot page-link" title="Ch 2 — The Evidence"></a>
-      <a href="contract.html" class="cdot active" title="Ch 3 — The Contract"></a>
-      <a href="poem.html" class="cdot page-link" title="Ch 4 — The Poem"></a>
-      <a href="quiz.html" class="cdot page-link" title="Ch 5 — The Science"></a>
-      <a href="husband.html" class="cdot page-link" title="Ch 6 — The Resume"></a>
-      <a href="proposal.html" class="cdot page-link" title="Ch 7 — The Proposal"></a>
-      <a href="love.html" class="cdot page-link" title="Ch 8 — The Question"></a>
-      <a href="yes.html" class="cdot page-link" title="Ch 9 — She Said Yes"></a>
+      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 2"></a>
+      <a href="contract.html" class="cdot active"    title="Ch 3 — The Contract"></a>
+      <a href="poem.html"     class="cdot"           title="Ch 4"></a>
+      <a href="quiz.html"     class="cdot"           title="Ch 5"></a>
+      <a href="husband.html"  class="cdot"           title="Ch 6"></a>
+      <a href="proposal.html" class="cdot"           title="Ch 7"></a>
+      <a href="love.html"     class="cdot"           title="Ch 8"></a>
+      <a href="yes.html"      class="cdot"           title="Ch 9"></a>
     </div>
     <span class="chapter-label" data-en="Chapter 3 / 9" data-hk="第 三 章 / 9">Chapter 3 / 9</span>
   </nav>
 
-  <section class="sec" id="contract">
-    <div class="deco d1">📜</div>
-    <div class="deco d2">⚖️</div>
-    <div class="deco d3">🪶</div>
-    <div class="deco d4">🏛️</div>
+  <section class="sec">
+    <div class="deco d1">📜</div><div class="deco d2">✍️</div>
+    <div class="deco d3">🏛️</div><div class="deco d4">🖋️</div>
     <div class="wrap">
+
       <div class="card parchment reveal">
         <div class="stamp" id="stamp">SIGNED ✓</div>
-        <div class="sec-label">
-          <span data-en="📜 legally binding" data-hk="📜 具法律效力">📜 legally binding</span>
-        </div>
-        <h2 data-en="Funny (But Real) Contract" data-hk="有趣（但真實）合約">Funny (But Real) Contract</h2>
+
+        <div class="tag"
+             data-en="📜 legally binding (in my heart only)"
+             data-hk="📜 具法律效力（僅限我嘅心入面）">📜 legally binding (in my heart only)</div>
+
+        <h2 data-en="A Small But Very Binding Contract"
+            data-hk="一份細細但非常具約束力嘅合約">A Small But Very Binding Contract</h2>
+
         <p class="sec-note"
-           data-en="This document is legally binding in 47 fictional jurisdictions and one very real heart."
-           data-hk="本文件在47個虛構司法管轄區及一個非常真實的心中具有法律效力。">
-          This document is legally binding in 47 fictional jurisdictions and one very real heart.
+           data-en="Binding in 47 fictional countries and one extremely real heart. No exit clause. No fine print. I checked."
+           data-hk="喺47個虛構國家同一個非常真實嘅心入面具效力。冇終止條款。冇細字。我check過。">
+          Binding in 47 fictional countries and one extremely real heart. No exit clause.
         </p>
+
         <div class="parchment-inner">
-          <p class="ct-title"
-             data-en="ARTICLES OF ETERNAL DEVOTION — SHREYAS & CATHY"
-             data-hk="永恆奉獻條款 — SHREYAS & CATHY">
-            ARTICLES OF ETERNAL DEVOTION — SHREYAS &amp; CATHY
-          </p>
+          <p class="ct-title" data-en="ARTICLES OF ETERNAL AFFECTION — SHREYAS &amp; CATHY"
+             data-hk="永恆情感條款 — SHREYAS &amp; CATHY">ARTICLES OF ETERNAL AFFECTION — SHREYAS &amp; CATHY</p>
           <ul class="ct-list">
+
             <li class="ct-item">
               <span class="cn">§ I</span>
-              <span data-en="Party A (Shreyas) agrees to be aggressively, embarrassingly, publicly in love with Party B (Cathy) at all times." data-hk="甲方（Shreyas）同意在任何時候以積極、令人尷尬、公開的方式愛乙方（Cathy）。">Party A (Shreyas) agrees to be aggressively, embarrassingly, publicly in love with Party B (Cathy) at all times.</span>
+              <span data-en="I shall be embarrassingly, publicly, loudly in love with you. This will not be toned down. You have been warned."
+                    data-hk="我將以令人尷尬、公開、大聲嘅方式愛你。呢個唔會被調低音量。你已被警告。">I shall be embarrassingly, publicly, loudly in love with you. This will not be toned down. You have been warned.</span>
             </li>
+
             <li class="ct-item">
               <span class="cn">§ II</span>
-              <span data-en="Party A shall never, under any circumstances, choose sleep over answering Party B's 3am texts. (Exceptions: death. Maybe.)" data-hk="甲方在任何情況下都不得選擇睡覺而不回覆乙方凌晨3時的訊息。（例外情況：死亡。也許。）">Party A shall never, under any circumstances, choose sleep over answering Party B's 3am texts. (Exceptions: death. Maybe.)</span>
+              <span data-en="I will answer your 3am texts. Every single one. Sleep is a concept that simply does not apply when you're awake."
+                    data-hk="我將回覆你凌晨3點嘅每一條訊息。每一條。當你醒著，瞓覺係個唔適用嘅概念。">I will answer your 3am texts. Every single one. Sleep doesn't apply when you're awake.</span>
             </li>
+
             <li class="ct-item">
               <span class="cn">§ III</span>
-              <span data-en="Party A accepts full responsibility for blanket theft, accidental snack consumption, and general chaos." data-hk="甲方對偷被子、意外食零食及一般混亂承擔全部責任。">Party A accepts full responsibility for blanket theft, accidental snack consumption, and general chaos.</span>
+              <span data-en="I formally accept full legal responsibility for: (a) all snack theft, (b) blanket migration, (c) stealing your hoodies on purpose while claiming it was an accident."
+                    data-hk="我正式承擔全部法律責任：(a) 所有零食偷竊，(b) 被子遷移，(c) 故意偷你件衞衣但聲稱係意外。">I formally accept responsibility for: snack theft, blanket migration, and stealing your hoodies while claiming it was an accident.</span>
             </li>
+
             <li class="ct-item">
               <span class="cn">§ IV</span>
-              <span data-en="Party A vows to cheer embarrassingly loud at every one of Party B's wins, no matter how small." data-hk="甲方誓言為乙方每次勝利以令人尷尬的大聲喝采，無論大小。">Party A vows to cheer embarrassingly loud at every one of Party B's wins, no matter how small.</span>
+              <span data-en="On your worst days, I will show up. Not necessarily with solutions. But with snacks, silence, and the stubborn refusal to leave."
+                    data-hk="在你最差嘅日子，我會出現。未必帶著解決方法。但帶著零食、沉默、同頑固拒絕離開嘅決心。">On your worst days, I will show up — with snacks, silence, and the stubborn refusal to leave.</span>
             </li>
+
             <li class="ct-item">
               <span class="cn">§ V</span>
-              <span data-en="In the event Party A becomes the worst person in the world, Party B reserves the right to yell at him. Party A agrees this is fair." data-hk="如甲方成為世上最差嘅人，乙方保留對其大喊大叫的權利。甲方同意這是公平的。">In the event Party A becomes the worst person in the world, Party B reserves the right to yell at him. Party A agrees this is fair.</span>
+              <span data-en="I will cheer embarrassingly loud at every single one of your wins. Even the tiny ones. ESPECIALLY the tiny ones. You deserve a standing ovation for existing, honestly."
+                    data-hk="我將為你每一次勝利尷尬咁大聲歡呼。連細嘅都係。尤其係細嘅。老實講，你只係因為存在就值得起立鼓掌。">I will embarrassingly loud-cheer every single win of yours. Even the tiny ones. Especially those.</span>
             </li>
+
+            <li class="ct-item">
+              <span class="cn">§ VI</span>
+              <span data-en="I vow to keep making you laugh. Even badly. Especially badly. The worse the joke, the harder I'll commit to it."
+                    data-hk="我發誓繼續令你大笑。即使笑料很差。尤其係很差嗰時。笑話越差，我就越投入。">I vow to keep making you laugh. Even badly. Especially badly. The worse the joke, the harder I commit.</span>
+            </li>
+
             <li class="ct-item">
               <span class="cn">§ VII</span>
-              <span data-en="On Party B's worst days — the ones where nothing is funny — Party A agrees to simply be there. No jokes required. Just him, holding her hand, for as long as it takes." data-hk="喺乙方最差嘅日子 — 嗰啲笑唔出嘅日子 — 甲方同意淨係陪喺度。唔需要講笑。淨係佢，揸住佢隻手，幾耐都得。">On Party B's worst days — the ones where nothing is funny — Party A agrees to simply be there. No jokes required. Just him, holding her hand, for as long as it takes.</span>
+              <span data-en="I will support your career, your dreams, your chaotic ambitions, and every plan you come up with at 11pm that sounds absolutely unhinged but you're clearly brilliant so I'm in."
+                    data-hk="我將支持你嘅事業、夢想、混亂雄心，同每個你晚上11點想出嚟聽起來完全瘋狂但你明顯係天才所以我支持嘅計劃。">I will support your career, your dreams, and every 11pm plan that sounds unhinged but you're clearly a genius so I'm in.</span>
             </li>
+
             <li class="ct-item">
               <span class="cn">§ VIII</span>
-              <span data-en="Party A vows to choose Party B again every single morning — especially the ordinary ones. Forever is just a very long string of ordinary days, and Party A wants every last one of them with her." data-hk="甲方誓言每朝早都會再次揀乙方 — 尤其係嗰啲平凡嘅日子。永遠只不過係一連串好長嘅平凡日子，而甲方想同佢一齊度過每一日。">Party A vows to choose Party B again every single morning — especially the ordinary ones. Forever is just a very long string of ordinary days, and Party A wants every last one of them with her.</span>
+              <span data-en="This contract contains no exit clause, no expiration date, and no fine print. It is permanent. Like glitter. Impossible to remove. I'm not apologising for that."
+                    data-hk="本合約冇終止條款、冇到期日、冇細字。係永久嘅。就好似閃粉咁。無法去除。我唔為此道歉。">This contract has no exit clause, no expiry, no fine print. It's permanent. Like glitter. I'm not apologising. ✨</span>
             </li>
-            <li class="ct-item">
-              <span class="cn">§ IX</span>
-              <span data-en="Party A acknowledges he will mess up sometimes. He promises to say sorry properly, learn, and keep trying — because Party B is worth becoming a better person for." data-hk="甲方承認佢有時會犯錯。佢承諾會好好咁道歉、學習、繼續努力 — 因為乙方值得佢成為一個更好嘅人。">Party A acknowledges he will mess up sometimes. He promises to say sorry properly, learn, and keep trying — because Party B is worth becoming a better person for.</span>
-            </li>
-            <li class="ct-item">
-              <span class="cn">§ X</span>
-              <span data-en="This contract has no termination clause. It's permanent. Like glitter. Sorry." data-hk="本合約沒有終止條款。係永久的。就像閃粉一樣。對唔住。">This contract has no termination clause. It's permanent. Like glitter. Sorry.</span>
-            </li>
+
           </ul>
-          <p class="ct-sign"
-             data-en="By continuing to read this webpage, you have electronically signed this contract. — The Management"
-             data-hk="繼續閱讀本網頁即代表您已電子簽署本合約。— 管理層">
-            By continuing to read this webpage, you have electronically signed this contract.<br>
-            <em>— The Management</em>
-          </p>
+        </div>
+
+        <div class="ct-sign">
+          <span data-en="Witnessed by: the moon, one imaginary cat, and all 3am thoughts that ever mentioned your name."
+                data-hk="見證人：月亮、一隻想象中嘅貓、同所有曾提及你名字嘅凌晨3點思緒。">
+            Witnessed by: the moon, one imaginary cat, and all 3am thoughts that ever mentioned your name.
+          </span><br><br>
+          <em>— Shreyas, extremely serious about this ✍️</em>
+        </div>
+
+        <div style="margin-top:24px;text-align:center">
+          <p class="q-prompt" data-en="Do you accept these (very reasonable) terms? ✍️"
+             data-hk="你接唔接受呢啲（非常合理嘅）條款？✍️">Do you accept these (very reasonable) terms? ✍️</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap" id="contractBtns">
+            <button class="q-pick" onclick="signContract(this,'agree')"
+                    data-en="I accept (I had no choice anyway) ✍️🥹"
+                    data-hk="我同意（我本來就冇得揀）✍️🥹">I accept (I had no choice anyway) ✍️🥹</button>
+            <button class="q-pick ghost" onclick="signContract(this,'lawyer')"
+                    data-en="My lawyer is reviewing this 📞😏"
+                    data-hk="俾我打俾律師先 📞😏">My lawyer is reviewing this 📞😏</button>
+          </div>
+          <p class="q-response" id="contractResp"></p>
+          <div id="nextBtn" style="display:none;margin-top:20px">
+            <button class="btn btn-primary" onclick="goNext()">
+              <span data-en="Chapter 4 — The Poem →" data-hk="第四章 — 一首詩 →">Chapter 4 — The Poem →</span>
+            </button>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
   <div class="page-nav">
     <a href="evidence.html" class="page-link">← Chapter 2</a>
     <span class="spacer"></span>
-    <a href="poem.html" class="page-link">Chapter 4 →</a>
+    <button onclick="goNext()">Chapter 4 →</button>
   </div>
 
   <div class="ticker-wrap">
     <div class="ticker-label">🔴 BREAKING</div>
     <div class="ticker-track"><div class="ticker-content">
-      <span>Contract signed electronically by every visitor. No refunds. &nbsp;•&nbsp;</span>
-      <span>Legal experts confirm: love is legally binding in this jurisdiction. &nbsp;•&nbsp;</span>
-      <span>§ VI enforced. Termination impossible. Like glitter. &nbsp;•&nbsp;</span>
+      <span>Contract filed. 8 articles. Zero exit clauses. Legal team unavailable (also distracted by snacks). &nbsp;•&nbsp;</span>
+      <span>§ III officially the most relatable clause. Sources: blanket theft incident, 2024. &nbsp;•&nbsp;</span>
+      <span>Stamp of approval pending. Your signature required. &nbsp;•&nbsp;</span>
     </div></div>
   </div>
 
   <canvas id="confettiCanvas"></canvas>
-  
-    <script>const _PAGE="contract.html";const _PAGE_IDX=2;</script>
-  <script src="script.js?v=6"></script>
+  <script>const _PAGE="contract.html"; const _PAGE_IDX=2;</script>
+  <script src="script.js?v=7"></script>
+  <script>
+    function signContract(btn, key) {
+      document.getElementById('contractBtns').querySelectorAll('.q-pick').forEach(b => { b.disabled=true; if(b!==btn) b.classList.add('faded'); });
+      btn.classList.add('selected');
+      const msgs = {
+        agree:  { en:"Signed, sealed, yours. No takebacks ever. ✍️💖", hk:"簽咗、封咗、係你嘅喇。永遠唔可以反悔。✍️💖" },
+        lawyer: { en:"Your lawyer called. They reviewed it. They said yes. 📞😏", hk:"你律師打嚟。佢睇過。佢話yes。📞😏" }
+      };
+      const r = document.getElementById('contractResp');
+      r.textContent = msgs[key][lang]; r.classList.add('show');
+      document.getElementById('nextBtn').style.display = 'block';
+    }
+  </script>
 </body>
 </html>

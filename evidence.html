@@ -5,93 +5,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chapter 2 — The Evidence 🔬</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css?v=3"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=7"/>
 </head>
 <body>
   <canvas id="starsCanvas"></canvas>
   <div class="particles" id="particles"></div>
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()"><span id="langLabel">廣東話 🇭🇰</span></button>
+  <button class="lang-toggle" onclick="toggleLang()"><span id="langLabel">廣東話 🇭🇰</span></button>
+
   <nav class="chapter-nav">
+    <span class="chapter-brand">C &amp; S</span>
     <div class="chapter-dots">
-      <a href="index.html" class="cdot page-link" title="Ch 1 — The Beginning"></a>
-      <a href="evidence.html" class="cdot active" title="Ch 2 — The Evidence"></a>
-      <a href="contract.html" class="cdot page-link" title="Ch 3 — The Contract"></a>
-      <a href="poem.html" class="cdot page-link" title="Ch 4 — The Poem"></a>
-      <a href="quiz.html" class="cdot page-link" title="Ch 5 — The Science"></a>
-      <a href="husband.html" class="cdot page-link" title="Ch 6 — The Resume"></a>
-      <a href="proposal.html" class="cdot page-link" title="Ch 7 — The Proposal"></a>
-      <a href="love.html" class="cdot page-link" title="Ch 8 — The Question"></a>
-      <a href="yes.html" class="cdot page-link" title="Ch 9 — She Said Yes"></a>
+      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
+      <a href="evidence.html" class="cdot active"    title="Ch 2 — The Evidence"></a>
+      <a href="contract.html" class="cdot"           title="Ch 3"></a>
+      <a href="poem.html"     class="cdot"           title="Ch 4"></a>
+      <a href="quiz.html"     class="cdot"           title="Ch 5"></a>
+      <a href="husband.html"  class="cdot"           title="Ch 6"></a>
+      <a href="proposal.html" class="cdot"           title="Ch 7"></a>
+      <a href="love.html"     class="cdot"           title="Ch 8"></a>
+      <a href="yes.html"      class="cdot"           title="Ch 9"></a>
     </div>
     <span class="chapter-label" data-en="Chapter 2 / 9" data-hk="第 二 章 / 9">Chapter 2 / 9</span>
   </nav>
-  <section class="sec" id="evidence">
-    <div class="deco d1">🔬</div><div class="deco d2">📊</div><div class="deco d3">🧬</div><div class="deco d4">📰</div>
+
+  <section class="sec">
+    <div class="deco d1">🔬</div><div class="deco d2">📋</div>
+    <div class="deco d3">⚖️</div><div class="deco d4">🏛️</div>
     <div class="wrap">
-      <div class="sec-label reveal"><span data-en="🔬 submitted to the supreme court of love" data-hk="🔬 已提交愛情最高法院">🔬 submitted to the supreme court of love</span></div>
-      <h2 class="reveal" data-delay="100" data-en="The Evidence" data-hk="呈堂證供">The Evidence</h2>
-      <p class="sec-note reveal" data-delay="200"
-         data-en="Exhibit A through F. All evidence notarised by a very official cat."
-         data-hk="證物A至F。所有證據已由一隻非常官方嘅貓公證。">Exhibit A through F. All evidence notarised by a very official cat.</p>
-      <div class="ev-grid reveal" data-delay="300">
+
+      <div class="tag reveal"
+           data-en="🔬 submitted to the supreme court of feelings"
+           data-hk="🔬 已提交感情最高法院">🔬 submitted to the supreme court of feelings</div>
+
+      <h2 class="reveal" data-delay="120"
+          data-en="The Evidence, Your Honour"
+          data-hk="呈堂證供，法官大人">The Evidence, Your Honour</h2>
+
+      <p class="sec-note reveal" data-delay="240"
+         data-en="Exhibit A through F. All notarised by a very official (and very cute) imaginary cat."
+         data-hk="證物A至F。由一隻非常官方（非常得意）嘅想象中貓咪公證。">
+        Exhibit A through F. Notarised by a very official (very cute) imaginary cat. 🐱
+      </p>
+
+      <div class="ev-grid reveal" data-delay="360">
         <div class="ev-card">
           <div class="ev-top">📊 Exhibit A</div>
           <div class="ev-big">∞</div>
-          <div class="ev-label" data-en="Times you've made Shreyas smile" data-hk="你令Shreyas微笑嘅次數">Times you've made Shreyas smile</div>
-          <div class="ev-note" data-en="(calculator broke)" data-hk="（計算機壞咗）">(calculator broke)</div>
+          <div class="ev-label" data-en="Times you've made me smile like an idiot" data-hk="你令我傻笑嘅次數">Times you've made me smile like an idiot</div>
+          <div class="ev-note" data-en="(my calculator surrendered)" data-hk="（我個計算機已投降）">(my calculator surrendered)</div>
         </div>
+
         <div class="ev-card">
           <div class="ev-top">🧬 Exhibit B</div>
-          <div class="ev-big">0.00001%</div>
-          <div class="ev-label" data-en="Chance a better person exists" data-hk="更好嘅人存在嘅機率">Chance a better person exists</div>
-          <div class="ev-note" data-en="(margin of error: also 0)" data-hk="（誤差範圍：同樣係0）">(margin of error: also 0)</div>
+          <div class="ev-big">0.001%</div>
+          <div class="ev-label" data-en="Probability someone cuter than you exists" data-hk="有人比你更可愛嘅機率">Probability someone cuter than you exists</div>
+          <div class="ev-note" data-en="(margin of error: also basically zero)" data-hk="（誤差範圍：都係差唔多零）">(margin of error: also basically zero)</div>
         </div>
+
         <div class="ev-card">
           <div class="ev-top">📰 Exhibit C</div>
-          <div class="ev-headline" data-en="&quot;LOCAL WOMAN TOO AMAZING,<br>SHREYAS FILES FOR EMOTIONAL BANKRUPTCY&quot;" data-hk="&quot;本地女子過於優秀，<br>Shreyas申請情感破產&quot;">&quot;LOCAL WOMAN TOO AMAZING,<br>SHREYAS FILES FOR EMOTIONAL BANKRUPTCY&quot;</div>
+          <div class="ev-headline" data-en="&quot;LOCAL MAN LOSES TRAIN OF THOUGHT EVERY TIME CATHY SMILES — ONGOING CRISIS&quot;" data-hk="&quot;本地男子每次Cathy微笑時完全失憶 — 持續危機&quot;">"LOCAL MAN LOSES TRAIN OF THOUGHT EVERY TIME CATHY SMILES — ONGOING CRISIS"</div>
           <div class="ev-note" data-en="— The Daily Heart, 2025" data-hk="— 每日心報，2025年">— The Daily Heart, 2025</div>
         </div>
+
         <div class="ev-card">
-          <div class="ev-top">🧪 Exhibit D</div>
+          <div class="ev-top">⏰ Exhibit D</div>
           <div class="ev-big">3am</div>
-          <div class="ev-label" data-en="Time Shreyas still thinks about you" data-hk="Shreyas仍然掛住你嘅時間">Time Shreyas still thinks about you</div>
-          <div class="ev-note" data-en="(also 3pm. and always.)" data-hk="（同埋下午3時。一直都係。）">(also 3pm. and always.)</div>
+          <div class="ev-label" data-en="Time I still think about you" data-hk="我仍在想你的時間">Time I still think about you</div>
+          <div class="ev-note" data-en="(also 3pm, 7am, always, constantly)" data-hk="（同埋下午3點、早上7點、永遠、一直）">(also 3pm, 7am, always, constantly)</div>
         </div>
+
         <div class="ev-card">
-          <div class="ev-top">🏆 Exhibit E</div>
+          <div class="ev-top">📈 Exhibit E</div>
           <div class="ev-big">100%</div>
-          <div class="ev-label" data-en="Probability Cathy is the one" data-hk="Cathy係那個人嘅機率">Probability Cathy is the one</div>
-          <div class="ev-note" data-en="(peer reviewed by Shreyas's heart)" data-hk="（已由Shreyas嘅心同行評審）">(peer reviewed by Shreyas's heart)</div>
+          <div class="ev-label" data-en="Of my brain: occupied by you" data-hk="我大腦：被你佔據">Of my brain: occupied by you</div>
+          <div class="ev-note" data-en="(previously used for: logic, sleep, meals)" data-hk="（之前用來：邏輯、睡眠、三餐）">(previously used for: logic, sleep, meals)</div>
         </div>
+
         <div class="ev-card">
-          <div class="ev-top">💌 Exhibit F</div>
+          <div class="ev-top">🌐 Exhibit F</div>
           <div class="ev-big">1</div>
-          <div class="ev-label" data-en="Website built just for you" data-hk="專門為你建立嘅網站">Website built just for you</div>
-          <div class="ev-note" data-en="(slightly dramatic, very sincere)" data-hk="（有少少戲劇化，非常真誠）">(slightly dramatic, very sincere)</div>
+          <div class="ev-label" data-en="Entire website. Built from scratch. For you." data-hk="一個完整網站。由零開始。為你而建。">Entire website. Built from scratch. For you.</div>
+          <div class="ev-note" data-en="(my lawyer said this definitely counts)" data-hk="（我律師話呢個絕對算數）">(my lawyer said this definitely counts)</div>
         </div>
       </div>
-      <p class="ev-verdict reveal" data-delay="500"
-         data-en="VERDICT: The court rules in favour of love. The defendant (Shreyas's heart) has no objections whatsoever."
-         data-hk="裁決：法院裁定愛情勝訴。被告（Shreyas嘅心）表示完全無異議。">
-        VERDICT: The court rules in favour of love. The defendant (Shreyas's heart) has no objections whatsoever.
-      </p>
+
+      <div class="ev-verdict reveal" data-delay="500"
+           data-en="The prosecution rests. The defence never showed up (reportedly distracted by snacks). Evidence is overwhelming. Only one logical conclusion: you are absolutely, embarrassingly, irreversibly loved. 💖"
+           data-hk="控方結案。辯方從未出現（據報被零食分心）。證據確鑿。唯一合乎邏輯嘅結論：你被絕對、令人尷尬、不可逆轉咁愛著。💖">
+        The prosecution rests. The defence never showed up (reportedly distracted by snacks). Evidence: overwhelming. Only one logical conclusion: you are absolutely, embarrassingly, irreversibly loved. 💖
+      </div>
+
+      <div style="margin-top:24px" class="reveal" data-delay="600">
+        <p class="q-prompt" data-en="Verdict, your honour? ⚖️" data-hk="你嘅裁決，法官大人？⚖️">Verdict, your honour? ⚖️</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap" id="verdictBtns">
+          <button class="q-pick" onclick="giveVerdict(this,'guilty')"
+                  data-en="Guilty of being adorable 😤" data-hk="可愛罪成立 😤">Guilty of being adorable 😤</button>
+          <button class="q-pick ghost" onclick="giveVerdict(this,'convinced')"
+                  data-en="Case closed with a kiss 💋" data-hk="以一個吻結案 💋">Case closed with a kiss 💋</button>
+        </div>
+        <p class="q-response" id="verdictResp"></p>
+        <div id="nextBtn" style="display:none;margin-top:20px;text-align:center">
+          <button class="btn btn-primary" onclick="goNext()">
+            <span data-en="Chapter 3 — The Contract →" data-hk="第三章 — 合約 →">Chapter 3 — The Contract →</span>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
-    <div class="page-nav">
+
+  <div class="page-nav">
     <a href="index.html" class="page-link">← Chapter 1</a>
     <span class="spacer"></span>
-    <a href="contract.html" class="page-link">Chapter 3 →</a>
+    <button onclick="goNext()">Chapter 3 →</button>
   </div>
+
   <div class="ticker-wrap">
-    <div class="ticker-label" data-en="🔴 BREAKING" data-hk="🔴 突發">🔴 BREAKING</div>
+    <div class="ticker-label">🔴 BREAKING</div>
     <div class="ticker-track"><div class="ticker-content">
-      <span>Evidence submitted. Jury deliberating. All signs point to YES. &nbsp;•&nbsp;</span>
-      <span>Scientists confirm: Cathy's smile is classified as a natural disaster. &nbsp;•&nbsp;</span>
-      <span>Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;</span>
+      <span>Exhibit F (one entire website) admitted as evidence. Court stunned. &nbsp;•&nbsp;</span>
+      <span>Defence never arrived. Reportedly distracted by snacks. &nbsp;•&nbsp;</span>
+      <span>All 6 exhibits point to the same conclusion. You know what it is. &nbsp;•&nbsp;</span>
     </div></div>
   </div>
+
   <canvas id="confettiCanvas"></canvas>
-  <script>const _PAGE="evidence.html";const _PAGE_IDX=1;</script>
-  <script src="script.js?v=6"></script>
-</body></html>
+  <script>const _PAGE="evidence.html"; const _PAGE_IDX=1;</script>
+  <script src="script.js?v=7"></script>
+  <script>
+    function giveVerdict(btn, key) {
+      document.getElementById('verdictBtns').querySelectorAll('.q-pick').forEach(b => { b.disabled=true; if(b!==btn) b.classList.add('faded'); });
+      btn.classList.add('selected');
+      const msgs = {
+        guilty:    { en:"Guilty as charged. I'll serve a life sentence with you 😤💖", hk:"可愛罪成立。我願意同你一齊服無期徒刑 😤💖" },
+        convinced: { en:"Court is VERY pleased. Case closed. With a big kiss. 💋", hk:"法庭非常滿意。案件結束。帶一個大吻。💋" }
+      };
+      const r = document.getElementById('verdictResp');
+      r.textContent = msgs[key][lang]; r.classList.add('show');
+      document.getElementById('nextBtn').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

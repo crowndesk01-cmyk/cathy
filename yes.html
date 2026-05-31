@@ -5,70 +5,154 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chapter 9 — She Said YES 🎉</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css?v=3"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=7"/>
+  <style>
+    .yes-title {
+      font-family:'Dancing Script',cursive; font-weight:700;
+      font-size:clamp(2.8rem,9vw,5rem); line-height:1.1;
+      background:linear-gradient(135deg,#fbbf24 0%,#f472b6 40%,#a78bfa 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      margin:12px 0 8px;
+    }
+    .cert-box {
+      background:rgba(251,191,36,.06);
+      border:1px solid rgba(251,191,36,.25);
+      border-radius:18px; padding:22px 20px; margin:20px 0;
+      text-align:center;
+    }
+    .cert-title {
+      font-family:'Dancing Script',cursive; font-size:1.5rem;
+      background:linear-gradient(135deg,#fbbf24,#f472b6);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      margin-bottom:8px;
+    }
+    .cert-body { font-size:.88rem; color:var(--text-s); line-height:1.8; }
+    .cert-body strong { color:var(--text); }
+    .cert-sig {
+      font-family:'Dancing Script',cursive; font-size:1.3rem;
+      color:var(--gold); margin-top:12px; display:block;
+    }
+    .firework { font-size:2rem; display:inline-block; animation:fireworkPop .6s cubic-bezier(.34,1.8,.64,1) both; }
+    @keyframes fireworkPop { from { opacity:0; transform:scale(0) rotate(-20deg); } }
+    .firework:nth-child(1) { animation-delay:.1s; }
+    .firework:nth-child(2) { animation-delay:.25s; }
+    .firework:nth-child(3) { animation-delay:.4s; }
+    .firework:nth-child(4) { animation-delay:.55s; }
+    .firework:nth-child(5) { animation-delay:.7s; }
+  </style>
 </head>
 <body>
   <canvas id="starsCanvas"></canvas>
   <div class="particles" id="particles"></div>
-
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
-    <span id="langLabel">廣東話 🇭🇰</span>
-  </button>
+  <button class="lang-toggle" onclick="toggleLang()"><span id="langLabel">廣東話 🇭🇰</span></button>
 
   <nav class="chapter-nav">
+    <span class="chapter-brand">C &amp; S</span>
     <div class="chapter-dots">
-      <a href="index.html" class="cdot page-link" title="Ch 1 — The Beginning"></a>
-      <a href="evidence.html" class="cdot page-link" title="Ch 2 — The Evidence"></a>
-      <a href="contract.html" class="cdot page-link" title="Ch 3 — The Contract"></a>
-      <a href="poem.html" class="cdot page-link" title="Ch 4 — The Poem"></a>
-      <a href="quiz.html" class="cdot page-link" title="Ch 5 — The Science"></a>
-      <a href="husband.html" class="cdot page-link" title="Ch 6 — The Resume"></a>
-      <a href="proposal.html" class="cdot page-link" title="Ch 7 — The Proposal"></a>
-      <a href="love.html" class="cdot page-link" title="Ch 8 — The Question"></a>
-      <a href="yes.html" class="cdot active" title="Ch 9 — She Said Yes"></a>
+      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 2"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 3"></a>
+      <a href="poem.html"     class="cdot page-link" title="Ch 4"></a>
+      <a href="quiz.html"     class="cdot page-link" title="Ch 5"></a>
+      <a href="husband.html"  class="cdot page-link" title="Ch 6"></a>
+      <a href="proposal.html" class="cdot page-link" title="Ch 7"></a>
+      <a href="love.html"     class="cdot page-link" title="Ch 8"></a>
+      <a href="yes.html"      class="cdot active"    title="Ch 9 — She Said Yes"></a>
     </div>
-    <span class="chapter-label" data-en="Chapter 9 / 9 — THE END 🎉" data-hk="第 9 章 / 9 — 完結 🎉">Chapter 9 / 9 — THE END 🎉</span>
+    <span class="chapter-label" data-en="Chapter 9 / 9 — THE END 🎉" data-hk="第 九 章 / 9 — 完結 🎉">Chapter 9 / 9 — THE END 🎉</span>
   </nav>
 
-  <section class="sec" id="celebration">
-    <div class="deco d1">🎉</div>
-    <div class="deco d2">💍</div>
-    <div class="deco d3">🥂</div>
-    <div class="deco d4">🎊</div>
+  <section class="sec">
+    <div class="deco d1">🎉</div><div class="deco d2">💍</div>
+    <div class="deco d3">🥂</div><div class="deco d4">🎊</div>
     <div class="wrap">
-      <div class="card glass celebrate-card reveal">
-        <span id="celebEmoji">🎉</span>
-        <div class="sec-label">
-          <span data-en="🎊 she said yes!!!" data-hk="🎊 佢答應咗!!!">🎊 she said yes!!!</span>
+      <div class="card celebrate-card reveal">
+
+        <div style="margin-bottom:8px">
+          <span class="firework">🎉</span>
+          <span class="firework">💖</span>
+          <span class="firework">✨</span>
+          <span class="firework">🎊</span>
+          <span class="firework">💍</span>
         </div>
-        <h2 class="grad-text" data-en="The best chapter." data-hk="最好的一章。">The best chapter.</h2>
+
+        <div class="tag"
+             data-en="🎊 she said yes!!!"
+             data-hk="🎊 佢答應咗!!!">🎊 she said yes!!!</div>
+
+        <p class="yes-title" id="celebEmoji">She said yes.</p>
+
         <p class="celeb-sub"
-           data-en="Historians will write about this day. Probably."
-           data-hk="歷史學家將會記載這一天。可能。">
-          Historians will write about this day. Probably.
+           data-en="Historians will write about this day. (I will make them.)"
+           data-hk="歷史學家將會記載呢一日。（我會逼佢哋。）">
+          Historians will write about this day. (I will make them.)
         </p>
 
         <div class="badges">
-          <span class="badge" data-en="💍 Future Wife Confirmed" data-hk="💍 未來太太已確認">💍 Future Wife Confirmed</span>
-          <span class="badge" data-en="🍿 Snack Rights: Shared" data-hk="🍿 零食權：共享">🍿 Snack Rights: Shared</span>
-          <span class="badge" data-en="🛏️ Blanket War: Ongoing" data-hk="🛏️ 被子大戰：持續中">🛏️ Blanket War: Ongoing</span>
-          <span class="badge" data-en="✅ 'No' Button: Retired" data-hk="✅「唔係」掣：已退役">✅ 'No' Button: Retired</span>
+          <span class="badge" data-en="💍 My Person: Confirmed" data-hk="💍 我嘅人：已確認">💍 My Person: Confirmed</span>
+          <span class="badge" data-en="🍿 Snack Rights: Perpetually Negotiated" data-hk="🍿 零食權：永久談判中">🍿 Snack Rights: Perpetually Negotiated</span>
+          <span class="badge" data-en="🛏️ Blanket Wars: Forever Ongoing" data-hk="🛏️ 被子大戰：永遠持續">🛏️ Blanket Wars: Forever Ongoing</span>
+          <span class="badge" data-en="✅ 'No' Button: Retired. Gone. At Peace." data-hk="✅「唔係」掣：退役。離開。安息。">✅ 'No' Button: Retired. Gone. At Peace.</span>
           <span class="badge" data-en="💖 Love Level: ∞" data-hk="💖 愛情等級：∞">💖 Love Level: ∞</span>
+          <span class="badge" data-en="🌍 Travel Plans: Everywhere. Together." data-hk="🌍 旅行計劃：去所有地方。一齊。">🌍 Travel Plans: Everywhere. Together.</span>
+        </div>
+
+        <div class="cert-box">
+          <p class="cert-title" data-en="Official Certificate of Love 💖" data-hk="官方愛情證書 💖">Official Certificate of Love 💖</p>
+          <div class="cert-body" id="certEn">
+            This certifies that <strong>Cathy</strong> has completed all 9 chapters,
+            survived the blanket crimes, endured the terrible puns,
+            reviewed the evidence, signed the contract,
+            and answered <em>the</em> question.<br><br>
+            In doing so, she has made <strong>Shreyas</strong>
+            the most dramatic, most grateful, most ridiculously happy person on this planet.<br><br>
+            From here: the snack thefts, the 3am conversations, the airports,
+            the hard days, the soft ones, the adventures,
+            the ordinary Tuesdays — and all the extraordinary ones in between.<br><br>
+            <strong>We're doing all of it.</strong> 🥹
+          </div>
+          <div class="cert-body" id="certHk" style="display:none">
+            茲證明 <strong>Cathy</strong> 已完成全部9章，
+            捱過咗被子罪案，忍受咗爛諧音梗，
+            審閱咗證據，簽署咗合約，
+            並回答咗<em>那個</em>問題。<br><br>
+            咁樣做，佢令到 <strong>Shreyas</strong>
+            成為呢個地球上最戲劇化、最感激、最荒謬快樂嘅人。<br><br>
+            由呢刻起：零食偷竊、凌晨3點嘅對話、機場、
+            艱難嘅日子、溫柔嘅日子、冒險、
+            平凡嘅星期二——同所有中間非凡嘅日子。<br><br>
+            <strong>我哋一齊去做所有嘢。</strong> 🥹
+          </div>
+          <span class="cert-sig">— Shreyas &amp; Cathy 💍</span>
         </div>
 
         <div class="celeb-text">
-          <p data-en="Cathy — you just made Shreyas the happiest, most dramatic, most unbelievably lucky person on this entire planet." data-hk="Cathy — 你令Shreyas成為整個地球上最快樂、最戲劇化、最難以置信地幸運嘅人。">Cathy — you just made Shreyas the happiest, most dramatic, most unbelievably lucky person on this entire planet.</p>
-          <p data-en="This website took way too long to build. You are worth every second of it. And every burnt piece of toast." data-hk="呢個網站花咗好耐去建立。你值得每一秒。同每一片焗焦嘅多士。">This website took way too long to build. You are worth every second of it. And every burnt piece of toast.</p>
-          <p data-en="From here on, it's you and me — the snack thefts, the blanket wars, the 3am memes, the airports, the hard days, the soft ones, and a few thousand ordinary Tuesdays. I can't wait for all of them." data-hk="由呢一刻開始，就係你同我 — 偷零食、被子大戰、凌晨三點嘅表情包、機場、艱難嘅日子、溫柔嘅日子、同幾千個平凡嘅星期二。我等唔切去經歷全部。">From here on, it's you and me — the snack thefts, the blanket wars, the 3am memes, the airports, the hard days, the soft ones, and a few thousand ordinary Tuesdays. I can't wait for all of them.</p>
-          <p data-en="Now let's go get those snacks." data-hk="而家我哋去攞嗰啲零食喇。">Now let's go get those snacks. 🍿</p>
+          <p data-en="Cathy — you just made me the happiest, most dramatic, most unbelievably lucky person alive."
+             data-hk="Cathy — 你令我成為世界上最快樂、最戲劇化、最難以置信地幸運嘅人。">
+            Cathy — you just made me the happiest, most dramatic, most unbelievably lucky person alive.
+          </p>
+          <p data-en="This website took embarrassingly long to build. You are worth every single second of it. Every burnt piece of toast. Every terrible pun."
+             data-hk="呢個網站花咗尷尬地長時間去建立。你值得每一秒。每一片焗焦嘅多士。每個爛諧音梗。">
+            This website took embarrassingly long to build. You're worth every second. Every burnt toast. Every terrible pun.
+          </p>
+          <p data-en="I can't wait for the adventures. The travel. The ordinary Tuesdays. The extraordinary ones. All of it — with you."
+             data-hk="我等唔切去迎接冒險。旅行。平凡嘅星期二。非凡嘅日子。全部——同你一齊。">
+            I can't wait for the adventures, the travel, the ordinary Tuesdays, and the extraordinary ones. All of it — with you.
+          </p>
         </div>
 
-        <span class="dancer" id="celebDancer">💃</span>
-        <br><br>
-        <button class="btn btn-primary" onclick="launchConfetti()">
-          <span data-en="🎊 Celebrate Again!" data-hk="🎊 再慶祝一次！">🎊 Celebrate Again!</span>
-        </button>
+        <span class="dancer">💃</span>
+
+        <div style="margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="launchConfetti()">
+            <span data-en="🎊 Celebrate Again!" data-hk="🎊 再慶祝一次！">🎊 Celebrate Again!</span>
+          </button>
+          <a href="index.html" class="btn btn-ghost">
+            <span data-en="↩ Read from Chapter 1" data-hk="↩ 由第一章重讀">↩ Read from Chapter 1</span>
+          </a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -76,34 +160,32 @@
   <div class="page-nav">
     <a href="love.html" class="page-link">← Chapter 8</a>
     <span class="spacer"></span>
-    <a href="index.html" class="page-link">Start Over 🔄</a>
   </div>
 
   <div class="ticker-wrap">
     <div class="ticker-label">🔴 BREAKING</div>
     <div class="ticker-track"><div class="ticker-content">
-      <span>SHE SAID YES. Shreyas reportedly cannot stop smiling. &nbsp;•&nbsp;</span>
-      <span>'No' button permanently retired. Thrown into the sun. &nbsp;•&nbsp;</span>
-      <span>Snack treaty signed. Both parties satisfied. &nbsp;•&nbsp;</span>
-      <span>Blanket war ongoing. No resolution expected. Nation at peace. &nbsp;•&nbsp;</span>
-      <span>Love Level: ∞. Measuring equipment destroyed. &nbsp;•&nbsp;</span>
+      <span data-en="SHE SAID YES. Shreyas reportedly cannot stop smiling. Doctors say it's permanent. &nbsp;•&nbsp;" data-hk="佢答應咗。Shreyas據報停唔到笑。醫生話係永久性嘅。&nbsp;•&nbsp;">SHE SAID YES. Shreyas reportedly cannot stop smiling. Doctors say it's permanent. &nbsp;•&nbsp;</span>
+      <span data-en="'No' button permanently retired. Thrown into the sun. At peace. &nbsp;•&nbsp;" data-hk="「唔係」掣永久退役。被扔進太陽。安息。&nbsp;•&nbsp;">'No' button permanently retired. Thrown into the sun. At peace. &nbsp;•&nbsp;</span>
+      <span data-en="Snack treaty signed. Both parties satisfied. Blanket war ongoing. Nation at peace. &nbsp;•&nbsp;" data-hk="零食協議已簽署。雙方滿意。被子大戰持續。國家和平。&nbsp;•&nbsp;">Snack treaty signed. Blanket war ongoing. Nation at peace. &nbsp;•&nbsp;</span>
+      <span data-en="Love level: ∞. Measuring equipment destroyed. Scientists weeping. &nbsp;•&nbsp;" data-hk="愛情等級：∞。測量設備已損毀。科學家哭泣中。&nbsp;•&nbsp;">Love level: ∞. Measuring equipment destroyed. Scientists weeping. &nbsp;•&nbsp;</span>
     </div></div>
   </div>
 
   <canvas id="confettiCanvas"></canvas>
-  
-    <script>const _PAGE="yes.html";const _PAGE_IDX=8;</script>
-  <script src="script.js?v=6"></script>
+  <script>const _PAGE="yes.html"; const _PAGE_IDX=8;</script>
+  <script src="script.js?v=7"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      launchConfetti();
-      const emojis = ['🎉','💍','💖','🎊','✨','🥂','💝','🌸'];
-      let i = 0;
-      setInterval(() => {
-        const el = document.getElementById('celebEmoji');
-        if (el) { el.textContent = emojis[i % emojis.length]; i++; }
-      }, 700);
-    });
+    /* switch certificate language */
+    function toggleLang() {
+      lang = lang === 'en' ? 'hk' : 'en';
+      localStorage.setItem('cathyLang', lang);
+      const lbl = document.getElementById('langLabel');
+      if (lbl) lbl.textContent = lang === 'en' ? '廣東話 🇭🇰' : 'English 🇬🇧';
+      applyLang();
+      document.getElementById('certEn').style.display = lang==='en' ? 'block' : 'none';
+      document.getElementById('certHk').style.display = lang==='hk' ? 'block' : 'none';
+    }
   </script>
 </body>
 </html>

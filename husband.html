@@ -3,100 +3,118 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chapter 7 — The Resume 🏆</title>
+  <title>Chapter 6 — The Resume 💼</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css?v=3"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=7"/>
 </head>
 <body>
   <canvas id="starsCanvas"></canvas>
   <div class="particles" id="particles"></div>
-
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
-    <span id="langLabel">廣東話 🇭🇰</span>
-  </button>
+  <button class="lang-toggle" onclick="toggleLang()"><span id="langLabel">廣東話 🇭🇰</span></button>
 
   <nav class="chapter-nav">
+    <span class="chapter-brand">C &amp; S</span>
     <div class="chapter-dots">
-      <a href="index.html" class="cdot page-link" title="Ch 1 — The Beginning"></a>
-      <a href="evidence.html" class="cdot page-link" title="Ch 2 — The Evidence"></a>
-      <a href="contract.html" class="cdot page-link" title="Ch 3 — The Contract"></a>
-      <a href="poem.html" class="cdot page-link" title="Ch 4 — The Poem"></a>
-      <a href="quiz.html" class="cdot page-link" title="Ch 5 — The Science"></a>
-      <a href="husband.html" class="cdot active" title="Ch 6 — The Resume"></a>
-      <a href="proposal.html" class="cdot page-link" title="Ch 7 — The Proposal"></a>
-      <a href="love.html" class="cdot page-link" title="Ch 8 — The Question"></a>
-      <a href="yes.html" class="cdot page-link" title="Ch 9 — She Said Yes"></a>
+      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 2"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 3"></a>
+      <a href="poem.html"     class="cdot page-link" title="Ch 4"></a>
+      <a href="quiz.html"     class="cdot page-link" title="Ch 5"></a>
+      <a href="husband.html"  class="cdot active"    title="Ch 6 — The Resume"></a>
+      <a href="proposal.html" class="cdot"           title="Ch 7"></a>
+      <a href="love.html"     class="cdot"           title="Ch 8"></a>
+      <a href="yes.html"      class="cdot"           title="Ch 9"></a>
     </div>
     <span class="chapter-label" data-en="Chapter 6 / 9" data-hk="第 六 章 / 9">Chapter 6 / 9</span>
   </nav>
 
-  <section class="sec" id="husband">
-    <div class="deco d1">🏆</div>
-    <div class="deco d2">📋</div>
-    <div class="deco d3">✅</div>
-    <div class="deco d4">🎖️</div>
+  <section class="sec">
+    <div class="deco d1">💼</div><div class="deco d2">📋</div>
+    <div class="deco d3">🏆</div><div class="deco d4">⭐</div>
     <div class="wrap">
-      <div class="card glass reveal">
-        <div class="sec-label">
-          <span data-en="🏆 peer-reviewed research" data-hk="🏆 同行評審研究">🏆 peer-reviewed research</span>
-        </div>
-        <h2 data-en="Is Shreyas Husband Material?" data-hk="Shreyas係好老公料子嗎？">Is Shreyas Husband Material?</h2>
+      <div class="card reveal">
+
+        <div class="tag"
+             data-en="💼 peer-reviewed (by me, extensively)"
+             data-hk="💼 同行評審（由我，非常詳盡）">💼 peer-reviewed (by me, extensively)</div>
+
+        <h2 data-en="Boyfriend Material: A CV" data-hk="好男友料子：一份履歷表">Boyfriend Material: A CV</h2>
+
         <p class="sec-note"
-           data-en="A rigorous 8-point evaluation. Results: embarrassingly yes."
-           data-hk="嚴謹嘅8點評估。結果：令人尷尬地係。">
-          A rigorous 8-point evaluation. Results: embarrassingly yes.
+           data-en="Candidate: Shreyas. Role applied for: Your person, forever. Assessment: embarrassingly qualified."
+           data-hk="候選人：Shreyas。申請職位：你嘅人，永遠。評估：尷尬地合資格。">
+          Candidate: Shreyas. Role applied for: Your person, forever. Assessment: embarrassingly qualified.
         </p>
+
         <ul class="hm-list">
-          <li class="hm-item stagger-hm">
-            <span class="hm-icon">✅</span>
-            <span data-en="Will never judge your 2am snack choices. (Will steal them though.)" data-hk="永遠唔會評判你凌晨2時嘅小食選擇。（但係會偷。）">Will never judge your 2am snack choices. (Will steal them though.)</span>
-          </li>
-          <li class="hm-item stagger-hm">
-            <span class="hm-icon">✅</span>
-            <span data-en="Professionally trained in the art of Pretending to Listen™" data-hk="已專業訓練「扮認真聆聽™」嘅藝術">Professionally trained in the art of Pretending to Listen™</span>
-          </li>
-          <li class="hm-item stagger-hm">
-            <span class="hm-icon">✅</span>
-            <span data-en="Can assemble IKEA furniture. (Disclaimer: eventually. Mostly.)" data-hk="識砌IKEA傢俬。（免責聲明：最終係識。大部分情況。）">Can assemble IKEA furniture. (Disclaimer: eventually. Mostly.)</span>
-          </li>
-          <li class="hm-item stagger-hm">
-            <span class="hm-icon">✅</span>
-            <span data-en="Will always let you have the last bite — after taking it, feeling guilty, and returning it." data-hk="永遠會讓你食最後一口 — 喺食咗之後，感到愧疚，然後還返。">Will always let you have the last bite — after taking it, feeling guilty, and returning it.</span>
-          </li>
-          <li class="hm-item stagger-hm">
-            <span class="hm-icon">✅</span>
-            <span data-en="Certified in the ancient art of Sending Memes at 3am" data-hk="持有「凌晨3時傳送表情包」古老藝術認證">Certified in the ancient art of Sending Memes at 3am</span>
-          </li>
-          <li class="hm-item stagger-hm">
-            <span class="hm-icon">✅</span>
-            <span data-en="Will cheer embarrassingly loud at every single one of your wins" data-hk="每次你嬴都會尷尬地大聲喝采">Will cheer embarrassingly loud at every single one of your wins</span>
-          </li>
-          <li class="hm-item stagger-hm">
-            <span class="hm-icon">✅</span>
-            <span data-en="Trained navigator. Will confidently get you lost in 47 countries." data-hk="受訓導航員。會自信地帶你喺47個國家迷路。">Trained navigator. Will confidently get you lost in 47 countries.</span>
-          </li>
-          <li class="hm-item stagger-hm">
-            <span class="hm-icon">💞</span>
-            <span data-en="Will hold your hand in hospital waiting rooms, airport queues, and every scary in-between." data-hk="會喺醫院等候室、機場排隊、同每一個令人害怕嘅時刻揸住你隻手。">Will hold your hand in hospital waiting rooms, airport queues, and every scary in-between.</span>
-          </li>
-          <li class="hm-item stagger-hm">
-            <span class="hm-icon">🧠</span>
-            <span data-en="Remembers the little things — your coffee order, your bad days, the exact way you like to be hugged." data-hk="記得啲細節 — 你嘅咖啡點叫、你唔開心嘅日子、你最鍾意被攬嘅方式。">Remembers the little things — your coffee order, your bad days, the exact way you like to be hugged.</span>
-          </li>
-          <li class="hm-item stagger-hm">
-            <span class="hm-icon">🌍</span>
-            <span data-en="Will build a whole life with you — your dreams, your career, your rest days. Your wins are his wins. Always." data-hk="會同你建立一個完整嘅人生 — 你嘅夢想、你嘅事業、你嘅休息日。你嘅成功就係佢嘅成功。永遠。">Will build a whole life with you — your dreams, your career, your rest days. Your wins are his wins. Always.</span>
-          </li>
-          <li class="hm-item stagger-hm">
-            <span class="hm-icon">✅</span>
-            <span data-en="100% committed to being embarrassingly, publicly, aggressively in love with you" data-hk="100%致力於以令人尷尬、公開、積極嘅方式愛你">100% committed to being embarrassingly, publicly, aggressively in love with you</span>
-          </li>
+          <li class="hm-item"><span class="hm-icon">✅</span>
+            <span data-en="Snack procurement specialist — can identify exactly which snack you need before you even know you need it. Success rate: suspiciously high."
+                  data-hk="零食採購專家 — 喺你知道之前已經知道你需要邊款零食。成功率：可疑地高。">Snack procurement specialist — identifies exactly which snack you need before you even know. Success rate: suspiciously high.</span></li>
+
+          <li class="hm-item"><span class="hm-icon">✅</span>
+            <span data-en="Certified 3am text responder — never lets you sleep alone in a conversation. Response time: instant. Every time."
+                  data-hk="凌晨3點回覆訊息認證達人 — 從不讓你獨自睡在一段對話裡。回覆時間：即時。每一次。">Certified 3am text responder. Never lets you sleep alone in a conversation. Response time: instant. Every time.</span></li>
+
+          <li class="hm-item"><span class="hm-icon">✅</span>
+            <span data-en="IKEA assembly professional™ — delivers results. Eventually. Mostly. Three mystery screws included at no extra charge."
+                  data-hk="宜家傢具組裝專業人士™ — 有結果。最終。大致上。附送三粒神秘螺絲，不收額外費用。">IKEA assembly professional™ — delivers results. Eventually. Mostly. Three mystery screws included, free of charge.</span></li>
+
+          <li class="hm-item"><span class="hm-icon">✅</span>
+            <span data-en="Last-bite ethics: complicated — will eat it, feel deeply guilty, immediately order more, give you both portions, and somehow make it your fault for being cute."
+                  data-hk="最後一啖倫理：複雜 — 會食咗、深感內疚、即時再叫多份、俾你兩份，然後不知怎地係你嘅錯因為你太可愛。">Last-bite ethics: complicated. Will eat it, feel guilty, order more, give you both portions, somehow make it your fault for being cute.</span></li>
+
+          <li class="hm-item"><span class="hm-icon">✅</span>
+            <span data-en="Pun quality: independently verified as terrible AND somehow endearing. Experts are confused."
+                  data-hk="諧音梗質量：獨立核實為極差同某程度上令人喜愛。專家困惑中。">Pun quality: independently verified as terrible AND somehow endearing. Experts are confused.</span></li>
+
+          <li class="hm-item"><span class="hm-icon">✅</span>
+            <span data-en="Cheer capacity: MAXIMUM — will embarrass both of you at every single win of yours. Even the tiny ones. Especially those."
+                  data-hk="歡呼能力：最大值 — 會為你每一次勝利令你哋兩個都尷尬。連細嘅都係。尤其係嗰啲。">Cheer capacity: MAXIMUM. Will embarrass both of you at every single win of yours. Especially the tiny ones.</span></li>
+
+          <li class="hm-item"><span class="hm-icon">✅</span>
+            <span data-en="Career support: will be your loudest cheerleader, your honest sounding board, your 'you can do this' at midnight, your celebrate-with-you after."
+                  data-hk="事業支持：將成為你最大聲嘅啦啦隊、你誠實嘅意見板、你午夜嘅「你可以做到」、你之後嘅慶祝夥伴。">Career support: your loudest cheerleader, your honest sounding board, your midnight "you can do this," and your celebrate-with-you after.</span></li>
+
+          <li class="hm-item"><span class="hm-icon">✅</span>
+            <span data-en="Travel policy: anywhere you go, I'm coming. Non-negotiable. The world is big and I want to see every corner of it with you specifically."
+                  data-hk="旅行政策：你去邊，我就去邊。不可談判。世界好大，我想同你一齊探索每一個角落。">Travel policy: anywhere you go, I'm coming. Non-negotiable. The world is wide and I want every corner of it with you.</span></li>
+
+          <li class="hm-item"><span class="hm-icon">✅</span>
+            <span data-en="Bad day protocol: shows up. Doesn't fix. Just stays. Brings snacks. Asks how you feel. Stays some more."
+                  data-hk="壞日子協議：出現。唔修復。只係留低。帶零食。問你點感覺。再留多陣。">Bad day protocol: shows up. Doesn't fix. Just stays. Brings snacks. Stays some more.</span></li>
+
+          <li class="hm-item"><span class="hm-icon">✅</span>
+            <span data-en="Future plans: you. All of it. The adventures, the ordinary Tuesdays, the growing up, the building something together. All you."
+                  data-hk="未來計劃：你。全部。冒險、平凡嘅星期二、成長、一齊建立嘢。全部都係你。">Future plans: you. All of it. The adventures, the ordinary Tuesdays, the growing up, the building something. All you.</span></li>
         </ul>
+
         <div class="hm-verdict">
           <div class="hm-score">∞ / 10</div>
-          <p data-en="EXCEEDS ALL KNOWN STANDARDS. The committee broke the measuring equipment. Recommendation: marry him immediately." data-hk="超越所有已知標準。委員會整爛咗量度儀器。建議：即刻嫁咗佢。">EXCEEDS ALL KNOWN STANDARDS. The committee broke the measuring equipment. Recommendation: marry him immediately.</p>
+          <p data-en="EXCEEDS ALL KNOWN STANDARDS. Panel recommends immediate and permanent keeping. No further evaluation necessary. Case closed."
+             data-hk="超越所有已知標準。評審委員會建議即刻永久保留。毋須進一步評估。案件結束。">
+            EXCEEDS ALL KNOWN STANDARDS. Panel recommends immediate and permanent keeping. No further evaluation necessary.
+          </p>
         </div>
+
+        <div style="margin-top:24px;text-align:center">
+          <p class="q-prompt" data-en="So… should you keep him? 🥺" data-hk="咁… 你keep唔keep佢？🥺">So… should you keep him? 🥺</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap" id="keepBtns">
+            <button class="q-pick" onclick="keepHim(this,'keep')"
+                    data-en="Hired. Permanent contract. 💼💕"
+                    data-hk="請咗。永久合約。💼💕">Hired. Permanent contract. 💼💕</button>
+            <button class="q-pick ghost" onclick="keepHim(this,'probation')"
+                    data-en="Fine, but you're on probation 😏"
+                    data-hk="好啦，但你試用期住 😏">Fine, but you're on probation 😏</button>
+          </div>
+          <p class="q-response" id="keepResp"></p>
+          <div id="nextBtn" style="display:none;margin-top:20px">
+            <button class="btn btn-primary" onclick="goNext()">
+              <span data-en="Chapter 7 — The Letter →" data-hk="第七章 — 一封信 →">Chapter 7 — The Letter →</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -104,21 +122,33 @@
   <div class="page-nav">
     <a href="quiz.html" class="page-link">← Chapter 5</a>
     <span class="spacer"></span>
-    <a href="proposal.html" class="page-link">Chapter 7 →</a>
+    <button onclick="goNext()">Chapter 7 →</button>
   </div>
 
   <div class="ticker-wrap">
     <div class="ticker-label">🔴 BREAKING</div>
     <div class="ticker-track"><div class="ticker-content">
-      <span>Husband material evaluation complete. Score: 12/10. Committee overwhelmed. &nbsp;•&nbsp;</span>
-      <span>IKEA furniture still 70% assembled. Investigation continues. &nbsp;•&nbsp;</span>
-      <span>Last bite reported stolen and returned. Sources say it was still warm. &nbsp;•&nbsp;</span>
+      <span>CV submitted. Panel gives ∞/10. Panel has never given ∞/10 before. Panel is emotional. &nbsp;•&nbsp;</span>
+      <span>Three mystery IKEA screws still unaccounted for. Investigation ongoing. &nbsp;•&nbsp;</span>
+      <span>Last-bite incident of 2024 officially reclassified as "an act of love, sort of". &nbsp;•&nbsp;</span>
     </div></div>
   </div>
 
   <canvas id="confettiCanvas"></canvas>
-  
-    <script>const _PAGE="husband.html";const _PAGE_IDX=5;</script>
-  <script src="script.js?v=6"></script>
+  <script>const _PAGE="husband.html"; const _PAGE_IDX=5;</script>
+  <script src="script.js?v=7"></script>
+  <script>
+    function keepHim(btn, key) {
+      document.getElementById('keepBtns').querySelectorAll('.q-pick').forEach(b => { b.disabled=true; if(b!==btn) b.classList.add('faded'); });
+      btn.classList.add('selected');
+      const msgs = {
+        keep:      { en:"Best hire of your life. Starting immediately. No notice period. 💼💕", hk:"你一生最正嘅聘請。即刻上工。冇通知期。💼💕" },
+        probation: { en:"I'll pass probation in record time. Already started. Watch me. 😏", hk:"我會破紀錄咁通過試用期。已經開始。睇住。😏" }
+      };
+      const r = document.getElementById('keepResp');
+      r.textContent = msgs[key][lang]; r.classList.add('show');
+      document.getElementById('nextBtn').style.display = 'block';
+    }
+  </script>
 </body>
 </html>

@@ -1,43 +1,326 @@
-/* v4 — love.html is Ch8, Yes/No second-to-last */
-/* ============================================================
-   CATHY 💖 — script.js  (multi-page edition)
-   ============================================================ */
+/* CATHY 💖 — script.js v7 (multi-page, all bugs fixed) */
 
-/* ---- Page order ---- */
+/* ---- Chapter order ---- */
 const CHAPTERS = [
   'index.html','evidence.html','contract.html','poem.html',
   'quiz.html','husband.html','proposal.html','love.html','yes.html'
 ];
-const PAGE = location.pathname.split('/').pop() || 'index.html';
-const PAGE_IDX = CHAPTERS.indexOf(PAGE) === -1 ? 0 : CHAPTERS.indexOf(PAGE);
+const PAGE = (location.pathname.split('/').pop() || 'index.html').replace(/\?.*$/, '');
+const PAGE_IDX = Math.max(0, CHAPTERS.indexOf(PAGE));
 
-/* ---- Progress tracking ---- */
-function getProgress() {
-  return parseInt(localStorage.getItem('cathyProgress') || '0');
-}
-function setProgress(idx) {
-  if (idx > getProgress()) localStorage.setItem('cathyProgress', idx);
-}
-/* Mark current page as reached */
+/* ---- Progress (localStorage) ---- */
+function getProgress() { return parseInt(localStorage.getItem('cathyProgress') || '0'); }
+function setProgress(i) { if (i > getProgress()) localStorage.setItem('cathyProgress', i); }
 setProgress(PAGE_IDX);
 
 /* ---- State ---- */
 let lang = localStorage.getItem('cathyLang') || 'en';
 let noCount = 0;
-let loveFillValue = 0;
-const chapterAnswers = {};
 
 /* ============================================================
-   INTERACTIVE ANSWERS — each chapter asks, then unlocks next
+   ESCAPE MESSAGES — runaway No button taunts
+   ============================================================ */
+const escapeMsgs = {
+  en: [
+    "lmao nope 😂",
+    "it LITERALLY just ghosted you",
+    "the button entered witness protection 🕵️",
+    "it changed its name and moved countries",
+    "the button is doing great without you, actually",
+    "scientists can't explain this button's reflexes",
+    "it filed for emotional independence",
+    "it joined a monastery. it found peace.",
+    "the button is on sabbatical in Switzerland 🇨🇭",
+    "it applied for a restraining order 📄",
+    "it blocked you. the button blocked you.",
+    "this button has more self-respect than I do",
+    "it asked me to tell you: 'it's not you, it's you'",
+    "ok but seriously just click Yes 💖",
+    "the button retired. only one option remains."
+  ],
+  hk: [
+    "lmao 唔係 😂",
+    "個掣真係已讀不回咗你",
+    "個掣入咗證人保護計劃 🕵️",
+    "佢改名搬走咗",
+    "老實講，個掣冇咗你過得好好",
+    "科學家都解釋唔到呢個掣嘅反射",
+    "佢申請咗情感獨立",
+    "佢入咗修道院。佢找到平靜了。",
+    "個掣去咗瑞士度假 🇨🇭",
+    "佢申請咗禁制令 📄",
+    "個掣封鎖咗你。個掣封鎖咗你。",
+    "呢個掣嘅自尊心比我更高",
+    "佢叫我轉告你：「唔係你嘅問題，係你嘅問題」",
+    "好啦認真啦直接撳「係」啦 💖",
+    "個掣退休咗。得返一個選擇。"
+  ]
+};
+
+/* ============================================================
+   NO BUTTON — runs away across the screen
+   ============================================================ */
+function runAway(btn) {
+  if (btn.dataset.fleeing === '1') return;
+  btn.dataset.fleeing = '1';
+  noCount++;
+
+  const msgs = escapeMsgs[lang];
+  const msgEl = document.getElementById('escapeMsg') || document.getElementById('escapeMsg8');
+  if (msgEl) msgEl.textContent = msgs[Math.min(noCount - 1, msgs.length - 1)];
+
+  const bw = btn.offsetWidth || 90, bh = btn.offsetHeight || 44;
+  const x = Math.random() * (window.innerWidth  - bw - 24) + 12;
+  const y = Math.random() * (window.innerHeight - bh - 24) + 12;
+
+  btn.style.position   = 'fixed';
+  btn.style.zIndex     = '7000';
+  btn.style.margin     = '0';
+  btn.style.transition = 'left .25s ease, top .25s ease, opacity .4s ease, transform .4s ease';
+  btn.style.left = x + 'px';
+  btn.style.top  = y + 'px';
+
+  setTimeout(() => {
+    btn.style.opacity   = '0';
+    btn.style.transform = 'scale(.2) rotate(35deg)';
+    setTimeout(() => { btn.style.display = 'none'; }, 420);
+  }, 240);
+
+  animateLoveMeter(Math.min(70 + noCount * 4, 95));
+}
+
+/* ============================================================
+   YES HANDLER — launches confetti then goes to yes.html
+   ============================================================ */
+function handleYes() {
+  const yesBtn = document.querySelector('.btn-yes');
+  if (yesBtn) { yesBtn.textContent = '💖 YES!! 💖'; yesBtn.disabled = true; }
+  animateLoveMeter(100);
+  launchConfetti();
+  setTimeout(() => navigateTo('yes.html'), 2000);
+}
+
+/* ============================================================
+   LANGUAGE TOGGLE
+   ============================================================ */
+function toggleLang() {
+  lang = lang === 'en' ? 'hk' : 'en';
+  localStorage.setItem('cathyLang', lang);
+  const lbl = document.getElementById('langLabel');
+  if (lbl) lbl.textContent = lang === 'en' ? '廣東話 🇭🇰' : 'English 🇬🇧';
+  applyLang();
+}
+
+function applyLang() {
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const v = el.getAttribute('data-' + lang);
+    if (v) el.innerHTML = v;
+  });
+}
+
+/* ============================================================
+   PAGE TRANSITIONS
+   ============================================================ */
+function navigateTo(url) {
+  document.body.classList.add('page-out');
+  setTimeout(() => { window.location.href = url; }, 280);
+}
+
+/* ============================================================
+   NEXT CHAPTER BUTTON
+   ============================================================ */
+function goNext() {
+  const next = CHAPTERS[PAGE_IDX + 1];
+  if (next) { setProgress(PAGE_IDX + 1); navigateTo(next); }
+}
+
+/* ============================================================
+   NAV DOTS — mark done/locked
+   ============================================================ */
+function initDots() {
+  const progress = getProgress();
+  document.querySelectorAll('a.cdot').forEach(a => {
+    const href = a.getAttribute('href');
+    const idx  = CHAPTERS.indexOf(href);
+    if (idx < 0) return;
+
+    if (a.classList.contains('active')) return;
+
+    if (idx <= progress) {
+      if (idx < PAGE_IDX) a.classList.add('done');
+      a.classList.add('page-link');
+      a.addEventListener('click', e => { e.preventDefault(); navigateTo(a.href); });
+    } else {
+      a.classList.add('locked');
+      a.removeAttribute('href');
+    }
+  });
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+function initReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const d = parseInt(e.target.dataset.delay || 0);
+        setTimeout(() => e.target.classList.add('visible'), d);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+/* ============================================================
+   STARS CANVAS
+   ============================================================ */
+function initStars() {
+  const canvas = document.getElementById('starsCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, stars = [];
+
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', () => { resize(); build(); });
+
+  function build() {
+    stars = Array.from({ length: 220 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: .2 + Math.random() * 1.1,
+      a: Math.random(), da: (Math.random() - .5) * .007,
+      speed: .08 + Math.random() * .12
+    }));
+  }
+  build();
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    stars.forEach(s => {
+      s.a = Math.max(.04, Math.min(1, s.a + s.da));
+      if (s.a <= .04 || s.a >= 1) s.da *= -1;
+      s.y -= s.speed;
+      if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; }
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,240,255,${s.a * .65})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+/* ============================================================
+   FLOATING PARTICLES
+   ============================================================ */
+const EMOJIS = ['💖','🌸','✨','💕','🌷','💗','⭐','🫧','🌺','🦋'];
+
+function spawnParticle() {
+  const c = document.getElementById('particles');
+  if (!c) return;
+  const el = document.createElement('div');
+  el.className = 'particle';
+  el.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+  el.style.left = Math.random() * 100 + 'vw';
+  el.style.fontSize = (.8 + Math.random() * 1.2) + 'rem';
+  const dur = 8 + Math.random() * 10;
+  el.style.animationDuration = dur + 's';
+  el.style.animationDelay = (Math.random() * 3) + 's';
+  c.appendChild(el);
+  setTimeout(() => el.remove(), (dur + 3) * 1000);
+}
+
+function startParticles() {
+  for (let i = 0; i < 10; i++) setTimeout(spawnParticle, i * 500);
+  setInterval(spawnParticle, 2000);
+}
+
+/* ============================================================
+   LOVE METER
+   ============================================================ */
+function animateLoveMeter(target) {
+  const fill = document.getElementById('loveFill');
+  if (!fill) return;
+  let cur = parseFloat(fill.style.width) || 0;
+  const step = () => { cur = Math.min(cur + 1.5, target); fill.style.width = cur + '%'; if (cur < target) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+
+/* ============================================================
+   CONTRACT — stagger items + stamp
+   ============================================================ */
+function initContract() {
+  const parchment = document.querySelector('.parchment');
+  if (!parchment) return;
+
+  const stampObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => { const s = document.getElementById('stamp'); if (s) s.classList.add('visible'); }, 700);
+        stampObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: .35 });
+  stampObs.observe(parchment);
+
+  const itemObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.ct-item').forEach((item, i) => setTimeout(() => item.classList.add('visible'), i * 130));
+        itemObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: .15 });
+  itemObs.observe(parchment);
+}
+
+/* ============================================================
+   POEM LINE REVEAL
+   ============================================================ */
+function initPoem() {
+  const box = document.querySelector('.poem-box');
+  if (!box) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const lines = e.target.querySelectorAll('.poem-line');
+        lines.forEach((l, i) => setTimeout(() => l.classList.add('visible'), i * 200));
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: .15 });
+  obs.observe(box);
+}
+
+/* ============================================================
+   HUSBAND MATERIAL — stagger items
+   ============================================================ */
+function initHusbandMaterial() {
+  const list = document.querySelector('.hm-list');
+  if (!list) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.hm-item').forEach((item, i) => setTimeout(() => item.classList.add('visible'), i * 100));
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: .12 });
+  obs.observe(list);
+}
+
+/* ============================================================
+   INTERACTIVE ANSWERS (single-page index.html only)
    ============================================================ */
 const responseMsgs = {
   1: {
     yes:   { en: "Yay! Okay hold my hand, here we go 🥰", hk: "耶！好啦拖住我隻手，出發喇 🥰" },
     maybe: { en: "Aww don't be scared cutie, I'll be gentle 🥺", hk: "Aww 唔好驚啦靚女，我會好溫柔㗎 🥺" }
   },
-  2: {
-    yes: { en: "PHEW. Okay good. My heart can resume beating now 💓", hk: "鬆一口氣。好。我個心可以繼續跳喇 💓" }
-  },
+  2: { yes: { en: "PHEW. Okay good. My heart can resume beating now 💓", hk: "鬆一口氣。好。我個心可以繼續跳喇 💓" } },
   3: {
     guilty:    { en: "Guilty as charged. I'll serve a life sentence with you 😤💖", hk: "認晒罪。我願意同你一齊服無期徒刑 😤💖" },
     convinced: { en: "The court is pleased. Case closed with a kiss 💋", hk: "法庭好滿意。以一個吻結案 💋" }
@@ -58,17 +341,13 @@ const responseMsgs = {
 };
 
 function answer(ch, key, btn) {
-  /* record her choice */
   const block = btn.closest('.q-block');
-  const picks = block.querySelectorAll('.q-pick, .btn-no');
-  picks.forEach(b => {
+  block.querySelectorAll('.q-pick, .btn-no').forEach(b => {
     b.disabled = true;
     if (b !== btn) b.classList.add('faded');
   });
   btn.classList.add('selected');
-  chapterAnswers[ch] = btn.textContent.trim();
 
-  /* show response */
   const resp = document.getElementById('resp' + ch);
   if (resp && responseMsgs[ch] && responseMsgs[ch][key]) {
     resp.textContent = responseMsgs[ch][key][lang];
@@ -76,8 +355,6 @@ function answer(ch, key, btn) {
   }
 
   if (ch === 2) animateLoveMeter(100);
-
-  /* unlock next chapter */
   unlockChapter(ch + 1);
 }
 
@@ -86,424 +363,77 @@ function unlockChapter(n) {
   if (!next || !next.classList.contains('locked')) return;
   setTimeout(() => {
     next.classList.remove('locked');
-    next.querySelectorAll('.reveal').forEach(el => {
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            const d = parseInt(e.target.dataset.delay || 0);
-            setTimeout(() => e.target.classList.add('visible'), d);
-            obs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      obs.observe(el);
-    });
-    next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    initRevealFor(next);
+    next.scrollIntoView({ behavior:'smooth', block:'start' });
   }, 900);
 }
 
-/* ============================================================
-   SCROLL-SPY — highlight active chapter dot
-   ============================================================ */
-function initScrollSpy() {
-  const dots = document.querySelectorAll('.cdot');
-  const info = document.getElementById('chapterInfo');
-  const obs = new IntersectionObserver((entries) => {
+function initRevealFor(parent) {
+  const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        const n = parseInt(e.target.dataset.chapter);
-        dots.forEach((d, i) => d.classList.toggle('active', i === n - 1));
-        if (info) info.textContent = String(n).padStart(2, '0') + ' / 09';
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.chapter').forEach(c => obs.observe(c));
-}
-
-/* ============================================================
-   RECAP — replay her answers in the final chapter
-   ============================================================ */
-const recapLabels = {
-  1: { en: "You bravely pressed Begin",        hk: "你勇敢咁撳咗開始" },
-  2: { en: "Do you love me?",                  hk: "你愛唔愛我？" },
-  3: { en: "The verdict",                      hk: "裁決" },
-  4: { en: "The contract",                     hk: "合約" },
-  5: { en: "The poem",                         hk: "首詩" },
-  7: { en: "Boyfriend material?",              hk: "好男友料子？" },
-  8: { en: "Will you be mine?",                hk: "你願意做我嘅人嗎？" }
-};
-
-function buildRecap() {
-  const box = document.getElementById('recap');
-  if (!box) return;
-  box.innerHTML = '';
-  const title = document.createElement('p');
-  title.className = 'recap-title';
-  title.textContent = lang === 'en' ? 'Everything you said along the way 💌' : '你一路講過嘅嘢 💌';
-  box.appendChild(title);
-  Object.keys(recapLabels).forEach(ch => {
-    if (!chapterAnswers[ch]) return;
-    const row = document.createElement('div');
-    row.className = 'recap-row';
-    row.innerHTML = `<span class="recap-q">${recapLabels[ch][lang]}</span><span class="recap-a">${chapterAnswers[ch]}</span>`;
-    box.appendChild(row);
-  });
-}
-
-/* ============================================================
-   STAR CANVAS
-   ============================================================ */
-function initStars() {
-  const canvas = document.getElementById('starsCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, stars = [];
-
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', () => { resize(); buildStars(); });
-
-  function buildStars() {
-    stars = Array.from({ length: 200 }, () => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      r: 0.3 + Math.random() * 1.2,
-      a: Math.random(),
-      da: (Math.random() - 0.5) * 0.008,
-      speed: 0.1 + Math.random() * 0.15
-    }));
-  }
-  buildStars();
-
-  function drawStars() {
-    ctx.clearRect(0, 0, W, H);
-    stars.forEach(s => {
-      s.a = Math.max(0.05, Math.min(1, s.a + s.da));
-      if (s.a <= 0.05 || s.a >= 1) s.da *= -1;
-      s.y -= s.speed;
-      if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; }
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(237,232,224,${s.a * 0.75})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(drawStars);
-  }
-  drawStars();
-}
-
-/* ============================================================
-   PAGE TRANSITIONS
-   ============================================================ */
-function navigateTo(url) {
-  document.body.classList.add('page-out');
-  setTimeout(() => { window.location.href = url; }, 280);
-}
-
-/* ============================================================
-   LOCK DOTS — only allow nav to visited chapters
-   ============================================================ */
-function initDots() {
-  const progress = getProgress();
-  document.querySelectorAll('a.cdot').forEach(a => {
-    const href = a.getAttribute('href');
-    const idx  = CHAPTERS.indexOf(href);
-    if (idx < 0) return;
-
-    if (a.classList.contains('active')) {
-      /* current chapter — leave as is */
-    } else if (idx <= progress) {
-      /* Already visited — mark done + allow navigation */
-      if (idx < PAGE_IDX) a.classList.add('done');
-      a.classList.add('page-link');
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        navigateTo(a.href);
-      });
-    } else {
-      /* Not yet reached — locked visual indicator only */
-      a.classList.add('locked');
-      a.removeAttribute('href');
-    }
-  });
-}
-
-/* ============================================================
-   NEXT CHAPTER BUTTON
-   ============================================================ */
-function goNext() {
-  const next = CHAPTERS[PAGE_IDX + 1];
-  if (next) {
-    setProgress(PAGE_IDX + 1);
-    navigateTo(next);
-  }
-}
-
-const escapeMsgs = {
-  en: [
-    "nice try 😂",
-    "it ran away AGAIN 💀",
-    "the button is faster than you. embarrassing.",
-    "have you considered just clicking Yes? 👀",
-    "the No button has retained legal counsel",
-    "this button has Olympic-level reflexes 🥇",
-    "it literally trains every day to escape you",
-    "scientists are now studying this button",
-    "the button filed a restraining order 📄",
-    "that button has left the building 🚪",
-    "it's in witness protection now",
-    "the button called the police on you",
-    "it applied for a visa. it is leaving the country.",
-    "give up. click Yes. your life will improve immediately. 💖",
-    "the button is on a beach somewhere. without you."
-  ],
-  hk: [
-    "想都唔好想 😂",
-    "佢又跑走咗 💀",
-    "個掣比你快好多。尷尬。",
-    "不如直接撳「係」呀？👀",
-    "「唔係」掣已聘請律師",
-    "呢個掣有奧運級反應 🥇",
-    "佢每日都訓練緊點逃走",
-    "科學家正在研究呢個掣",
-    "個掣申請咗禁制令 📄",
-    "個掣已經離開大廈 🚪",
-    "佢依家係證人保護計劃入面",
-    "個掣已經報警告你",
-    "佢申請簽證。佢要離開呢個國家。",
-    "放棄啦。撳「係」。你嘅生活會立即改善。💖",
-    "個掣依家喺某個海灘。冇你。"
-  ]
-};
-
-/* ============================================================
-   LANGUAGE TOGGLE
-   ============================================================ */
-function toggleLang() {
-  lang = lang === 'en' ? 'hk' : 'en';
-  localStorage.setItem('cathyLang', lang);
-  const lbl = document.getElementById('langLabel');
-  if (lbl) lbl.textContent = lang === 'en' ? '廣東話 🇭🇰' : 'English 🇬🇧';
-  applyLang();
-}
-
-function applyLang() {
-  document.querySelectorAll('[data-en]').forEach(el => {
-    const val = el.getAttribute('data-' + lang);
-    if (val) el.innerHTML = val;
-  });
-}
-
-/* ============================================================
-   FLOATING PARTICLES
-   ============================================================ */
-const EMOJIS = ['💖','🌸','✨','💕','🌷','💗','⭐','🫧','🌺'];
-
-function spawnParticle() {
-  const container = document.getElementById('particles');
-  if (!container) return;
-  const el = document.createElement('div');
-  el.className = 'particle';
-  el.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
-  el.style.left = Math.random() * 100 + 'vw';
-  el.style.fontSize = (0.9 + Math.random() * 1.4) + 'rem';
-  const dur = 7 + Math.random() * 10;
-  el.style.animationDuration = dur + 's';
-  el.style.animationDelay = (Math.random() * 4) + 's';
-  container.appendChild(el);
-  setTimeout(() => el.remove(), (dur + 4) * 1000);
-}
-
-function startParticles() {
-  for (let i = 0; i < 12; i++) setTimeout(spawnParticle, i * 400);
-  setInterval(spawnParticle, 1800);
-}
-
-/* ============================================================
-   SCROLL REVEAL
-   ============================================================ */
-function initReveal() {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const delay = parseInt(e.target.dataset.delay || 0);
-        setTimeout(() => e.target.classList.add('visible'), delay);
+        const d = parseInt(e.target.dataset.delay || 0);
+        setTimeout(() => e.target.classList.add('visible'), d);
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  }, { threshold: .12 });
+  parent.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 }
 
 /* ============================================================
-   CONTRACT — stagger + stamp
-   ============================================================ */
-function initContract() {
-  const stampObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        setTimeout(() => {
-          const stamp = document.getElementById('stamp');
-          if (stamp) stamp.classList.add('visible');
-        }, 600);
-        stampObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.4 });
-
-  const contractCard = document.querySelector('.parchment');
-  if (contractCard) stampObs.observe(contractCard);
-
-  const itemObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelectorAll('.ct-item').forEach((item, i) => {
-          setTimeout(() => item.classList.add('visible'), i * 120);
-        });
-        itemObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  if (contractCard) itemObs.observe(contractCard);
-}
-
-/* ============================================================
-   LOVE METER
-   ============================================================ */
-function initLoveMeter() {
-  const loveSection = document.getElementById('ch2');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        animateLoveMeter(78);
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  if (loveSection) obs.observe(loveSection);
-}
-
-function animateLoveMeter(target) {
-  const fill = document.getElementById('loveFill');
-  if (!fill) return;
-  let current = parseFloat(fill.style.width) || 0;
-  const step = () => {
-    current = Math.min(current + 1.5, target);
-    fill.style.width = current + '%';
-    if (current < target) requestAnimationFrame(step);
-  };
-  requestAnimationFrame(step);
-}
-
-/* ============================================================
-   NO BUTTON — runs away
-   ============================================================ */
-function runAway(btn) {
-  noCount++;
-  const parent = btn.parentElement;
-  const pRect  = parent.getBoundingClientRect();
-  const bRect  = btn.getBoundingClientRect();
-
-  const maxX = pRect.width  - bRect.width  - 8;
-  const maxY = pRect.height - bRect.height - 8;
-
-  const rx = Math.max(8, Math.random() * maxX);
-  const ry = Math.max(8, Math.random() * maxY);
-
-  btn.style.position = 'absolute';
-  btn.style.left = rx + 'px';
-  btn.style.top  = ry + 'px';
-  btn.style.transition = 'left 0.18s ease, top 0.18s ease';
-
-  const msgs = escapeMsgs[lang];
-  const chapter = btn.closest('.chapter') || document;
-  const msgEl = chapter.querySelector('.escape-msg');
-  if (msgEl) msgEl.textContent = msgs[Math.min(noCount - 1, msgs.length - 1)];
-
-  animateLoveMeter(Math.min(78 + noCount * 3, 96));
-}
-
-/* ============================================================
-   YES HANDLER — page-aware, goes to NEXT chapter
-   ============================================================ */
-function handleYes() {
-  animateLoveMeter(100);
-  launchConfetti();
-  chapterAnswers[8] = lang === 'en' ? 'Yes, always 💍' : '係，永遠 💍';
-  const block = document.querySelector('#ch8 .q-block');
-  if (block) block.querySelectorAll('button').forEach(b => b.disabled = true);
-  buildRecap();
-  unlockChapter(9);
-  /* cycle celebration emoji */
-  const emojis = ['🎉','💍','💖','🎊','✨','🥂','💝','🌸'];
-  let i = 0;
-  setInterval(() => {
-    const el = document.getElementById('celebEmoji');
-    if (el) { el.textContent = emojis[i % emojis.length]; i++; }
-  }, 700);
-}
-
-/* ============================================================
-   QUIZ
+   QUIZ — step navigation + result (FIXED)
    ============================================================ */
 function nextStep(currentId, nextId, progress) {
-  const current = document.getElementById(currentId);
-  const next    = document.getElementById(nextId);
-  const bar     = document.getElementById('qProgress');
+  const cur  = document.getElementById(currentId);
+  const next = document.getElementById(nextId);
+  const bar  = document.getElementById('qProgress');
 
-  current.style.animation = 'none';
-  current.style.opacity = '0';
-  current.style.transform = 'translateX(-30px)';
-  current.style.transition = 'all 0.3s ease';
+  cur.style.transition = 'all .3s ease';
+  cur.style.opacity    = '0';
+  cur.style.transform  = 'translateX(-30px)';
 
   setTimeout(() => {
-    current.classList.remove('active');
-    current.style.cssText = '';
+    cur.classList.remove('active');
+    cur.style.cssText = '';
     next.classList.add('active');
     if (bar) bar.style.width = progress + '%';
   }, 300);
 }
 
 function showQuizResult() {
-  /* hide whichever step is currently active (works for any number of questions) */
   const active = document.querySelector('.q-step.active');
   const result = document.getElementById('qResult');
   const bar    = document.getElementById('qProgress');
 
   if (active) {
-    active.style.opacity = '0';
-    active.style.transform = 'translateX(-30px)';
-    active.style.transition = 'all 0.3s ease';
+    active.style.transition = 'all .3s ease';
+    active.style.opacity    = '0';
+    active.style.transform  = 'translateX(-30px)';
   }
   if (bar) bar.style.width = '100%';
 
   setTimeout(() => {
-    qs3.classList.remove('active');
-    result.classList.remove('hidden');
-    result.classList.add('active');
-    if (bar) bar.style.width = '100%';
+    if (active) active.classList.remove('active');
+    if (result) {
+      result.classList.remove('hidden');
+      result.classList.add('active');
+    }
     animateScore();
-    chapterAnswers[6] = lang === 'en' ? '100% compatible 🧪' : '100% 相容 🧪';
-    unlockChapter(7);
-  }, 300);
+  }, 320);
 }
 
 function animateScore() {
   const numEl  = document.getElementById('scoreNum');
   const ring   = document.getElementById('ringFill');
   const circum = 327;
-  let current  = 0;
-  const target = 100;
+  let   cur    = 0;
 
   const tick = () => {
-    current = Math.min(current + 1.4, target);
-    if (numEl) numEl.textContent = Math.round(current) + '%';
-    if (ring)  ring.style.strokeDashoffset = circum - (circum * current / 100);
-    if (current < target) requestAnimationFrame(tick);
+    cur = Math.min(cur + 1.4, 100);
+    if (numEl) numEl.textContent = Math.round(cur) + '%';
+    if (ring)  ring.style.strokeDashoffset = circum - (circum * cur / 100);
+    if (cur < 100) requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
 }
@@ -511,7 +441,7 @@ function animateScore() {
 /* ============================================================
    CONFETTI
    ============================================================ */
-const CONF_COLORS = ['#e0b87a','#f3d9a4','#e2998f','#f0b8af','#ecd4a0','#fff','#d98c7a','#e8d09a'];
+const CONF_COLORS = ['#f472b6','#a78bfa','#fbbf24','#34d399','#fb7185','#fff','#c4b5fd','#fde68a'];
 
 function launchConfetti() {
   const canvas = document.getElementById('confettiCanvas');
@@ -522,17 +452,13 @@ function launchConfetti() {
   const ctx = canvas.getContext('2d');
 
   const pieces = Array.from({ length: 180 }, () => ({
-    x:     Math.random() * canvas.width,
-    y:     Math.random() * canvas.height - canvas.height,
-    w:     6 + Math.random() * 10,
-    h:     4 + Math.random() * 6,
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height - canvas.height,
+    w: 6 + Math.random() * 10, h: 4 + Math.random() * 6,
     color: CONF_COLORS[Math.floor(Math.random() * CONF_COLORS.length)],
-    vx:    (Math.random() - 0.5) * 4,
-    vy:    2 + Math.random() * 4,
-    rot:   Math.random() * 360,
-    vr:    (Math.random() - 0.5) * 8,
-    alpha: 1,
-    shape: Math.random() > 0.5 ? 'rect' : 'circle'
+    vx: (Math.random() - .5) * 4, vy: 2 + Math.random() * 4,
+    rot: Math.random() * 360, vr: (Math.random() - .5) * 8,
+    alpha: 1, shape: Math.random() > .5 ? 'rect' : 'circle'
   }));
 
   let alive = true;
@@ -541,23 +467,15 @@ function launchConfetti() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     let any = false;
     pieces.forEach(p => {
-      p.x   += p.vx;
-      p.y   += p.vy;
-      p.rot += p.vr;
-      p.vy  += 0.08;
+      p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.vy += .08;
       if (p.y < canvas.height + 40) any = true;
       ctx.save();
       ctx.globalAlpha = Math.max(0, p.alpha);
       ctx.translate(p.x, p.y);
       ctx.rotate((p.rot * Math.PI) / 180);
       ctx.fillStyle = p.color;
-      if (p.shape === 'rect') {
-        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-      } else {
-        ctx.beginPath();
-        ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
-        ctx.fill();
-      }
+      if (p.shape === 'rect') ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      else { ctx.beginPath(); ctx.arc(0, 0, p.w/2, 0, Math.PI*2); ctx.fill(); }
       ctx.restore();
     });
     if (any) requestAnimationFrame(draw);
@@ -568,86 +486,33 @@ function launchConfetti() {
 }
 
 /* ============================================================
-   CURSOR HEART TRAIL
-   ============================================================ */
-function initCursorTrail() {
-  document.addEventListener('mousemove', (e) => {
-    if (Math.random() > 0.35) return;
-    const h = document.createElement('div');
-    h.textContent = Math.random() > 0.5 ? '💖' : '✨';
-    h.style.cssText = `
-      position:fixed;
-      left:${e.clientX - 10}px;
-      top:${e.clientY - 10}px;
-      font-size:${0.7 + Math.random() * 0.7}rem;
-      pointer-events:none;
-      z-index:8000;
-      opacity:1;
-      transition:opacity 0.8s ease, transform 0.8s ease;
-      user-select:none;
-    `;
-    document.body.appendChild(h);
-    requestAnimationFrame(() => {
-      h.style.opacity = '0';
-      h.style.transform = `translateY(-${20 + Math.random() * 30}px) scale(0.4)`;
-    });
-    setTimeout(() => h.remove(), 900);
-  });
-}
-
-/* ============================================================
-   POEM LINE REVEAL
-   ============================================================ */
-function initPoem() {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const lines = e.target.querySelectorAll('.poem-line');
-        lines.forEach((line, i) => {
-          setTimeout(() => line.classList.add('visible'), i * 180);
-        });
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  const poemBox = document.querySelector('.poem-box');
-  if (poemBox) obs.observe(poemBox);
-}
-
-/* ============================================================
-   HUSBAND MATERIAL STAGGER
-   ============================================================ */
-function initHusbandMaterial() {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelectorAll('.hm-item').forEach((item, i) => {
-          setTimeout(() => item.classList.add('visible'), i * 100);
-        });
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  const hmList = document.querySelector('.hm-list');
-  if (hmList) obs.observe(hmList);
-}
-
-/* ============================================================
    INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
-  /* apply saved lang */
   const lbl = document.getElementById('langLabel');
   if (lbl) lbl.textContent = lang === 'en' ? '廣東話 🇭🇰' : 'English 🇬🇧';
   if (lang !== 'en') applyLang();
 
-  initDots();   /* ← lock forward dots */
+  initDots();
   initStars();
   initReveal();
   initContract();
-  initLoveMeter();
-  initCursorTrail();
   initPoem();
   initHusbandMaterial();
-  initScrollSpy();
+  startParticles();
+
+  /* love.html: pre-warm meter */
+  const fill = document.getElementById('loveFill');
+  if (fill) setTimeout(() => animateLoveMeter(72), 600);
+
+  /* yes.html: auto-confetti + emoji loop */
+  if (PAGE === 'yes.html') {
+    setTimeout(launchConfetti, 400);
+    const emojis = ['🎉','💍','💖','🎊','✨','🥂','💝','🌸'];
+    let i = 0;
+    setInterval(() => {
+      const el = document.getElementById('celebEmoji');
+      if (el) { el.textContent = emojis[i % emojis.length]; i++; }
+    }, 700);
+  }
 });

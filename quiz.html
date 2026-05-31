@@ -3,49 +3,49 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chapter 6 — The Science 🔬</title>
+  <title>Chapter 5 — The Quiz 🔬</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css?v=3"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css?v=7"/>
 </head>
 <body>
   <canvas id="starsCanvas"></canvas>
   <div class="particles" id="particles"></div>
-
-  <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
-    <span id="langLabel">廣東話 🇭🇰</span>
-  </button>
+  <button class="lang-toggle" onclick="toggleLang()"><span id="langLabel">廣東話 🇭🇰</span></button>
 
   <nav class="chapter-nav">
+    <span class="chapter-brand">C &amp; S</span>
     <div class="chapter-dots">
-      <a href="index.html" class="cdot page-link" title="Ch 1 — The Beginning"></a>
-      <a href="evidence.html" class="cdot page-link" title="Ch 2 — The Evidence"></a>
-      <a href="contract.html" class="cdot page-link" title="Ch 3 — The Contract"></a>
-      <a href="poem.html" class="cdot page-link" title="Ch 4 — The Poem"></a>
-      <a href="quiz.html" class="cdot active" title="Ch 5 — The Science"></a>
-      <a href="husband.html" class="cdot page-link" title="Ch 6 — The Resume"></a>
-      <a href="proposal.html" class="cdot page-link" title="Ch 7 — The Proposal"></a>
-      <a href="love.html" class="cdot page-link" title="Ch 8 — The Question"></a>
-      <a href="yes.html" class="cdot page-link" title="Ch 9 — She Said Yes"></a>
+      <a href="index.html"    class="cdot page-link" title="Ch 1"></a>
+      <a href="evidence.html" class="cdot page-link" title="Ch 2"></a>
+      <a href="contract.html" class="cdot page-link" title="Ch 3"></a>
+      <a href="poem.html"     class="cdot page-link" title="Ch 4"></a>
+      <a href="quiz.html"     class="cdot active"    title="Ch 5 — The Quiz"></a>
+      <a href="husband.html"  class="cdot"           title="Ch 6"></a>
+      <a href="proposal.html" class="cdot"           title="Ch 7"></a>
+      <a href="love.html"     class="cdot"           title="Ch 8"></a>
+      <a href="yes.html"      class="cdot"           title="Ch 9"></a>
     </div>
     <span class="chapter-label" data-en="Chapter 5 / 9" data-hk="第 五 章 / 9">Chapter 5 / 9</span>
   </nav>
 
-  <section class="sec" id="quiz">
-    <div class="deco d1">🔬</div>
-    <div class="deco d2">🧪</div>
-    <div class="deco d3">📈</div>
-    <div class="deco d4">🏆</div>
+  <section class="sec">
+    <div class="deco d1">🔬</div><div class="deco d2">🧪</div>
+    <div class="deco d3">📊</div><div class="deco d4">🏆</div>
     <div class="wrap">
       <div class="card glass reveal">
-        <div class="sec-label">
-          <span data-en="🔬 the knowing-him test" data-hk="🔬 了解佢測試">🔬 the knowing-him test</span>
-        </div>
-        <h2 data-en="How Well Do You Know Shreyas?" data-hk="你有幾了解Shreyas？">How Well Do You Know Shreyas?</h2>
+
+        <div class="tag"
+             data-en="🔬 totally unbiased science"
+             data-hk="🔬 完全公正嘅科學">🔬 totally unbiased science</div>
+
+        <h2 data-en="How Well Do You Know Shreyas?"
+            data-hk="你有幾了解Shreyas？">How Well Do You Know Shreyas?</h2>
+
         <p class="sec-note"
-           data-en="A completely unbiased test. Results are totally not predetermined."
-           data-hk="完全公正嘅測試。結果完全唔係預先設定嘅。">
-          A completely unbiased test. Results are totally not predetermined.
+           data-en="8 questions. Results are 100% not predetermined. (They are 100% predetermined.)"
+           data-hk="8條問題。結果100%唔係預設嘅。（佢哋100%係預設嘅。）">
+          8 questions. Results are 100% not predetermined. (They are 100% predetermined.)
         </p>
 
         <div class="quiz-progress-bar">
@@ -53,109 +53,124 @@
         </div>
 
         <div class="quiz-wrap">
+
+          <!-- Q1 -->
           <div class="q-step active" id="qs1">
-            <p class="q-text" data-en="Q1 — How would you describe Shreyas?" data-hk="問題1 — 你會點形容Shreyas？">Q1 — How would you describe Shreyas?</p>
+            <p class="q-text" data-en="Q1 — What does Shreyas do when he's nervous?" data-hk="問題1 — Shreyas緊張時會做咩？">Q1 — What does Shreyas do when he's nervous?</p>
             <div class="q-opts">
-              <button class="q-btn" onclick="nextStep('qs1','qs2',12)" data-en="Annoying (affectionately)" data-hk="煩人（出於愛）">Annoying (affectionately)</button>
-              <button class="q-btn" onclick="nextStep('qs1','qs2',12)" data-en="Surprisingly loveable" data-hk="出乎意料地可愛">Surprisingly loveable</button>
-              <button class="q-btn" onclick="nextStep('qs1','qs2',12)" data-en="A complete disaster honestly" data-hk="老實說係完全嘅災難">A complete disaster honestly</button>
-              <button class="q-btn" onclick="nextStep('qs1','qs2',12)" data-en="My person 💖" data-hk="我的人 💖">My person 💖</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',12)" data-en="Talks way too much 😬" data-hk="講多咗好多 😬">Talks way too much 😬</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',12)" data-en="Goes suspiciously quiet" data-hk="變得可疑咁安靜">Goes suspiciously quiet</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',12)" data-en="Makes a terrible joke to deflect 😅" data-hk="講個爛笑話轉移注意 😅">Makes a terrible joke to deflect 😅</button>
+              <button class="q-btn" onclick="nextStep('qs1','qs2',12)" data-en="All three. On a rotating schedule." data-hk="以上全部。以輪流方式。">All three. On a rotating schedule.</button>
             </div>
           </div>
 
+          <!-- Q2 -->
           <div class="q-step" id="qs2">
-            <p class="q-text" data-en="Q2 — Shreyas just stole the last fry off your plate. Your verdict?" data-hk="問題2 — Shreyas啱啱偷咗你碟上最後一條薯條。你嘅裁決？">Q2 — Shreyas just stole the last fry off your plate. Your verdict?</p>
+            <p class="q-text" data-en="Q2 — Shreyas just stole the last fry off your plate. He:" data-hk="問題2 — Shreyas啱啱偷咗你碟上最後一條薯條。佢：">Q2 — Shreyas just stole the last fry off your plate. He:</p>
             <div class="q-opts">
-              <button class="q-btn" onclick="nextStep('qs2','qs3',25)" data-en="Death penalty (loving)" data-hk="死刑（充滿愛意）">Death penalty (loving)</button>
-              <button class="q-btn" onclick="nextStep('qs2','qs3',25)" data-en="I'll allow it. This time." data-hk="我准許。今次而已。">I'll allow it. This time.</button>
-              <button class="q-btn" onclick="nextStep('qs2','qs3',25)" data-en="I saw it coming. I always do." data-hk="我預咗㗎喇。我成日都係。">I saw it coming. I always do.</button>
-              <button class="q-btn" onclick="nextStep('qs2','qs3',25)" data-en="Joke's on him, I ordered two 😏" data-hk="佢中計喇，我叫咗兩份 😏">Joke's on him, I ordered two 😏</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',25)" data-en="Pretends it never happened 🙃" data-hk="假裝從未發生 🙃">Pretends it never happened 🙃</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',25)" data-en="Immediately offers to order more 🥺" data-hk="立即提議再叫多份 🥺">Immediately offers to order more 🥺</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',25)" data-en="Says 'you weren't gonna eat it anyway' 😏" data-hk="話「你都唔係要食㗎」😏">Says "you weren't gonna eat it anyway" 😏</button>
+              <button class="q-btn" onclick="nextStep('qs2','qs3',25)" data-en="Gives the most charming smile and hopes for the best" data-hk="展示最迷人嘅笑容然後祈禱">Gives the most charming smile and hopes for the best</button>
             </div>
           </div>
 
+          <!-- Q3 -->
           <div class="q-step" id="qs3">
-            <p class="q-text" data-en="Q3 — It's 2am. Shreyas sends &quot;u up?&quot; — but it's just a meme. You..." data-hk="問題3 — 凌晨2點。Shreyas傳「瞓未？」— 但其實只係個表情包。你...">Q3 — It's 2am. Shreyas sends "u up?" — but it's just a meme. You...</p>
+            <p class="q-text" data-en="Q3 — It's 2am. You get a '?' from Shreyas. No context. You:" data-hk="問題3 — 凌晨2點。你收到Shreyas發嘅「？」。冇前文後理。你：">Q3 — It's 2am. You get just a "?" from Shreyas. No context. You:</p>
             <div class="q-opts">
-              <button class="q-btn" onclick="nextStep('qs3','qs4',37)" data-en="Reply with a better meme. War begins." data-hk="回覆一個更勁嘅表情包。戰爭開始。">Reply with a better meme. War begins.</button>
-              <button class="q-btn" onclick="nextStep('qs3','qs4',37)" data-en="Laugh, then pretend I'm asleep" data-hk="笑咗，然後扮瞓著咗">Laugh, then pretend I'm asleep</button>
-              <button class="q-btn" onclick="nextStep('qs3','qs4',37)" data-en="I was already awake. Obviously." data-hk="我本身就醒住。梗係啦。">I was already awake. Obviously.</button>
-              <button class="q-btn" onclick="nextStep('qs3','qs4',37)" data-en="Screenshot it for the group chat" data-hk="截圖去群組分享">Screenshot it for the group chat</button>
+              <button class="q-btn" onclick="nextStep('qs3','qs4',37)" data-en="Reply '??' and start a whole conversation 😂" data-hk="回「？？」然後開始一個完整嘅對話 😂">Reply "??" and start a whole conversation 😂</button>
+              <button class="q-btn" onclick="nextStep('qs3','qs4',37)" data-en="Already know exactly what he means 🙃" data-hk="已經完全知道佢想講咩 🙃">Already know exactly what he means 🙃</button>
+              <button class="q-btn" onclick="nextStep('qs3','qs4',37)" data-en="Screenshot it. This is evidence now." data-hk="截圖。呢個而家係證據。">Screenshot it. This is evidence now.</button>
+              <button class="q-btn" onclick="nextStep('qs3','qs4',37)" data-en="Was already awake waiting for it 👀" data-hk="本身已經醒住等緊 👀">Was already awake waiting for it 👀</button>
             </div>
           </div>
 
+          <!-- Q4 -->
           <div class="q-step" id="qs4">
-            <p class="q-text" data-en="Q4 — It's 3am and the blanket has mysteriously migrated to Shreyas's side. Again." data-hk="問題4 — 凌晨3點，張被神秘咁又移咗去Shreyas嗰邊。又一次。">Q4 — It's 3am and the blanket has mysteriously migrated to Shreyas's side. Again.</p>
+            <p class="q-text" data-en="Q4 — 3am. The blanket has MYSTERIOUSLY migrated to Shreyas's side. Again. You:" data-hk="問題4 — 凌晨3點。被子「神秘地」又移去Shreyas嗰邊。又一次。你：">Q4 — 3am. The blanket has MYSTERIOUSLY migrated to Shreyas's side. Again. You:</p>
             <div class="q-opts">
-              <button class="q-btn" onclick="nextStep('qs4','qs5',50)" data-en="Full tactical blanket reclaim 🪖" data-hk="全面戰術奪被行動 🪖">Full tactical blanket reclaim 🪖</button>
+              <button class="q-btn" onclick="nextStep('qs4','qs5',50)" data-en="Full tactical blanket reclaim operation 🪖" data-hk="全面戰術奪被行動 🪖">Full tactical blanket reclaim operation 🪖</button>
               <button class="q-btn" onclick="nextStep('qs4','qs5',50)" data-en="Just steal his warmth instead 🐧" data-hk="索性偷佢嘅體溫 🐧">Just steal his warmth instead 🐧</button>
-              <button class="q-btn" onclick="nextStep('qs4','qs5',50)" data-en="This means war. Cold, silent war." data-hk="呢個就係戰爭。冷酷、無聲嘅戰爭。">This means war. Cold, silent war.</button>
-              <button class="q-btn" onclick="nextStep('qs4','qs5',50)" data-en="Sigh lovingly. Plot revenge. Cuddle." data-hk="深情地嘆氣。密謀報復。攬實佢。">Sigh lovingly. Plot revenge. Cuddle.</button>
+              <button class="q-btn" onclick="nextStep('qs4','qs5',50)" data-en="Cold war. Silent. Devastating. 🥶" data-hk="冷戰。無聲。毀滅性。🥶">Cold war. Silent. Devastating. 🥶</button>
+              <button class="q-btn" onclick="nextStep('qs4','qs5',50)" data-en="Sigh lovingly. Plot revenge. Cuddle. 😤💕" data-hk="深情嘆氣。密謀報復。擁抱。😤💕">Sigh lovingly. Plot revenge. Cuddle. 😤💕</button>
             </div>
           </div>
 
+          <!-- Q5 -->
           <div class="q-step" id="qs5">
-            <p class="q-text" data-en="Q5 — Shreyas has just made a truly terrible pun. Your honest reaction?" data-hk="問題5 — Shreyas啱啱講咗一個極之爛嘅諧音梗。你誠實嘅反應？">Q5 — Shreyas has just made a truly terrible pun. Your honest reaction?</p>
+            <p class="q-text" data-en="Q5 — Shreyas makes a truly terrible pun. Your honest reaction:" data-hk="問題5 — Shreyas講咗一個極之爛嘅諧音梗。你誠實嘅反應：">Q5 — Shreyas makes a truly terrible pun. Your honest reaction:</p>
             <div class="q-opts">
-              <button class="q-btn" onclick="nextStep('qs5','qs6',62)" data-en="Groan loudly. Secretly love it." data-hk="大聲呻吟。內心其實鍾意。">Groan loudly. Secretly love it.</button>
-              <button class="q-btn" onclick="nextStep('qs5','qs6',62)" data-en="Laugh before he finishes it" data-hk="佢未講完我就笑咗">Laugh before he finishes it</button>
-              <button class="q-btn" onclick="nextStep('qs5','qs6',62)" data-en="Walk away (come back 2 seconds later)" data-hk="走開（兩秒後返嚟）">Walk away (come back 2 seconds later)</button>
-              <button class="q-btn" onclick="nextStep('qs5','qs6',62)" data-en="Threaten divorce. We're not even married." data-hk="威脅離婚。我哋仲未結婚。">Threaten divorce. We're not even married.</button>
+              <button class="q-btn" onclick="nextStep('qs5','qs6',62)" data-en="Groan loudly. Secretly love it. 😩💖" data-hk="大聲呻吟。內心其實鍾意。😩💖">Groan loudly. Secretly love it. 😩💖</button>
+              <button class="q-btn" onclick="nextStep('qs5','qs6',62)" data-en="Laugh before he finishes saying it 😂" data-hk="佢未講完我就笑咗 😂">Laugh before he finishes saying it 😂</button>
+              <button class="q-btn" onclick="nextStep('qs5','qs6',62)" data-en="Walk away. Return in 3 seconds. 🚶💨" data-hk="走開。3秒後返嚟。🚶💨">Walk away. Return in 3 seconds. 🚶💨</button>
+              <button class="q-btn" onclick="nextStep('qs5','qs6',62)" data-en="Threaten divorce. We're not even married. 💀" data-hk="威脅離婚。我哋仲未結婚。💀">Threaten divorce. We're not even married. 💀</button>
             </div>
           </div>
 
+          <!-- Q6 -->
           <div class="q-step" id="qs6">
-            <p class="q-text" data-en="Q6 — Shreyas is confidently giving directions. You're 99% sure he's wrong. You..." data-hk="問題6 — Shreyas好自信咁指路。你99%肯定佢錯。你...">Q6 — Shreyas is confidently giving directions. You're 99% sure he's wrong. You...</p>
+            <p class="q-text" data-en="Q6 — Shreyas is confidently giving directions. You're 99% sure he's wrong. You:" data-hk="問題6 — Shreyas好自信咁指路。你99%肯定佢錯。你：">Q6 — Shreyas is confidently giving directions. You're 99% sure he's wrong. You:</p>
             <div class="q-opts">
-              <button class="q-btn" onclick="nextStep('qs6','qs7',75)" data-en="Let him cook. Then say 'told you.'" data-hk="俾佢試。然後話「我講咗㗎啦。」">Let him cook. Then say 'told you.'</button>
-              <button class="q-btn" onclick="nextStep('qs6','qs7',75)" data-en="Already opened Google Maps secretly" data-hk="已經偷偷開咗Google地圖">Already opened Google Maps secretly</button>
-              <button class="q-btn" onclick="nextStep('qs6','qs7',75)" data-en="Honestly? Getting lost with him is fun" data-hk="老實講？同佢一齊迷路都幾好玩">Honestly? Getting lost with him is fun</button>
-              <button class="q-btn" onclick="nextStep('qs6','qs7',75)" data-en="Nod. Smile. Prepare to be lost." data-hk="點頭。微笑。準備迷路。">Nod. Smile. Prepare to be lost.</button>
+              <button class="q-btn" onclick="nextStep('qs6','qs7',75)" data-en="Already opened Google Maps quietly 🗺️" data-hk="已經靜靜地開咗Google地圖 🗺️">Already opened Google Maps quietly 🗺️</button>
+              <button class="q-btn" onclick="nextStep('qs6','qs7',75)" data-en="Let him cook. Then say 'told you.' 😌" data-hk="俾佢試。然後講「我講咗㗎」😌">Let him cook. Then say "told you." 😌</button>
+              <button class="q-btn" onclick="nextStep('qs6','qs7',75)" data-en="Getting lost together is honestly kind of fun 🌍" data-hk="老實講一齊迷路都幾好玩 🌍">Getting lost together is honestly kind of fun 🌍</button>
+              <button class="q-btn" onclick="nextStep('qs6','qs7',75)" data-en="Nod. Smile. Prepare emotionally for being lost. 😇" data-hk="點頭。微笑。在情感上準備好迷路。😇">Nod. Smile. Prepare emotionally for being lost. 😇</button>
             </div>
           </div>
 
+          <!-- Q7 -->
           <div class="q-step" id="qs7">
-            <p class="q-text" data-en="Q7 — Be honest. How many times have you re-read his texts?" data-hk="問題7 — 老實講。你重看咗佢嘅訊息幾多次？">Q7 — Be honest. How many times have you re-read his texts?</p>
+            <p class="q-text" data-en="Q7 — Be honest. How many times have you re-read his messages?" data-hk="問題7 — 老實講。你重睇過佢嘅訊息幾多次？">Q7 — Be honest. How many times have you re-read his messages?</p>
             <div class="q-opts">
-              <button class="q-btn" onclick="nextStep('qs7','qs8',87)" data-en="Zero. (This is a lie.)" data-hk="零次。（呢個係大話。）">Zero. (This is a lie.)</button>
-              <button class="q-btn" onclick="nextStep('qs7','qs8',87)" data-en="A normal, healthy amount 😇" data-hk="正常、健康嘅次數 😇">A normal, healthy amount 😇</button>
-              <button class="q-btn" onclick="nextStep('qs7','qs8',87)" data-en="I have favourites memorised" data-hk="我有啲已經背熟咗">I have favourites memorised</button>
-              <button class="q-btn" onclick="nextStep('qs7','qs8',87)" data-en="Next question. NEXT QUESTION." data-hk="下一題。下一題。">Next question. NEXT QUESTION.</button>
+              <button class="q-btn" onclick="nextStep('qs7','qs8',87)" data-en="Zero. (This is a lie.) 🤥" data-hk="零次。（呢個係大話。）🤥">Zero. (This is a lie.) 🤥</button>
+              <button class="q-btn" onclick="nextStep('qs7','qs8',87)" data-en="A completely normal amount 😇" data-hk="一個完全正常嘅次數 😇">A completely normal amount 😇</button>
+              <button class="q-btn" onclick="nextStep('qs7','qs8',87)" data-en="I have favourites. I've memorised them. 🥹" data-hk="我有最愛嘅幾條。我已經背熟咗。🥹">I have favourites. I've memorised them. 🥹</button>
+              <button class="q-btn" onclick="nextStep('qs7','qs8',87)" data-en="NEXT QUESTION. NEXT QUESTION. 🏃" data-hk="下一題。下一題。🏃">NEXT QUESTION. NEXT QUESTION. 🏃</button>
             </div>
           </div>
 
+          <!-- Q8 -->
           <div class="q-step" id="qs8">
-            <p class="q-text" data-en="Q8 — Final question. The big one. Be honest." data-hk="問題8 — 最後一題。最重要嗰條。要誠實。">Q8 — Final question. The big one. Be honest.</p>
+            <p class="q-text" data-en="Q8 — Final question. What do you know for sure about Shreyas?" data-hk="問題8 — 最後一題。你對Shreyas最確定嘅事係咩？">Q8 — Final question. What do you know for sure about Shreyas?</p>
             <div class="q-opts">
-              <button class="q-btn" onclick="showQuizResult()" data-en="I love him 💖" data-hk="我愛他 💖">I love him 💖</button>
-              <button class="q-btn" onclick="showQuizResult()" data-en="I love him more than he knows" data-hk="我愛他比他知道的多">I love him more than he knows</button>
-              <button class="q-btn" onclick="showQuizResult()" data-en="He's my favourite chaos" data-hk="佢係我最鍾意嘅混亂">He's my favourite chaos</button>
-              <button class="q-btn" onclick="showQuizResult()" data-en="Obviously. Now stop asking. ❤️" data-hk="廢話。咪再問啦。❤️">Obviously. Now stop asking. ❤️</button>
+              <button class="q-btn" onclick="showQuizResult()" data-en="He loves me more than he lets on 💖" data-hk="佢愛我多過他表現出來 💖">He loves me more than he lets on 💖</button>
+              <button class="q-btn" onclick="showQuizResult()" data-en="He'd do anything to make me smile 🥺" data-hk="佢會做任何事令我微笑 🥺">He'd do anything to make me smile 🥺</button>
+              <button class="q-btn" onclick="showQuizResult()" data-en="He's mine and I'm his. Obviously. 😤" data-hk="佢係我嘅，我係佢嘅。梗係。😤">He's mine and I'm his. Obviously. 😤</button>
+              <button class="q-btn" onclick="showQuizResult()" data-en="I know everything. I win. 🏆" data-hk="我知道一切。我贏。🏆">I know everything. I win. 🏆</button>
             </div>
           </div>
 
+          <!-- Result -->
           <div class="q-result hidden" id="qResult">
-            <p class="sec-label" style="margin-bottom:18px" data-en="📊 results are in" data-hk="📊 結果出爐">📊 results are in</p>
             <div class="score-ring">
               <svg viewBox="0 0 110 110">
-                <circle class="ring-bg" cx="55" cy="55" r="52"/>
-                <circle class="ring-fill" id="ringFill" cx="55" cy="55" r="52"/>
+                <circle class="ring-bg"   cx="55" cy="55" r="52"/>
+                <circle class="ring-fill" cx="55" cy="55" r="52" id="ringFill"/>
               </svg>
               <span class="score-num" id="scoreNum">0%</span>
             </div>
-            <p class="result-title" data-en="YOU KNOW SHREYAS: 100% 💖" data-hk="你了解Shreyas：100% 💖">YOU KNOW SHREYAS: 100% 💖</p>
+            <p class="result-title"
+               data-en="CERTIFIED CATHY KNOWS SHREYAS EXPERT 🏆"
+               data-hk="認證Cathy了解Shreyas專家 🏆">CERTIFIED CATHY KNOWS SHREYAS EXPERT 🏆</p>
             <p class="result-note"
-               data-en="The test is conclusive: nobody on Earth knows Shreyas better than you do. You know his moods, his terrible puns, which snacks he'll steal, and exactly how he takes his coffee. Honestly, it's a little unfair to everyone else."
-               data-hk="測試結果好明確：全世界冇人比你更了解Shreyas。你知佢嘅情緒、佢啲爛諧音梗、佢會偷邊啲零食、同埋佢杯咖啡點沖。老實講，咁對其他人有啲唔公平。">
-              The test is conclusive: nobody on Earth knows Shreyas better than you do. You know his moods, his terrible puns, which snacks he'll steal, and exactly how he takes his coffee. Honestly, it's a little unfair to everyone else.
+               data-en="The algorithm ran the numbers. Then it ran them again. Then it cried a little. Nobody on this planet knows Shreyas better than you do — his nervous jokes, his blanket crimes, his terrible puns, his 2am question marks. You know all of it. You stayed for all of it."
+               data-hk="演算法計算咗數字。然後再計一次。然後喊咗少少。地球上冇人比你更了解Shreyas——佢緊張時嘅爛笑話、佢偷被嘅罪行、佢爛諧音梗、佢凌晨2點嘅問號。你知道一切。你為一切而留低。">
+              Nobody on this planet knows Shreyas better than you do — his nervous jokes, his blanket crimes, his terrible puns, his 2am question marks. You know all of it. You stayed for all of it. That's the whole test, really. 💖
             </p>
-            <div class="ev-verdict" style="margin-top:20px"
-               data-en="And here's the thing — the more someone knows you, the more they could walk away. You never did. You stayed, you learned every messy detail, and you loved him anyway. That's the whole test, really. 💖"
-               data-hk="而且呢 — 一個人越了解你，就越有理由離開。但你從來冇。你留低咗，了解咗佢每一個亂糟糟嘅細節，然後依然愛佢。其實呢個先係成個測試嘅重點。💖">
-              And here's the thing — the more someone knows you, the more they could walk away. You never did. You stayed, you learned every messy detail, and you loved him anyway. That's the whole test, really. 💖
+            <p class="ev-verdict" style="margin-top:16px"
+               data-en="And here's the thing: the more someone truly knows you, the easier it is to walk away. You never did. You know every messy detail and you chose to stay anyway. That's not just love. That's rare."
+               data-hk="而且係呢——一個人越真正了解你，就越容易離開。但你從來冇。你知道每一個亂糟糟嘅細節，但你依然選擇留下。呢個唔只係愛。係珍貴。">
+              And here's the thing: the more someone truly knows you, the easier it is to walk away. You never did. That's not just love. That's rare. 🥹
+            </p>
+            <div style="margin-top:22px">
+              <button class="btn btn-primary" onclick="goNext()">
+                <span data-en="Chapter 6 — The Resume →" data-hk="第六章 — 履歷表 →">Chapter 6 — The Resume →</span>
+              </button>
             </div>
-            <a href="husband.html" class="btn btn-primary page-link" style="margin-top:22px"
-               data-en="Continue to Chapter 6 →" data-hk="繼續第六章 →">Continue to Chapter 6 →</a>
           </div>
+
         </div>
       </div>
     </div>
@@ -164,21 +179,20 @@
   <div class="page-nav">
     <a href="poem.html" class="page-link">← Chapter 4</a>
     <span class="spacer"></span>
-    <a href="husband.html" class="page-link">Chapter 6 →</a>
+    <button onclick="goNext()">Chapter 6 →</button>
   </div>
 
   <div class="ticker-wrap">
     <div class="ticker-label">🔴 BREAKING</div>
     <div class="ticker-track"><div class="ticker-content">
-      <span>Compatibility score reaches 100%. Algorithm crashes from shock. &nbsp;•&nbsp;</span>
-      <span>Scientists confirm no further testing required. Case closed. &nbsp;•&nbsp;</span>
-      <span>Quiz declared legally admissible as evidence. &nbsp;•&nbsp;</span>
+      <span>Compatibility algorithm crashes. Gives up. Returns result of ∞. &nbsp;•&nbsp;</span>
+      <span>Blanket migration now classified as a recurring international incident. &nbsp;•&nbsp;</span>
+      <span>Scientists confirm: she knows him better than he knows himself. &nbsp;•&nbsp;</span>
     </div></div>
   </div>
 
   <canvas id="confettiCanvas"></canvas>
-  
-    <script>const _PAGE="quiz.html";const _PAGE_IDX=4;</script>
-  <script src="script.js?v=6"></script>
+  <script>const _PAGE="quiz.html"; const _PAGE_IDX=4;</script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>
