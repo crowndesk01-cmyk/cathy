@@ -58,35 +58,60 @@ const escapeMsgs = {
 };
 
 /* ============================================================
-   NO BUTTON — runs away across the screen
+   NO BUTTON — runs away FOREVER (never lets her catch it)
    ============================================================ */
 function runAway(btn) {
-  if (btn.dataset.fleeing === '1') return;
-  btn.dataset.fleeing = '1';
+  /* tiny cooldown so it doesn't teleport 60x/second */
+  const now = Date.now();
+  if (now - (parseInt(btn.dataset.lastFlee) || 0) < 140) return;
+  btn.dataset.lastFlee = now;
   noCount++;
 
+  /* escalating taunt */
   const msgs = escapeMsgs[lang];
   const msgEl = document.getElementById('escapeMsg') || document.getElementById('escapeMsg8');
   if (msgEl) msgEl.textContent = msgs[Math.min(noCount - 1, msgs.length - 1)];
 
   const bw = btn.offsetWidth || 90, bh = btn.offsetHeight || 44;
-  const x = Math.random() * (window.innerWidth  - bw - 24) + 12;
-  const y = Math.random() * (window.innerHeight - bh - 24) + 12;
+  const pad = 16;
+  const r = btn.getBoundingClientRect();
+  const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+
+  /* pick a new spot, biased AWAY from where the cursor just was */
+  let x, y, tries = 0;
+  do {
+    x = Math.random() * (window.innerWidth  - bw - pad * 2) + pad;
+    y = Math.random() * (window.innerHeight - bh - pad * 2) + pad;
+    tries++;
+  } while (Math.hypot((x + bw / 2) - cx, (y + bh / 2) - cy) < 180 && tries < 12);
+
+  /* shrink a little each dodge, but never fully vanish — it keeps running */
+  const scale = Math.max(0.55, 1 - noCount * 0.045);
+  const rot   = (Math.random() - 0.5) * 50;
 
   btn.style.position   = 'fixed';
   btn.style.zIndex     = '7000';
   btn.style.margin     = '0';
-  btn.style.transition = 'left .25s ease, top .25s ease, opacity .4s ease, transform .4s ease';
+  btn.style.transition = 'left .18s cubic-bezier(.34,1.56,.64,1), top .18s cubic-bezier(.34,1.56,.64,1), transform .18s ease';
   btn.style.left = x + 'px';
   btn.style.top  = y + 'px';
+  btn.style.transform = `scale(${scale}) rotate(${rot}deg)`;
 
-  setTimeout(() => {
-    btn.style.opacity   = '0';
-    btn.style.transform = 'scale(.2) rotate(35deg)';
-    setTimeout(() => { btn.style.display = 'none'; }, 420);
-  }, 240);
+  animateLoveMeter(Math.min(70 + noCount * 3, 96));
+}
 
-  animateLoveMeter(Math.min(70 + noCount * 4, 95));
+/* Proximity flee — it bolts before the cursor even reaches it */
+function initRunaway() {
+  const noBtns = Array.from(document.querySelectorAll('.btn-no'));
+  if (!noBtns.length) return;
+  document.addEventListener('mousemove', (e) => {
+    noBtns.forEach(btn => {
+      if (btn.style.display === 'none') return;
+      const r = btn.getBoundingClientRect();
+      const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      if (Math.hypot(e.clientX - cx, e.clientY - cy) < 110) runAway(btn);
+    });
+  });
 }
 
 /* ============================================================
@@ -499,6 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContract();
   initPoem();
   initHusbandMaterial();
+  initRunaway();
   startParticles();
 
   /* love.html: pre-warm meter */
