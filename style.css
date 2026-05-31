@@ -340,6 +340,35 @@ h2 {
 @keyframes escapePop { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
 .maybe-note { font-size:.75rem; color:var(--text-s); font-style:italic; margin-top:10px; }
 
+/* ===================== BIG ON-SCREEN PLEA ===================== */
+.big-plea {
+  position:fixed; left:50%; top:34%; transform:translate(-50%,-50%);
+  z-index:7500; width:min(92vw,680px); text-align:center;
+  pointer-events:none; opacity:0; transition:opacity .45s ease;
+}
+.big-plea.show { opacity:1; animation:bigPleaPop .5s cubic-bezier(.34,1.7,.5,1); }
+@keyframes bigPleaPop {
+  0%   { transform:translate(-50%,-50%) scale(.55); }
+  60%  { transform:translate(-50%,-50%) scale(1.1); }
+  100% { transform:translate(-50%,-50%) scale(1); }
+}
+.big-plea-emoji {
+  display:block; line-height:1;
+  font-size:clamp(4rem,18vw,8rem);
+  filter:drop-shadow(0 10px 22px rgba(232,74,127,0.32));
+  animation:pleaWobble 1.2s ease-in-out infinite;
+}
+@keyframes pleaWobble { 0%,100% { transform:rotate(-7deg); } 50% { transform:rotate(7deg); } }
+.big-plea-text {
+  display:block; margin-top:14px;
+  font-family:'Playfair Display',serif; font-weight:900;
+  font-size:clamp(1.6rem,6.5vw,3rem); line-height:1.12;
+  background:linear-gradient(135deg,#e84a7f 0%,#ff6b9d 45%,#a78bdc 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  text-shadow:0 2px 30px rgba(255,255,255,0.6);
+  padding:0 10px;
+}
+
 /* ===================== CELEBRATION ===================== */
 .celebrate-card { text-align:center; }
 .celeb-emoji, #celebEmoji { display:inline-block; }

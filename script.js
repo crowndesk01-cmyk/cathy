@@ -62,39 +62,39 @@ const escapeMsgs = {
    ============================================================ */
 let lastPointer = { x: -999, y: -999 };
 
-/* the button's own text changes each time — it pleads harder every dodge */
+/* escalating pleas — emoji shown HUGE, text shown BIG on screen each dodge */
 const noPleas = {
   en: [
-    "wait… really? 🥺",
-    "you sure?? 😟",
-    "please reconsider 🥹",
-    "don't do this to me 💔",
-    "i'll actually cry 😢",
-    "i built a whole WEBSITE 😭",
-    "9 chapters… for THIS?? 😭",
-    "my heart is cracking 💔😭",
-    "think of the snacks 🍿😭",
-    "i'm on my knees 🙏😭",
-    "PLEASE i'm begging 😭😭",
-    "now you're just being mean 🥺💔",
-    "i'll sob right here 😭😭😭",
-    "click Yes… save me 🥺💖"
+    { emoji: "🥺",     text: "wait… really?" },
+    { emoji: "😟",     text: "you sure??" },
+    { emoji: "🥹",     text: "please reconsider" },
+    { emoji: "💔",     text: "don't do this to me" },
+    { emoji: "😢",     text: "i'll actually cry" },
+    { emoji: "😭",     text: "i built a whole WEBSITE" },
+    { emoji: "😭",     text: "9 chapters… for THIS??" },
+    { emoji: "💔😭",   text: "my heart is cracking" },
+    { emoji: "🍿😭",   text: "think of the snacks" },
+    { emoji: "🙏😭",   text: "i'm on my knees" },
+    { emoji: "😭😭",   text: "PLEASE i'm begging" },
+    { emoji: "🥺💔",   text: "now you're just being mean" },
+    { emoji: "😭😭😭", text: "i'll sob right here" },
+    { emoji: "🥺💖",   text: "click Yes… save me" }
   ],
   hk: [
-    "吓… 真係？🥺",
-    "你肯定呀？😟",
-    "求下你再諗下 🥹",
-    "唔好咁對我 💔",
-    "我真係會喊㗎 😢",
-    "我整咗成個網站呀 😭",
-    "9章… 就為咗咁？😭",
-    "我個心裂緊 💔😭",
-    "諗下啲零食呀 🍿😭",
-    "我跪低喇 🙏😭",
-    "求下你 我求緊你 😭😭",
-    "你而家係咪存心㗎 🥺💔",
-    "我即刻喺度喊俾你睇 😭😭😭",
-    "撳「係」啦… 救下我 🥺💖"
+    { emoji: "🥺",     text: "吓… 真係？" },
+    { emoji: "😟",     text: "你肯定呀？" },
+    { emoji: "🥹",     text: "求下你再諗下" },
+    { emoji: "💔",     text: "唔好咁對我" },
+    { emoji: "😢",     text: "我真係會喊㗎" },
+    { emoji: "😭",     text: "我整咗成個網站呀" },
+    { emoji: "😭",     text: "9章… 就為咗咁？" },
+    { emoji: "💔😭",   text: "我個心裂緊" },
+    { emoji: "🍿😭",   text: "諗下啲零食呀" },
+    { emoji: "🙏😭",   text: "我跪低喇" },
+    { emoji: "😭😭",   text: "求下你 我求緊你" },
+    { emoji: "🥺💔",   text: "你而家係咪存心㗎" },
+    { emoji: "😭😭😭", text: "我即刻喺度喊俾你睇" },
+    { emoji: "🥺💖",   text: "撳「係」啦… 救下我" }
   ]
 };
 
@@ -105,9 +105,21 @@ function runAway(btn) {
   btn.dataset.lastFlee = now;
   noCount++;
 
-  /* the No button itself begs — text escalates every single dodge */
+  /* escalating plea — small on the running button, HUGE in the centre banner */
   const pleas = noPleas[lang];
-  btn.textContent = pleas[Math.min(noCount - 1, pleas.length - 1)];
+  const plea  = pleas[Math.min(noCount - 1, pleas.length - 1)];
+  btn.textContent = plea.text;
+
+  /* BIG on-screen plea: giant emoji + big text, pops on every dodge */
+  const bp = document.getElementById('bigPlea');
+  if (bp) {
+    const e = document.getElementById('bigPleaEmoji');
+    const t = document.getElementById('bigPleaText');
+    if (e) e.textContent = plea.emoji;
+    if (t) t.textContent = plea.text;
+    bp.classList.remove('show'); void bp.offsetWidth; bp.classList.add('show');
+    clearTimeout(bp._t); bp._t = setTimeout(() => bp.classList.remove('show'), 2600);
+  }
 
   /* narrator commentary below the buttons (the running gag) */
   const msgs = escapeMsgs[lang];
@@ -149,10 +161,24 @@ function runAway(btn) {
   animateLoveMeter(Math.min(70 + noCount * 2.5, 96));
 }
 
+/* build the big centre-screen plea banner once */
+function ensureBigPlea() {
+  if (document.getElementById('bigPlea')) return;
+  const el = document.createElement('div');
+  el.className = 'big-plea';
+  el.id = 'bigPlea';
+  el.setAttribute('aria-hidden', 'true');
+  el.innerHTML =
+    '<span class="big-plea-emoji" id="bigPleaEmoji"></span>' +
+    '<span class="big-plea-text" id="bigPleaText"></span>';
+  document.body.appendChild(el);
+}
+
 /* Proximity flee — it bolts before the cursor even reaches it */
 function initRunaway() {
   const noBtns = Array.from(document.querySelectorAll('.btn-no'));
   if (!noBtns.length) return;
+  ensureBigPlea();
   document.addEventListener('mousemove', (e) => {
     lastPointer = { x: e.clientX, y: e.clientY };
     noBtns.forEach(btn => {
