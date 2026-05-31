@@ -58,46 +58,57 @@ const escapeMsgs = {
 };
 
 /* ============================================================
-   NO BUTTON — runs away FOREVER (never lets her catch it)
+   NO BUTTON — runs away FOREVER (never vanishes, runs 10s of times)
    ============================================================ */
+let lastPointer = { x: -999, y: -999 };
+
 function runAway(btn) {
   /* tiny cooldown so it doesn't teleport 60x/second */
   const now = Date.now();
-  if (now - (parseInt(btn.dataset.lastFlee) || 0) < 140) return;
+  if (now - (parseInt(btn.dataset.lastFlee) || 0) < 130) return;
   btn.dataset.lastFlee = now;
   noCount++;
 
-  /* escalating taunt */
+  /* escalating taunt — shows it has run many times */
   const msgs = escapeMsgs[lang];
   const msgEl = document.getElementById('escapeMsg') || document.getElementById('escapeMsg8');
-  if (msgEl) msgEl.textContent = msgs[Math.min(noCount - 1, msgs.length - 1)];
+  if (msgEl) {
+    const taunt = msgs[Math.min(noCount - 1, msgs.length - 1)];
+    msgEl.textContent = '#' + noCount + ' — ' + taunt;
+  }
 
   const bw = btn.offsetWidth || 90, bh = btn.offsetHeight || 44;
-  const pad = 16;
-  const r = btn.getBoundingClientRect();
-  const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  const pad = 18;
+  const maxX = window.innerWidth  - bw - pad;
+  const maxY = window.innerHeight - bh - pad;
 
-  /* pick a new spot, biased AWAY from where the cursor just was */
-  let x, y, tries = 0;
-  do {
-    x = Math.random() * (window.innerWidth  - bw - pad * 2) + pad;
-    y = Math.random() * (window.innerHeight - bh - pad * 2) + pad;
-    tries++;
-  } while (Math.hypot((x + bw / 2) - cx, (y + bh / 2) - cy) < 180 && tries < 12);
+  /* flee to the OPPOSITE side of the screen from the cursor, with jitter */
+  const px = lastPointer.x < 0 ? window.innerWidth / 2 : lastPointer.x;
+  const py = lastPointer.y < 0 ? window.innerHeight / 2 : lastPointer.y;
+  let x = px < window.innerWidth / 2
+        ? window.innerWidth  * (0.55 + Math.random() * 0.4)
+        : window.innerWidth  * (0.05 + Math.random() * 0.4);
+  let y = py < window.innerHeight / 2
+        ? window.innerHeight * (0.55 + Math.random() * 0.35)
+        : window.innerHeight * (0.10 + Math.random() * 0.35);
+  x = Math.max(pad, Math.min(maxX, x));
+  y = Math.max(pad, Math.min(maxY, y));
 
-  /* shrink a little each dodge, but never fully vanish — it keeps running */
-  const scale = Math.max(0.55, 1 - noCount * 0.045);
-  const rot   = (Math.random() - 0.5) * 50;
+  /* shrink a little each dodge, but NEVER vanish — floors at 0.6 */
+  const scale = Math.max(0.6, 1 - noCount * 0.035);
+  const rot   = (Math.random() - 0.5) * 44;
 
   btn.style.position   = 'fixed';
   btn.style.zIndex     = '7000';
   btn.style.margin     = '0';
-  btn.style.transition = 'left .18s cubic-bezier(.34,1.56,.64,1), top .18s cubic-bezier(.34,1.56,.64,1), transform .18s ease';
+  btn.style.opacity    = '1';                 /* guarantee it stays visible */
+  btn.style.display    = 'inline-block';      /* never hidden */
+  btn.style.transition = 'left .2s cubic-bezier(.34,1.56,.64,1), top .2s cubic-bezier(.34,1.56,.64,1), transform .2s ease';
   btn.style.left = x + 'px';
   btn.style.top  = y + 'px';
   btn.style.transform = `scale(${scale}) rotate(${rot}deg)`;
 
-  animateLoveMeter(Math.min(70 + noCount * 3, 96));
+  animateLoveMeter(Math.min(70 + noCount * 2.5, 96));
 }
 
 /* Proximity flee — it bolts before the cursor even reaches it */
@@ -105,11 +116,11 @@ function initRunaway() {
   const noBtns = Array.from(document.querySelectorAll('.btn-no'));
   if (!noBtns.length) return;
   document.addEventListener('mousemove', (e) => {
+    lastPointer = { x: e.clientX, y: e.clientY };
     noBtns.forEach(btn => {
-      if (btn.style.display === 'none') return;
       const r = btn.getBoundingClientRect();
       const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-      if (Math.hypot(e.clientX - cx, e.clientY - cy) < 110) runAway(btn);
+      if (Math.hypot(e.clientX - cx, e.clientY - cy) < 130) runAway(btn);
     });
   });
 }
